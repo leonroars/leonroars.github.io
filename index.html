@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" data-lang="ko" data-title-ko="채호연 — 포트폴리오" data-title-en="HoYeon Chae — Portfolio">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>채호연 — 포트폴리오</title>
+  <meta name="description" content="채호연 — 병목 진단과 성능 개선에 강한 백엔드 개발자">
+  <link rel="stylesheet" href="style.css">
+  <!-- Prevent FOUC: apply saved theme before paint -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('portfolio-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('portfolio-lang') || 'ko';
+      document.documentElement.setAttribute('data-lang', l);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="lang-ko">채호연</span>
+      <span class="lang-en">Julian Chae</span>
+    </a>
+    <div class="nav-controls">
+      <button id="lang-toggle" class="nav-toggle lang-toggle" aria-label="Toggle language">EN</button>
+      <button id="theme-toggle" class="nav-toggle" aria-label="Toggle theme">☾</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+      <p class="hero-eyebrow">Backend Developer</p>
+      <h1 class="hero-name">
+        <span class="lang-ko">채호연</span>
+        <span class="lang-en">HoYeon <em
+            style="font-family:var(--font-display);font-style:italic;opacity:0.5">"Julian"</em> Chae</span>
+      </h1>
+      <p class="hero-headline">
+        <span class="lang-ko">병목 진단과 성능 개선에 강한 백엔드 개발자입니다</span>
+        <span class="lang-en">Backend developer with depth in bottleneck diagnosis and performance optimization</span>
+      </p>
+      <p class="hero-description">
+        <span class="lang-ko">어려움을 풀어내는 즐거움과, 필요를 직접 해결하고 나눌 수 있다는 점에 이끌려 백엔드 개발자가 되기로 했습니다.</span>
+        <span class="lang-en">I chose backend engineering for the joy of untangling hard problems and the ability to
+          build things that solve real needs.</span>
+      </p>
+      <div class="hero-contact">
+        <a href="mailto:julian247.dev@gmail.com">
+          <span class="contact-icon">✉</span> julian247.dev@gmail.com
+        </a>
+        <a href="https://github.com/leonroars" target="_blank" rel="noopener">
+          <span class="contact-icon">⌘</span> github.com/leonroars
+        </a>
+        <span>
+          <span class="contact-icon">☎</span> 010-5055-4908
+        </span>
+      </div>
+    </section>
+
+    <!-- ====== STRENGTHS ====== -->
+    <section class="section" id="about">
+      <p class="section-label">
+        <span class="lang-ko">핵심 역량</span>
+        <span class="lang-en">Core Strengths</span>
+      </p>
+      <div class="strengths">
+        <div class="strength-item">
+          <p class="strength-title">
+            <span class="lang-ko">논리적으로 분석하고 집요하게 추적해 문제를 해결합니다.</span>
+            <span class="lang-en">I solve problems through rigorous analysis and persistent investigation.</span>
+          </p>
+          <p class="strength-detail">
+            <span class="lang-ko">JVM 내부 이벤트까지 추적해 병목 원인을 진단 및 해소하여, 인프라 증설 없이 P99 Latency 66%, Throughput 54%
+              개선했습니다.</span>
+            <span class="lang-en">Traced bottleneck causes down to JVM-level events, improving P99 latency by 66% and
+              throughput by 54% without infrastructure scaling.</span>
+          </p>
+        </div>
+        <div class="strength-item">
+          <p class="strength-title">
+            <span class="lang-ko">팀의 필요와 방향을 이해하고, 지금 해야 할 일을 스스로 찾아 수행합니다.</span>
+            <span class="lang-en">I understand what the team needs and take initiative to fill gaps.</span>
+          </p>
+          <p class="strength-detail">
+            <span class="lang-ko">비개발 팀원들의 고충을 해결하기 위해 Python·Whisper·FFmpeg 활용해 해외 학자 강연 영상 자막 생성 자동화 파이프라인을
+              구축했습니다.</span>
+            <span class="lang-en">Built an automated subtitle generation pipeline using Python, Whisper, and FFmpeg to
+              eliminate manual workload for non-engineering teammates.</span>
+          </p>
+          <p class="strength-detail" style="margin-top: 8px;">
+            <span class="lang-ko">담당 업무 영역 밖이었으나 조직 차원의 어려움을 파악했고, 해결하기 위해 프로모션 전략을 기획·제안 및 실행해 참석자 수 47% 증가를
+              달성했습니다.</span>
+            <span class="lang-en">Identified an organizational challenge outside my role, proposed and executed a
+              promotion strategy that increased conference attendance by 47% YoY.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== WORK EXPERIENCE ====== -->
+    <section class="section" id="experience">
+      <p class="section-label">
+        <span class="lang-ko">업무 경력</span>
+        <span class="lang-en">Work Experience</span>
+      </p>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <span class="experience-role">Research Assistant</span>
+          <span class="experience-period">2024.09 —
+            <span class="lang-ko">현재</span><span class="lang-en">Present</span>
+          </span>
+        </div>
+        <p class="experience-org">
+          <span class="lang-ko">한국외국어대학교 세미오시스 연구센터</span>
+          <span class="lang-en">HUFS R&DB Foundation · Semiosis Research Center</span>
+        </p>
+        <ul class="experience-list">
+          <li>
+            <span class="lang-ko">비개발 팀원의 해외 학자 강연 영상 자막 작업의 수작업 부담을 해소 위해 Python·Whisper·FFmpeg 기반 자동 생성 파이프라인
+              구축</span>
+            <span class="lang-en">Automated subtitle generation pipeline for academic event recordings using Python,
+              FFmpeg, and OpenAI Whisper</span>
+          </li>
+          <li>
+            <span class="lang-ko">PyInstaller로 실행 파일화 및 매뉴얼과 함께 배포하여 비개발 팀원이 독립적으로 활용할 수 있도록 배포</span>
+            <span class="lang-en">Packaged via PyInstaller with documentation, enabling non-technical team members to
+              use it independently</span>
+          </li>
+          <li>
+            <span class="lang-ko">담당 범위 외 조직 과제를 포착하여, 얼리버드 프로모션을 기획·실행하고 전년 대비 참가율 47% 증진</span>
+            <span class="lang-en">Proposed and executed an early-bird promotion strategy for the annual academic
+              conference; achieved a 47% YoY increase in attendance</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== PROJECTS ====== -->
+    <section class="section" id="projects">
+      <p class="section-label">
+        <span class="lang-ko">프로젝트</span>
+        <span class="lang-en">Projects</span>
+      </p>
+      <div class="project-grid">
+
+        <!-- SLAM -->
+        <a href="projects/slam.html" class="project-card">
+          <div class="project-card-header">
+            <span class="project-card-title">SLAM!</span>
+            <span class="project-card-arrow">→</span>
+          </div>
+          <p class="project-card-subtitle">
+            <span class="lang-ko">공연 좌석 예약 서비스 — JFR 기반 성능 병목 진단, 3-Layer API 멱등성 설계, DB 접근 패턴 최적화</span>
+            <span class="lang-en">Concert seat reservation system — JFR-based bottleneck diagnosis, 3-layer API
+              idempotency, DB access pattern optimization</span>
+          </p>
+          <p class="project-card-period">
+            2025.01 —
+            <span class="lang-ko">현재</span><span class="lang-en">Present</span>
+            ·
+            <span class="lang-ko">개인 프로젝트</span><span class="lang-en">Personal Project</span>
+          </p>
+          <div class="project-card-tags">
+            <span class="tag">Java 17</span>
+            <span class="tag">Spring Boot 3</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag">AWS EC2</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">JFR</span>
+          </div>
+        </a>
+
+        <!-- ADD MORE PROJECT CARDS HERE
+             Copy the <a class="project-card"> block above, change content and href.
+             Example:
+
+        <a href="projects/shortwatch.html" class="project-card">
+          <div class="project-card-header">
+            <span class="project-card-title">ShortWatch</span>
+            <span class="project-card-arrow">→</span>
+          </div>
+          <p class="project-card-subtitle">
+            <span class="lang-ko">KRX 공매도 이상 탐지 알림 서비스</span>
+            <span class="lang-en">KRX short-selling anomaly detection & alert service</span>
+          </p>
+          <p class="project-card-period">2025.XX — Present</p>
+          <div class="project-card-tags">
+            <span class="tag">Kotlin</span>
+            <span class="tag">Spring Boot</span>
+          </div>
+        </a>
+        -->
+
+      </div>
+    </section>
+
+    <!-- ====== TECHNICAL SKILLS ====== -->
+    <section class="section" id="skills">
+      <p class="section-label">
+        <span class="lang-ko">기술 스택</span>
+        <span class="lang-en">Technical Skills</span>
+      </p>
+      <div class="skills-grid">
+        <div class="skills-category">
+          <p class="skills-category-label">
+            <span class="lang-ko">언어 & 프레임워크</span>
+            <span class="lang-en">Languages & Frameworks</span>
+          </p>
+          <div class="skills-category-items">
+            <span class="tag">Java</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Spring Data JPA</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <p class="skills-category-label">
+            <span class="lang-ko">데이터 & 인프라</span>
+            <span class="lang-en">Data & Infrastructure</span>
+          </p>
+          <div class="skills-category-items">
+            <span class="tag">MySQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag">AWS (EC2, RDS, ECR, SSM, S3)</span>
+            <span class="tag">Docker</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">nginx</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <p class="skills-category-label">
+            <span class="lang-ko">관측 & 분석</span>
+            <span class="lang-en">Observability & Analysis</span>
+          </p>
+          <div class="skills-category-items">
+            <span class="tag">Prometheus</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Loki</span>
+            <span class="tag">Promtail</span>
+            <span class="tag">JDK Flight Recorder (JFR)</span>
+          </div>
+        </div>
+        <div class="skills-category">
+          <p class="skills-category-label">AI Tools</p>
+          <div class="skills-category-items">
+            <span class="tag">Google Antigravity</span>
+            <span class="tag">Claude Code</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ACTIVITIES ====== -->
+    <section class="section" id="activities">
+      <p class="section-label">
+        <span class="lang-ko">활동</span>
+        <span class="lang-en">Activities</span>
+      </p>
+
+      <div class="activity-item">
+        <div class="activity-header">
+          <span class="activity-title">
+            <span class="lang-ko">개발 스터디 리딩</span>
+            <span class="lang-en">System Design & JVM Study Lead</span>
+          </span>
+          <span class="experience-period">2024.11 —
+            <span class="lang-ko">현재</span><span class="lang-en">Present</span>
+          </span>
+        </div>
+        <p class="activity-detail">
+          <span class="lang-ko">"JVM 밑바닥까지 파헤치기", "가상 면접 사례로 배우는 대규모 시스템 설계 기초" 교재를 통해 GC 매커니즘, Java 메모리 모델, 동시성 제어, 대규모
+            분산 시스템 설계 방안을 학습</span>
+          <span class="lang-en">Deep dive into JVM internals and large-scale distributed systems — GC mechanisms, Java
+            memory model, concurrency control, consistent hashing, rate limiting, quorum consensus, and Bloom
+            filters</span>
+        </p>
+        <p class="activity-detail" style="margin-top: 6px;">
+          <span class="lang-ko">개인별 관심사와 깊이의 차이를 시너지로 활용하기 위해 매주 동일 범위를 학습한 뒤, 각자 깊이 파고든 주제를 공유·토의하는 방식으로 운영</span>
+          <span class="lang-en">Facilitated weekly sessions where each member studied the same material then shared
+            deep-dives on individually chosen sub-topics</span>
+        </p>
+        <div class="activity-meta">
+          <span>
+            <span class="lang-ko">팀 프로젝트 · 참여 인원 4명</span>
+            <span class="lang-en">Team Project · 4 members</span>
+          </span>
+          <a href="https://github.com/leonroars" target="_blank" rel="noopener"
+            style="color: var(--accent); text-decoration: none;">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="activity-item">
+        <div class="activity-header">
+          <span class="activity-title">
+            <span class="lang-ko">멋쟁이사자처럼 개발 학회</span>
+            <span class="lang-en">Likelion Development Club</span>
+          </span>
+          <span class="experience-period">2022.01 — 2023.01</span>
+        </div>
+        <p class="activity-detail">
+          <span class="lang-ko">Python, Django Rest Framework 활용 향수 추천 서비스 개발 — 매거진 API 개발 및 팀원 작업 내용 인터뷰 취합 후 최종 발표
+            수행</span>
+          <span class="lang-en">Built a perfume recommendation service with Python and Django REST Framework — developed
+            the magazine API and delivered the final presentation</span>
+        </p>
+        <p class="activity-detail" style="margin-top: 6px;">
+          <span class="lang-ko">10개 학교 연합 해커톤 참여</span>
+          <span class="lang-en">Participated in a 10-university joint hackathon</span>
+        </p>
+        <div class="activity-meta">
+          <span>
+            <span class="lang-ko">팀 프로젝트 · 참여 인원 10명 (기획 2, FE 4, BE 4)</span>
+            <span class="lang-en">Team Project · 10 members (PM 2, FE 4, BE 4)</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== EDUCATION ====== -->
+    <section class="section" id="education">
+      <p class="section-label">
+        <span class="lang-ko">학력</span>
+        <span class="lang-en">Education</span>
+      </p>
+      <div class="edu-item">
+        <div class="edu-header">
+          <span class="edu-school">
+            <span class="lang-ko">한국외국어대학교</span>
+            <span class="lang-en">Hankuk University of Foreign Studies</span>
+          </span>
+          <span class="experience-period">2014.03 — 2024.08</span>
+        </div>
+        <p class="edu-degree">
+          <span class="lang-ko">경영학 학사 (Bachelor of Business Administration)</span>
+          <span class="lang-en">Bachelor of Business Administration</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <p>© 2025 HoYeon Chae</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

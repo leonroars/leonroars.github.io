@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" data-lang="ko" data-title-ko="SLAM! — 채호연 포트폴리오"
+  data-title-en="SLAM! — HoYeon Chae Portfolio">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLAM! — 채호연 포트폴리오</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('portfolio-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      var l = localStorage.getItem('portfolio-lang') || 'ko';
+      document.documentElement.setAttribute('data-lang', l);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">
+      <span class="lang-ko">채호연</span>
+      <span class="lang-en">Julian Chae</span>
+    </a>
+    <div class="nav-controls">
+      <button id="lang-toggle" class="nav-toggle lang-toggle" aria-label="Toggle language">EN</button>
+      <button id="theme-toggle" class="nav-toggle" aria-label="Toggle theme">☾</button>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- Back link -->
+    <a href="../index.html" class="back-link">
+      ← <span class="lang-ko">포트폴리오로 돌아가기</span><span class="lang-en">Back to portfolio</span>
+    </a>
+
+    <!-- ====== PROJECT HERO ====== -->
+    <section class="project-hero">
+      <p class="hero-eyebrow">
+        <span class="lang-ko">개인 프로젝트 · 2025.01 — 현재</span>
+        <span class="lang-en">Personal Project · Jan 2025 — Present</span>
+      </p>
+      <h1 class="project-title">SLAM!</h1>
+      <p class="project-subtitle">
+        <span class="lang-ko">공연 좌석을 예약할 수 있는 기능을 제공하는 서비스입니다. 좌석 선점에 대한 동시성 제어가 요구되며, 선점한 좌석에 대한 결제는 충전된 포인트를 차감하는 것으로
+          실현됩니다.</span>
+        <span class="lang-en">A concert seat reservation system with concurrency control for seat preemption. Payments
+          are processed by deducting pre-charged points.</span>
+      </p>
+      <div class="project-meta">
+        <a href="https://github.com/leonroars" target="_blank" rel="noopener">GitHub Repository ↗</a>
+      </div>
+
+      <!-- Tech stack -->
+      <div class="tech-stack-section">
+        <div class="tech-stack-row" style="margin-top: 20px;">
+          <div class="project-card-tags">
+            <span class="tag">Java 17</span>
+            <span class="tag">Spring Boot 3</span>
+            <span class="tag">Spring Data JPA</span>
+            <span class="tag">MySQL 8.0</span>
+            <span class="tag">Redis 7.0</span>
+            <span class="tag">Docker</span>
+            <span class="tag">JUnit 5</span>
+            <span class="tag">AWS EC2</span>
+            <span class="tag">AWS RDS</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Prometheus</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Loki</span>
+            <span class="tag">Promtail</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== KEY ACHIEVEMENTS ====== -->
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <p class="achievement-value">−66%</p>
+        <p class="achievement-label">P99 Latency<br>1.04s → 355ms</p>
+      </div>
+      <div class="achievement-card">
+        <p class="achievement-value">+54%</p>
+        <p class="achievement-label">Throughput<br>813 → 1.25K RPS</p>
+      </div>
+      <div class="achievement-card">
+        <p class="achievement-value">−76%</p>
+        <p class="achievement-label">
+          <span class="lang-ko">요청당 DB 커맨드</span>
+          <span class="lang-en">DB Commands / Request</span>
+        </p>
+      </div>
+      <div class="achievement-card">
+        <p class="achievement-value">−64%</p>
+        <p class="achievement-label">
+          <span class="lang-ko">스토리지 절감</span>
+          <span class="lang-en">Storage Reduction</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ====== ARCHITECTURE ====== -->
+    <section class="architecture-section">
+      <p class="section-label">
+        <span class="lang-ko">프로젝트 아키텍처</span>
+        <span class="lang-en">Project Architecture</span>
+      </p>
+
+      <!-- IMAGE: Replace src with your actual architecture diagram -->
+      <div class="pan-zoom-container" tabindex="0">
+        <div class="pan-zoom-inner">
+          <img src="../assets/architecture-diagram.svg" alt="SLAM Architecture Diagram" draggable="false">
+        </div>
+        <div class="pan-zoom-controls">
+          <button class="pan-zoom-btn" data-action="zoom-in">+</button>
+          <button class="pan-zoom-btn" data-action="zoom-out">−</button>
+          <button class="pan-zoom-btn" data-action="reset">⟲</button>
+        </div>
+      </div>
+
+      <ul class="arch-bullets">
+        <li>
+          <span class="lang-ko">단일 서버 환경에서 도메인 분리의 이점은 취하되, 네트워크 오버헤드와 운영 복잡도를 줄이기 위해 모듈러 모놀리식 채택</span>
+          <span class="lang-en">Adopted modular monolith to gain domain separation benefits while reducing network
+            overhead and operational complexity in a single-server environment</span>
+        </li>
+        <li>
+          <span class="lang-ko">부하 테스트 및 운영 시 모니터링이 메인 서버 성능에 영향을 주지 않도록 별도 인스턴스로 분리</span>
+          <span class="lang-en">Separated monitoring into a dedicated instance to prevent load testing and observability
+            from impacting the main server</span>
+        </li>
+        <li>
+          <span class="lang-ko">도메인 간 직접 의존을 제거하고, 모듈 추가/변경 시 영향 범위를 최소화하기 위해 ApplicationEvent 기반 통신 적용</span>
+          <span class="lang-en">Adopted ApplicationEvent-based communication to eliminate direct cross-domain
+            dependencies and minimize blast radius for module changes</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ====== TECH DETAIL 01: JFR Performance Analysis ====== -->
+    <section class="tech-detail">
+      <p class="detail-number">01</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">애플리케이션 병목 식별, 원인 분석, 해결을 통한 P99 Latency 66% 개선 및 처리량 54% 향상</span>
+        <span class="lang-en">P99 Latency −66% & Throughput +54% via Application Bottleneck Diagnosis and
+          Resolution</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">Grafana 관측 기반 진단 및 병목 원인 가설 수립 → JDK Flight Recorder (JFR) & 스레드 덤프 활용 세부 분석 통한 가설 검증 및 원인
+          분석 → 개선</span>
+        <span class="lang-en">Grafana-based observation and hypothesis formulation → JFR & thread dump analysis for
+          validation → resolution</span>
+      </p>
+
+      <!-- Test Environment -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">실험 환경</span>
+          <span class="lang-en">Test Environment</span>
+        </h3>
+        <p class="detail-text">
+          AWS c5.large (2 vCPU, 4GB RAM) · G1GC · HikariCP Max 10 · JVM Heap Xms 256MB, Xmx 512MB
+        </p>
+      </div>
+
+      <!-- Problem Definition -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">813 RPS 지점에서 Tail Latency 급증 및 스레드 적체 식별 → 병목 원인 파악 및 해결 가능성 검토 위해 분석 시작.</span>
+          <span class="lang-en">Identified tail latency spike and thread congestion at 813 RPS — initiated analysis to
+            diagnose root cause and evaluate resolution options.</span>
+        </p>
+      </div>
+
+      <!-- Metrics Table -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">병목 구간 주요 지표 별 수치 및 변화율</span>
+          <span class="lang-en">Key Metrics at Bottleneck Interval</span>
+        </h3>
+        <div class="metrics-table-wrapper">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th><span class="lang-ko">지표</span><span class="lang-en">Metric</span></th>
+                <th>01:14:15</th>
+                <th>01:14:30</th>
+                <th><span class="lang-ko">변화율</span><span class="lang-en">Change</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RPS</td>
+                <td>798</td>
+                <td>813</td>
+                <td>+1.87%</td>
+              </tr>
+              <tr>
+                <td>P99 Latency</td>
+                <td>48.5 ms</td>
+                <td>1.04 s</td>
+                <td class="metric-highlight">+2,044%</td>
+              </tr>
+              <tr>
+                <td>HikariCP Pending <span class="lang-ko">스레드</span><span class="lang-en">Threads</span></td>
+                <td>0</td>
+                <td>189</td>
+                <td class="metric-highlight"><span class="lang-ko">신규 발생</span><span class="lang-en">New</span></td>
+              </tr>
+              <tr>
+                <td>HikariCP Avg. Acq Time</td>
+                <td>1.21 ms</td>
+                <td>132 ms</td>
+                <td class="metric-highlight">+10,809%</td>
+              </tr>
+              <tr>
+                <td>GC Pause <span class="lang-ko">지난 1분 합계</span><span class="lang-en">Last 1m Total</span></td>
+                <td>308 ms</td>
+                <td>1.25 s</td>
+                <td class="metric-highlight">+305%</td>
+              </tr>
+              <tr>
+                <td>HikariCP Avg. Usg Time</td>
+                <td>2.25 ms</td>
+                <td>4.32 ms</td>
+                <td><span class="lang-ko">소폭 상승</span><span class="lang-en">Slight rise</span></td>
+              </tr>
+              <tr>
+                <td>GC Count (1m)</td>
+                <td><span class="lang-ko">60회</span><span class="lang-en">60</span></td>
+                <td><span class="lang-ko">80회</span><span class="lang-en">80</span></td>
+                <td>+33%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Hypothesis Table -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">병목 원인에 대한 가설 수립 및 평가</span>
+          <span class="lang-en">Hypothesis Formulation and Evaluation</span>
+        </h3>
+        <div class="metrics-table-wrapper">
+          <table class="hypothesis-table">
+            <thead>
+              <tr>
+                <th><span class="lang-ko">인과 가설</span><span class="lang-en">Hypothesis</span></th>
+                <th><span class="lang-ko">검토 근거</span><span class="lang-en">Evidence</span></th>
+                <th><span class="lang-ko">설명력</span><span class="lang-en">Explanatory Power</span></th>
+                <th><span class="lang-ko">우선순위</span><span class="lang-en">Priority</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A. STW Duration <span class="lang-ko">증가</span><span
+                      class="lang-en">Increase</span></strong></td>
+                <td>
+                  <span class="lang-ko">GC 빈도 증가 & 분당 STW Pause 합계 증가 → 고부하 상황 시 병목 야기 가능</span>
+                  <span class="lang-en">Increased GC frequency & rising per-minute STW pause total → potential
+                    bottleneck under high load</span>
+                </td>
+                <td><span class="lang-ko">높음</span><span class="lang-en">High</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td><strong>B. CPU <span class="lang-ko">포화</span><span class="lang-en">Saturation</span></strong></td>
+                <td>
+                  <span class="lang-ko">문제 지점 System CPU 90% → CPU 경합으로 인한 병목 가능</span>
+                  <span class="lang-en">System CPU at 90% → possible CPU contention bottleneck</span>
+                </td>
+                <td><span class="lang-ko">중간</span><span class="lang-en">Medium</span></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td><strong>C. <span class="lang-ko">커넥션 풀 부족</span><span class="lang-en">Connection Pool
+                      Shortage</span></strong></td>
+                <td>
+                  <span class="lang-ko">Little's Law 계산 상 1K RPS 처리 시 필요 커넥션 4.32개 < 현행 풀 최대 10개</span>
+                      <span class="lang-en">Little's Law: 4.32 connections needed at 1K RPS < pool max of 10</span>
+                </td>
+                <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td><strong>D. DB <span class="lang-ko">병목</span><span class="lang-en">Bottleneck</span></strong></td>
+                <td>
+                  <span class="lang-ko">커넥션 Usage Time 평균이 일정 & Acquire Time만 증가 → 가능성이 낮다고 판단</span>
+                  <span class="lang-en">Stable avg usage time & only acquire time spiking → unlikely cause</span>
+                </td>
+                <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
+                <td>4</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="detail-text" style="margin-top: 12px;">
+          <span class="lang-ko"><strong>결론:</strong> Grafana 관측만으로는 가설 검증의 한계가 있음을 인지 → JVM 이벤트 시계열 분석을 통한 원인 파악 위해 JFR
+            프로파일링 수행</span>
+          <span class="lang-en"><strong>Conclusion:</strong> Recognized the limits of Grafana-only observation →
+            conducted JFR profiling for JVM event time-series analysis</span>
+        </p>
+      </div>
+
+      <!-- JFR Analysis -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">JFR 분석 결과에 근거한 시간순 병목 발생 과정</span>
+          <span class="lang-en">Chronological Bottleneck Progression Based on JFR Analysis</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">1. 높은 Allocation Rate 상황에서의 잦은 GC 포착</span>
+            <span class="lang-en">1. Frequent GC under High Allocation Rate</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>현상 식별:</strong> 당시 Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%)에 따라 Committed 확장되어 Memory Pressure 정황 확인</li>
+              <li><strong>세부 지표:</strong> 140MB/s 수준의 Eden Space 객체 할당, 잦은 GC 발생 (3초간 7회, 평균 Pause 32ms), 저부하 대비 7배 증가한 평균 STW</li>
+              <li>
+                <strong>진단 결과:</strong>
+                <div class="causal-chain">
+                  <span class="cause">Memory Pressure</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">잦은 GC & STW 길이 증가</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">커넥션 반환 지연</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">처리량 저하</span>
+                </div>
+              </li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Observation:</strong> Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%) triggered committed heap expansion, confirming memory pressure.</li>
+              <li><strong>Metrics:</strong> 140MB/s Eden allocation, 7 GCs in 3s (avg pause 32ms), and 7× increase in per-GC STW.</li>
+              <li>
+                <strong>Diagnosis:</strong>
+                <div class="causal-chain">
+                  <span class="cause">Memory Pressure</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">Frequent GC & Longer STW</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">HikariCP Return Delays</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">Throughput Degradation</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">2. HikariCP 커넥션 대기 스레드 적체 발견</span>
+            <span class="lang-en">2. HikariCP Connection Wait Thread Congestion</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>현상 파악:</strong> 800 RPS 시점의 스레드 덤프 확인 결과, TransferQueue 내부에서 90개의 스레드가 Park 중임을 확인</li>
+              <li><strong>판단 근거:</strong> 낮은 커넥션 Usage Time 평균 유지 및 일정한 추세</li>
+              <li>
+                <strong>진단 결과:</strong>
+                <div class="causal-chain">
+                  <span class="cause">"처리량 &lt; 유입량" 상태 지속</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">TransferQueue 대기열 생성</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">대기열 누적으로 인한 앱 레벨 병목</span>
+                </div>
+              </li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Observation:</strong> Thread dump at 800 RPS revealed 90 threads parked in TransferQueue.</li>
+              <li><strong>Evidence:</strong> Connection usage time remained low and stable.</li>
+              <li>
+                <strong>Diagnosis:</strong>
+                <div class="causal-chain">
+                  <span class="cause">Throughput &lt; Ingress Rate</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">TransferQueue Backlog</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">App-level Bottleneck (Not DB)</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">3. 커넥션 풀 포화 및 스레드 적체 → 지연 시간 증폭</span>
+            <span class="lang-en">3. Connection Pool Saturation → Latency Amplification</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>지표 변화:</strong> Acquire Time 평균이 1.2ms에서 132ms로 급증 (+10,809%)</li>
+              <li>
+                <strong>진단 결과:</strong>
+                <div class="causal-chain">
+                  <span class="cause">Acquire Time 급증</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">대기열 누적 및 지연시간 증폭</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">P99 Latency 1.04s 초과</span>
+                </div>
+              </li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Metrics:</strong> Acquire time surged from 1.2ms to 132ms (+10,809%).</li>
+              <li>
+                <strong>Diagnosis:</strong>
+                <div class="causal-chain">
+                  <span class="cause">Acquire Time Surge</span>
+                  <span class="arrow">➔</span>
+                  <span class="cause">Cascading Delays for Queued Requests</span>
+                  <span class="arrow">➔</span>
+                  <span class="effect">P99 Latency pushed to 1.04s</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resolution -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 및 성과</span>
+          <span class="lang-en">Resolution & Results</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>해결 방안:</strong> JVM Heap Xmx & Xms 2GB로 확장</li>
+            <li><strong>판단 근거:</strong> Memory Pressure를 낮춰 GC 빈도를 줄이면 현재 처리량 저하의 원인인 커넥션 반환 지연을 해결할 가능성이 높다고 판단</li>
+            <li><strong>검증 의도:</strong> Over-provisioning을 통해 지표 변화 정도를 증폭시켜 메모리 부족과 성능 저하 간의 인과관계를 명확히 확인하기 위함</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Resolution:</strong> Expanded JVM Heap (Xmx & Xms) to 2GB.</li>
+            <li><strong>Rationale:</strong> Reducing memory pressure would lower GC frequency, resolving the connection return delays causing throughput degradation.</li>
+            <li><strong>Intent of Over-provisioning:</strong> Amplified metric changes purposely to confirm the causal link between memory pressure and performance.</li>
+          </ul>
+        </div>
+
+        <div class="comparison-grid" style="margin-top: 20px;">
+          <div class="comparison-card comparison-card--before">
+            <p class="comparison-label">Before</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">P99 Latency</span>
+                <span class="comparison-metric-value">1.04 s</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">HikariCP Pending</span>
+                <span class="comparison-metric-value">189</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">성능 포화점</span><span class="lang-en">Saturation
+                    Point</span></span>
+                <span class="comparison-metric-value">813 RPS</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">분당 GC</span><span class="lang-en">GC /
+                    min</span></span>
+                <span class="comparison-metric-value"><span class="lang-ko">60회</span><span
+                    class="lang-en">60</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-card comparison-card--after">
+            <p class="comparison-label">After</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">P99 Latency</span>
+                <span class="comparison-metric-value">355 ms (−68%)</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">HikariCP Pending</span>
+                <span class="comparison-metric-value">0 <span class="lang-ko">(해결)</span><span
+                    class="lang-en">(resolved)</span></span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">성능 포화점</span><span class="lang-en">Saturation
+                    Point</span></span>
+                <span class="comparison-metric-value">1.25K RPS (+54%)</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">분당 GC</span><span class="lang-en">GC /
+                    min</span></span>
+                <span class="comparison-metric-value"><span class="lang-ko">대폭 감소</span><span
+                    class="lang-en">Significantly reduced</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TECH DETAIL 02: API Idempotency ====== -->
+    <section class="tech-detail">
+      <p class="detail-number">02</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">서버 장애와 동시 요청에도 중복 없이 동작하는 결제 & 예약 생성 API 멱등성 설계</span>
+        <span class="lang-en">Duplicate-Proof Payment & Booking API Idempotency Design</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">캐시 · Redis Lock · DB 3개 레이어로 중복 예약 원천 차단</span>
+        <span class="lang-en">Defense-in-depth via Cache → Redis Lock → DB Unique Constraint</span>
+      </p>
+
+      <!-- Background -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">도입 배경 및 문제 정의</span>
+          <span class="lang-en">Background & Problem Definition</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">예약 생성 / 결제 요청 API에 대한 중복 요청 제어 부재로, 동일 요청 유입 시 중복 예약 생성 문제 발생 가능. 네트워크 문제로 인한 중복 요청, 응답
+            수신 실패 시 Client-Server 간 상태 불일치 해소를 위한 재시도 모두 대응 필요.</span>
+          <span class="lang-en">No duplicate request control existed for reservation/payment APIs, risking duplicate
+            bookings on identical requests. Needed to handle both network-induced duplicate requests and client retries
+            for failed response receipts.</span>
+        </p>
+      </div>
+
+      <!-- Client-side strategy -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">Client-side 해결 전략</span>
+          <span class="lang-en">Client-Side Strategy</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">HTTP 헤더에 UUID v4 기반 Idempotency-Key 도입. '예약 생성 또는 결제 요청' 버튼 클릭 시점 생성. 다회 클릭 또는 재시도 발생
+            시에도 Server-side에서 이를 '중복 요청'으로 식별할 수 있도록 설계.</span>
+          <span class="lang-en">Introduced UUID v4-based Idempotency-Key in HTTP headers, generated at button-click
+            time. This allows the server to identify duplicate requests regardless of multi-click or retry
+            scenarios.</span>
+        </p>
+      </div>
+
+      <!-- Server-side 3-Layer -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">Server-side 3-Layer 멱등성 보장 설계</span>
+          <span class="lang-en">Server-Side 3-Layer Idempotency Design</span>
+        </h3>
+
+        <!-- Flow diagram placeholder -->
+        <div class="pan-zoom-container" tabindex="0">
+          <div class="pan-zoom-inner">
+            <img src="../assets/idempotency-flow.svg" alt="API Idempotency Design Flow Diagram" draggable="false">
+          </div>
+          <div class="pan-zoom-controls">
+            <button class="pan-zoom-btn" data-action="zoom-in">+</button>
+            <button class="pan-zoom-btn" data-action="zoom-out">−</button>
+            <button class="pan-zoom-btn" data-action="reset">⟲</button>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">Layer 1 — Redis <span class="lang-ko">응답 캐싱</span><span class="lang-en">Response Cache</span></p>
+          <div class="analysis-step-text">
+            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">Idempotency-Key 기준 처리 결과 캐싱</span>
+              <span class="arrow">➔</span>
+              <span class="effect">Retry로 인한 트래픽 및 부하로부터 DB 보호</span>
+            </div>
+            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">Cache Responses by Idempotency-Key</span>
+              <span class="arrow">➔</span>
+              <span class="effect">Protect DB from Retry-induced Load</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">Layer 2 — Redis Lock</p>
+          <div class="analysis-step-text">
+            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">Cache Miss 시점부터 로직 수행 완료 시까지 임계영역 보호</span>
+              <span class="arrow">➔</span>
+              <span class="effect">락 획득 실패 시 202 무시/재시도 유도 반환</span>
+            </div>
+            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">Protect Critical Section Through Logic Completion</span>
+              <span class="arrow">➔</span>
+              <span class="effect">Return 202 Accepted Instantly on Lock Failure</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">Layer 3 — DB Unique Constraint</p>
+          <div class="analysis-step-text">
+            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">Redis 장애/캐시 만료로 인한 DB Fallback 상황</span>
+              <span class="arrow">➔</span>
+              <span class="effect">DB 수준의 Unique 제약으로 중복 생성 원천 차단</span>
+            </div>
+            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
+              <span class="cause">DB Fallback from Redis Failure or Cache Expiry</span>
+              <span class="arrow">➔</span>
+              <span class="effect">Prevent Duplicate Creation via DB Unique Constraint</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trade-off: Lettuce vs Redisson -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">Trade-off를 고려한 기술적 의사결정: Redisson Lock API 채택</span>
+          <span class="lang-en">Trade-off Analysis: Choosing Redisson Lock API</span>
+        </h3>
+
+        <div class="tradeoff-grid">
+          <div class="tradeoff-card">
+            <p class="tradeoff-card-title">Lettuce <code>SET...NX EX</code></p>
+            <ul class="tradeoff-list tradeoff-pros">
+              <li>
+                <span class="lang-ko">추가 의존성 불필요 (Spring Data Redis 내 기본 포함)</span>
+                <span class="lang-en">No extra dependency (included in Spring Data Redis)</span>
+              </li>
+              <li>
+                <span class="lang-ko"><code>setIfAbsent()</code> 호출로 간결한 Lock 구현 가능</span>
+                <span class="lang-en">Concise lock via <code>setIfAbsent()</code></span>
+              </li>
+            </ul>
+            <ul class="tradeoff-list tradeoff-cons" style="margin-top: 8px;">
+              <li>
+                <span class="lang-ko">Lock TTL 관리 및 Ownership 검증 로직 별도 설계 필요</span>
+                <span class="lang-en">Requires custom TTL management and ownership verification</span>
+              </li>
+              <li>
+                <span class="lang-ko">TTL 만료 시점 / 비즈니스 로직 완료 시점 간 Race Condition 가능</span>
+                <span class="lang-en">Race condition risk between TTL expiry and logic completion</span>
+              </li>
+            </ul>
+          </div>
+          <div class="tradeoff-card" style="border-color: var(--accent); border-width: 1.5px;">
+            <p class="tradeoff-card-title">Redisson Lock API ✓</p>
+            <ul class="tradeoff-list tradeoff-pros">
+              <li>
+                <span class="lang-ko">Watchdog을 통한 TTL 자동 연장 및 해제 제공</span>
+                <span class="lang-en">Automatic TTL extension via Watchdog</span>
+              </li>
+              <li>
+                <span class="lang-ko">Lock 해제 시 Thread ID 기반 Lock Owner 검증 제공</span>
+                <span class="lang-en">Thread ID-based lock ownership verification on release</span>
+              </li>
+            </ul>
+            <ul class="tradeoff-list tradeoff-cons" style="margin-top: 8px;">
+              <li>
+                <span class="lang-ko">추가 의존성 필요: Redisson Client 라이브러리</span>
+                <span class="lang-en">Requires additional Redisson Client dependency</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="detail-text" style="margin-top: 16px;">
+          <span class="lang-ko"><strong>결정:</strong> 예약 시스템 도메인 상, 의존성 추가 비용보다 안정성 확보가 중요하다고 판단 → Redisson Lock API
+            채택.</span>
+          <span class="lang-en"><strong>Decision:</strong> In a reservation system domain, operational reliability
+            outweighs the cost of an additional dependency → adopted Redisson Lock API.</span>
+        </p>
+      </div>
+
+      <!-- Verification -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">검증 및 결과</span>
+          <span class="lang-en">Verification & Results</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">동일 Idempotency-Key로 10개 스레드 동시 요청: 1건 성공 / 9건 재시도 응답(202) 확인. Testcontainer 활용 통합 테스트
+            수행: 동일 Idempotency-Key 활용 10개 동시 요청 시 DB Insertion 1건 확인.</span>
+          <span class="lang-en">10 concurrent threads with identical Idempotency-Key: 1 success, 9 retries (202
+            Accepted). Integration tests via Testcontainers confirmed exactly 1 DB insertion across 10 concurrent
+            requests.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ====== TECH DETAIL 03: DB Access Pattern & TSID ====== -->
+    <section class="tech-detail">
+      <p class="detail-number">03</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">MySQL General Log 분석을 통한 요청 수 대비 DB 커맨드 과발행 원인 추적 및 해결</span>
+        <span class="lang-en">MySQL General Log Analysis: Diagnosing and Resolving Excessive DB Commands</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">요청당 DB 커맨드 76% 절감, 처리량 한계 82% 향상 (630 RPS → 1.15K RPS)</span>
+        <span class="lang-en">DB commands per request reduced by 76%, throughput ceiling improved by 82% (630 → 1.15K
+          RPS)</span>
+      </p>
+
+      <!-- Background -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">배경</span>
+          <span class="lang-en">Background</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">조회 API가 두 테이블의 데이터를 조합하는 구조로 변경되며 N+1 조회 패턴이 존재하는 상태. N+1 조회 패턴의 유무가 애플리케이션 처리량에 미치는 영향을
+            정량적으로 평가하기 위해 K6 활용 Stress Test를 실시.</span>
+          <span class="lang-en">A query API was refactored to join data across two tables, introducing an N+1 query
+            pattern. Conducted K6 stress tests to quantify the throughput impact.</span>
+        </p>
+      </div>
+
+      <!-- Problem -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">관측 및 문제 식별</span>
+          <span class="lang-en">Observation & Problem Identification</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">시스템 처리량 한계 지점 50.4% 하락 관측: 1.25K RPS → 630 RPS. 더미 데이터 규모(공연 일정 5건) & 쿼리 복잡도 고려했을 때,
+            N+1에 의한 쿼리 증가만으로는 해당 규모의 성능 회귀를 설명하기 어렵다고 판단.</span>
+          <span class="lang-en">Observed 50.4% drop in throughput ceiling: 1.25K RPS → 630 RPS. Given the small dataset
+            (5 schedule records) and query simplicity, N+1 alone couldn't explain a regression of this magnitude.</span>
+        </p>
+      </div>
+
+      <!-- Root cause -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">처리량 하락 원인 추적</span>
+          <span class="lang-en">Root Cause Investigation</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">애플리케이션 처리량 한계 도달 가설 기각: CPU 점유율, GC Pause 빈도 및 Duration 점검 → 컴퓨팅 자원에는 여유가 있는 상태임을 확인.
+            630 RPS 시점에 약 10K QPS 관측. 비정상적인 DB 커맨드 발행 패턴 식별: <code>SET_OPTION</code> 커맨드가 <code>COMMIT</code> 커맨드의 2배
+            규모로 발생.</span>
+          <span class="lang-en">Ruled out application-level saturation — CPU and GC metrics showed headroom. At 630 RPS,
+            observed ~10K QPS. Abnormal command distribution: <code>SET_OPTION</code> commands at 2× the volume of
+            <code>COMMIT</code>.</span>
+        </p>
+
+        <!-- Command distribution bar chart -->
+        <div class="bar-chart" style="margin-top: 16px;">
+          <p style="font-size: 12px; color: var(--text-tertiary); margin-bottom: 12px; font-family: var(--font-mono);">
+            <span class="lang-ko">요청 당 DB Command 구성 — 630 RPS 지점 기준</span>
+            <span class="lang-en">DB Command Distribution — at 630 RPS</span>
+          </p>
+          <div class="bar-row">
+            <span class="bar-label">SET_OPTION</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 47%"></div>
+            </div>
+            <span class="bar-value">47% · 5.01K</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">SELECT</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 29%"></div>
+            </div>
+            <span class="bar-value">29% · 3.13K</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">COMMIT</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 24%"></div>
+            </div>
+            <span class="bar-value">24% · 2.51K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Log analysis -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">MySQL General Log 분석에 근거한 원인 규명</span>
+          <span class="lang-en">Root Cause via MySQL General Log Analysis</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>조사 대상:</strong> MySQL General Log를 통해 API 요청 1건 당 실제 발행되는 전체 DB 커맨드 전수 조사</li>
+            <li><strong>현상 식별:</strong> 각각의 1개 SELECT 쿼리마다 2개의 상태 제어 커맨드(<code>SET SESSION...</code>)가 동반 발생 (2배수 과발행 패턴)</li>
+            <li>
+              <strong>결론 도출:</strong>
+              <div class="causal-chain">
+                <span class="cause">Facade 메서드 내 명시적 트랜잭션 경계 부재</span>
+                <span class="arrow">➔</span>
+                <span class="cause">단일 SELECT마다 별도 트랜잭션 컨텍스트 개별 생성</span>
+                <span class="arrow">➔</span>
+                <span class="effect">불필요한 DB 커넥션 상태 제어 커맨드 과발행</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Investigation:</strong> Full audit of exact DB commands per request using MySQL General Log.</li>
+            <li><strong>Observation:</strong> Discovered each SELECT query was strictly accompanied by 2 connection state control commands (<code>SET SESSION...</code>), doubling counts.</li>
+            <li>
+              <strong>Conclusion:</strong>
+              <div class="causal-chain">
+                <span class="cause">Missing Explicit Transaction Boundary</span>
+                <span class="arrow">➔</span>
+                <span class="cause">Separate Transaction Context for Each SELECT</span>
+                <span class="arrow">➔</span>
+                <span class="effect">Excessive Connection State Commands Issued</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Resolution -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 및 성과</span>
+          <span class="lang-en">Resolution & Results</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>
+              <strong>컨텍스트 통합:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">Facade 메서드에 <code>@Transactional(readOnly = true)</code> 선언</span>
+                <span class="arrow">➔</span>
+                <span class="effect">단일 트랜잭션 컨텍스트 통합으로 SET_OPTION 커맨드 낭비 제거</span>
+              </div>
+            </li>
+            <li style="margin-top: 4px;">
+              <strong>조회 효율화:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">IN 절을 활용한 배치 타겟팅 결합</span>
+                <span class="arrow">➔</span>
+                <span class="effect">DB 네트워크 접근 횟수 및 라운드트립 대폭 저감</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>
+              <strong>Context Consolidation:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">Applied <code>@Transactional(readOnly = true)</code></span>
+                <span class="arrow">➔</span>
+                <span class="effect">Unified context resolved connection command overhead</span>
+              </div>
+            </li>
+            <li style="margin-top: 4px;">
+              <strong>Query Optimization:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">Implemented IN-clause Batch Queries</span>
+                <span class="arrow">➔</span>
+                <span class="effect">Significantly Reduced DB Round-trips</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="comparison-grid" style="margin-top: 16px;">
+          <div class="comparison-card comparison-card--before">
+            <p class="comparison-label">Before</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">처리량 한계</span><span class="lang-en">Throughput
+                    Ceiling</span></span>
+                <span class="comparison-metric-value">630 RPS</span>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-card comparison-card--after">
+            <p class="comparison-label">After</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">요청당 DB 커맨드</span><span class="lang-en">DB
+                    Commands / Req</span></span>
+                <span class="comparison-metric-value">−76%</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name"><span class="lang-ko">처리량 한계</span><span class="lang-en">Throughput
+                    Ceiling</span></span>
+                <span class="comparison-metric-value">1.15K RPS (+82%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TECH DETAIL 04: TSID Migration ====== -->
+    <section class="tech-detail">
+      <p class="detail-number">04</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">InnoDB Page Utilization 실측으로 확인한 UUID v4의 저장 구조 비효율: TSID 마이그레이션</span>
+        <span class="lang-en">UUID v4 Storage Inefficiency Measured via InnoDB Page Utilization: TSID Migration</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">클러스터드 인덱스 삽입 성능 41% 향상, 테이블 사이즈 64% 절감</span>
+        <span class="lang-en">Clustered index insert performance +41%, table size −64%</span>
+      </p>
+
+      <!-- Background -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">배경 및 문제 식별</span>
+          <span class="lang-en">Background & Problem Identification</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">도메인 전반의 PK로 사용 중인 UUID v4가 InnoDB Clustered Index 환경에서 스토리지 및 I/O 비효율을 유발할 수 있음을 인지. 고유
+            ID로서의 안정성과 공간 효율성, InnoDB 스토리지 효율성을 고려해 TSID로의 마이그레이션을 계획.</span>
+          <span class="lang-en">Recognized that UUID v4 as domain-wide primary key could cause storage and I/O
+            inefficiency in InnoDB's clustered index structure. Planned migration to TSID for better uniqueness
+            guarantees, space efficiency, and InnoDB compatibility.</span>
+        </p>
+      </div>
+
+      <!-- PoC -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">PoC: Page Utilization 실측 비교</span>
+          <span class="lang-en">PoC: Page Utilization Measurement</span>
+        </h3>
+        <p class="detail-text">
+          <span class="lang-ko">10만 건 삽입 후 <code>INFORMATION_SCHEMA.INNODB_BUFFER_PAGE</code> 조회 → 실제 물리적 페이지 적재율 비교
+            검증.</span>
+          <span class="lang-en">Inserted 100K rows, then queried <code>INFORMATION_SCHEMA.INNODB_BUFFER_PAGE</code> to
+            compare actual physical page fill rates.</span>
+        </p>
+
+        <!-- Bar chart: Page Utilization -->
+        <div class="bar-chart" style="margin-top: 16px;">
+          <p style="font-size: 12px; color: var(--text-tertiary); margin-bottom: 12px; font-family: var(--font-mono);">
+            InnoDB Page Utilization — 100,000 Rows
+          </p>
+          <div class="bar-row">
+            <span class="bar-label">TSID</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 91.1%"></div>
+            </div>
+            <span class="bar-value">91.1%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">UUID v4</span>
+            <div class="bar-track">
+              <div class="bar-fill" style="width: 66.3%; opacity: 0.4"></div>
+            </div>
+            <span class="bar-value">66.3%</span>
+          </div>
+        </div>
+
+        <p class="detail-text" style="margin-top: 12px;">
+          <span class="lang-ko">TSID 활용 시 91% Page Utilization 기록 → 높은 Buffer Pool 적재율에 근거한 Cache Hit Ratio 향상 기대 가능하다고
+            판단.</span>
+          <span class="lang-en">TSID achieved 91% page utilization → expected improvement in Buffer Pool cache hit ratio
+            due to higher page fill rates.</span>
+        </p>
+      </div>
+
+      <!-- Results -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">마이그레이션 성과</span>
+          <span class="lang-en">Migration Results</span>
+        </h3>
+        <div class="comparison-grid">
+          <div class="comparison-card comparison-card--before">
+            <p class="comparison-label">UUID v4</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">100K INSERT</span>
+                <span class="comparison-metric-value">1.7 s</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">Table Size</span>
+                <span class="comparison-metric-value">13.1 MB</span>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-card comparison-card--after">
+            <p class="comparison-label">TSID</p>
+            <div class="comparison-metrics">
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">100K INSERT</span>
+                <span class="comparison-metric-value">1.04 s (−41%)</span>
+              </div>
+              <div class="comparison-metric">
+                <span class="comparison-metric-name">Table Size</span>
+                <span class="comparison-metric-value">4.7 MB (−64%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== ADDITIONAL DETAILS (from resume) ====== -->
+    <section class="tech-detail">
+      <p class="detail-number">05</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">결제-예약 도메인 간 트랜잭션 일관성 보장을 위한 Orchestration Saga 설계</span>
+        <span class="lang-en">Cross-Domain Payment Consistency via Orchestration Saga</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">부분 실패 시에도 Eventual Consistency 보장</span>
+        <span class="lang-en">Guaranteed eventual consistency under partial failures</span>
+      </p>
+
+      <div class="detail-subsection">
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>
+              <strong>동시성 제어:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">상태 기반 Semantic Lock을 활용한 임계 영역 제어 도입</span>
+                <span class="arrow">➔</span>
+                <span class="effect">결제 로직과 만료 스케줄러 간 Race Condition 완벽 해결</span>
+              </div>
+            </li>
+            <li style="margin-top: 4px;">
+              <strong>부분 실패 복구 (Saga):</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">실패 트랜잭션 DB 영속화 및 Scheduler 재시도 기반 복구 체계 적용</span>
+                <span class="arrow">➔</span>
+                <span class="effect">부분 실패 시에도 잃어버리는 요청 없이 최종적 일관성(Eventual Consistency) 보장</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>
+              <strong>Concurrency Control:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">Applied State-based Semantic Lock</span>
+                <span class="arrow">➔</span>
+                <span class="effect">Resolved Race Condition against Expiration Scheduler</span>
+              </div>
+            </li>
+            <li style="margin-top: 4px;">
+              <strong>Failure Recovery:</strong>
+              <div class="causal-chain" style="margin-top: 6px;">
+                <span class="cause">DB Compensation Log + Scheduled Retry</span>
+                <span class="arrow">➔</span>
+                <span class="effect">Guaranteed Eventual Consistency in Any Failure Scenario</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech-detail">
+      <p class="detail-number">06</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">AI 도구 활용을 통한 개발 생산성 및 품질 향상</span>
+        <span class="lang-en">Development Productivity & Quality via AI Tools</span>
+      </h2>
+
+      <div class="detail-subsection">
+        <p class="detail-text">
+          <span class="lang-ko">CodeRabbit 기반 PR 코드 리뷰 자동화로 배포 안정성 제고. 시연용 Frontend 빠른 프로토타이핑을 위해 요구사항 문서화 후 Google
+            Antigravity, Claude Code를 교차 활용해 빠른 개발과 코드 품질 동시 확보.</span>
+          <span class="lang-en">Automated PR code reviews via CodeRabbit for deployment stability. For rapid frontend
+            prototyping, documented requirements and cross-leveraged Google Antigravity and Claude Code for both speed
+            and code quality.</span>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 HoYeon Chae · <a href="../index.html" style="color: var(--accent); text-decoration: none;">
+          <span class="lang-ko">포트폴리오 메인</span><span class="lang-en">Portfolio Home</span>
+        </a></p>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>
