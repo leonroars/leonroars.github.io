@@ -12,7 +12,12 @@
       var t = localStorage.getItem('portfolio-theme');
       if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
-      var l = localStorage.getItem('portfolio-lang') || 'ko';
+      
+      var l = localStorage.getItem('portfolio-lang');
+      if (!l) {
+        var browserLang = navigator.language || navigator.userLanguage || '';
+        l = browserLang.toLowerCase().startsWith('ko') ? 'ko' : 'en';
+      }
       document.documentElement.setAttribute('data-lang', l);
     })();
   </script>

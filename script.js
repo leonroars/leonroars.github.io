@@ -14,7 +14,10 @@
   }
 
   function getInitialLang() {
-    return localStorage.getItem(STORAGE_KEYS.lang) || 'ko';
+    const saved = localStorage.getItem(STORAGE_KEYS.lang);
+    if (saved) return saved;
+    const browserLang = navigator.language || navigator.userLanguage || '';
+    return browserLang.toLowerCase().startsWith('ko') ? 'ko' : 'en';
   }
 
   function applyTheme(theme) {
