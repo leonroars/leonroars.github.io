@@ -12,7 +12,7 @@
       var t = localStorage.getItem('portfolio-theme');
       if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
-      
+
       var l = localStorage.getItem('portfolio-lang');
       if (!l) {
         var browserLang = navigator.language || navigator.userLanguage || '';
@@ -21,12 +21,12 @@
       document.documentElement.setAttribute('data-lang', l);
     })();
   </script>
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CFED45WD5V"></script>
   <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
     gtag('config', 'G-CFED45WD5V');
   </script>
@@ -67,7 +67,7 @@
           are processed by deducting pre-charged points.</span>
       </p>
       <div class="project-meta">
-        <a href="https://github.com/leonroars" target="_blank" rel="noopener">GitHub Repository ↗</a>
+        <a href="https://github.com/leonroars/slam" target="_blank" rel="noopener">GitHub Repository ↗</a>
       </div>
 
       <!-- Tech stack -->
@@ -341,8 +341,10 @@
           </p>
           <div class="analysis-step-text">
             <ul class="cause-effect-list lang-ko">
-              <li><strong>현상 식별:</strong> 당시 Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%)에 따라 Committed 확장되어 Memory Pressure 정황 확인</li>
-              <li><strong>세부 지표:</strong> 140MB/s 수준의 Eden Space 객체 할당, 잦은 GC 발생 (3초간 7회, 평균 Pause 32ms), 저부하 대비 7배 증가한 평균 STW</li>
+              <li><strong>현상 식별:</strong> 당시 Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%)에 따라 Committed 확장되어 Memory
+                Pressure 정황 확인</li>
+              <li><strong>세부 지표:</strong> 140MB/s 수준의 Eden Space 객체 할당, 잦은 GC 발생 (3초간 7회, 평균 Pause 32ms), 저부하 대비 7배 증가한
+                평균 STW</li>
               <li>
                 <strong>진단 결과:</strong>
                 <div class="causal-chain">
@@ -357,8 +359,10 @@
               </li>
             </ul>
             <ul class="cause-effect-list lang-en">
-              <li><strong>Observation:</strong> Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%) triggered committed heap expansion, confirming memory pressure.</li>
-              <li><strong>Metrics:</strong> 140MB/s Eden allocation, 7 GCs in 3s (avg pause 32ms), and 7× increase in per-GC STW.</li>
+              <li><strong>Observation:</strong> Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%) triggered committed
+                heap expansion, confirming memory pressure.</li>
+              <li><strong>Metrics:</strong> 140MB/s Eden allocation, 7 GCs in 3s (avg pause 32ms), and 7× increase in
+                per-GC STW.</li>
               <li>
                 <strong>Diagnosis:</strong>
                 <div class="causal-chain">
@@ -462,8 +466,10 @@
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
             <li><strong>Resolution:</strong> Expanded JVM Heap (Xmx & Xms) to 2GB.</li>
-            <li><strong>Rationale:</strong> Reducing memory pressure would lower GC frequency, resolving the connection return delays causing throughput degradation.</li>
-            <li><strong>Intent of Over-provisioning:</strong> Amplified metric changes purposely to confirm the causal link between memory pressure and performance.</li>
+            <li><strong>Rationale:</strong> Reducing memory pressure would lower GC frequency, resolving the connection
+              return delays causing throughput degradation.</li>
+            <li><strong>Intent of Over-provisioning:</strong> Amplified metric changes purposely to confirm the causal
+              link between memory pressure and performance.</li>
           </ul>
         </div>
 
@@ -583,7 +589,8 @@
         </div>
 
         <div class="analysis-step">
-          <p class="analysis-step-title">Layer 1 — Redis <span class="lang-ko">응답 캐싱</span><span class="lang-en">Response Cache</span></p>
+          <p class="analysis-step-title">Layer 1 — Redis <span class="lang-ko">응답 캐싱</span><span
+              class="lang-en">Response Cache</span></p>
           <div class="analysis-step-text">
             <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
               <span class="cause">Idempotency-Key 기준 처리 결과 캐싱</span>
@@ -802,7 +809,8 @@
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
             <li><strong>조사 대상:</strong> MySQL General Log를 통해 API 요청 1건 당 실제 발행되는 전체 DB 커맨드 전수 조사</li>
-            <li><strong>현상 식별:</strong> 각각의 1개 SELECT 쿼리마다 2개의 상태 제어 커맨드(<code>SET SESSION...</code>)가 동반 발생 (2배수 과발행 패턴)</li>
+            <li><strong>현상 식별:</strong> 각각의 1개 SELECT 쿼리마다 2개의 상태 제어 커맨드(<code>SET SESSION...</code>)가 동반 발생 (2배수 과발행
+              패턴)</li>
             <li>
               <strong>결론 도출:</strong>
               <div class="causal-chain">
@@ -815,8 +823,10 @@
             </li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Investigation:</strong> Full audit of exact DB commands per request using MySQL General Log.</li>
-            <li><strong>Observation:</strong> Discovered each SELECT query was strictly accompanied by 2 connection state control commands (<code>SET SESSION...</code>), doubling counts.</li>
+            <li><strong>Investigation:</strong> Full audit of exact DB commands per request using MySQL General Log.
+            </li>
+            <li><strong>Observation:</strong> Discovered each SELECT query was strictly accompanied by 2 connection
+              state control commands (<code>SET SESSION...</code>), doubling counts.</li>
             <li>
               <strong>Conclusion:</strong>
               <div class="causal-chain">
