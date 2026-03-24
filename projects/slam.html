@@ -189,11 +189,16 @@
           <span class="lang-ko">문제 정의</span>
           <span class="lang-en">Problem Definition</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">813 RPS 지점에서 Tail Latency 급증 및 스레드 적체 식별 → 병목 원인 파악 및 해결 가능성 검토 위해 분석 시작.</span>
-          <span class="lang-en">Identified tail latency spike and thread congestion at 813 RPS — initiated analysis to
-            diagnose root cause and evaluate resolution options.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>관측:</strong> 813 RPS 지점에서 Tail Latency 급증 및 스레드 적체 식별</li>
+            <li><strong>조치:</strong> 병목 원인 파악 및 해결 가능성 검토 위해 분석 시작</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Observation:</strong> Tail latency spike and thread congestion identified at 813 RPS</li>
+            <li><strong>Action:</strong> Initiated analysis to diagnose root cause and evaluate resolution options</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Metrics Table -->
@@ -545,13 +550,26 @@
           <span class="lang-ko">도입 배경 및 문제 정의</span>
           <span class="lang-en">Background & Problem Definition</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">예약 생성 / 결제 요청 API에 대한 중복 요청 제어 부재로, 동일 요청 유입 시 중복 예약 생성 문제 발생 가능. 네트워크 문제로 인한 중복 요청, 응답
-            수신 실패 시 Client-Server 간 상태 불일치 해소를 위한 재시도 모두 대응 필요.</span>
-          <span class="lang-en">No duplicate request control existed for reservation/payment APIs, risking duplicate
-            bookings on identical requests. Needed to handle both network-induced duplicate requests and client retries
-            for failed response receipts.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>문제:</strong> 예약 생성 / 결제 요청 API에 중복 요청 제어 부재 → 동일 요청 유입 시 중복 예약 생성 위험</li>
+            <li><strong>대응 필요 시나리오:</strong>
+              <ul>
+                <li>네트워크 문제로 인한 중복 요청</li>
+                <li>응답 수신 실패 시 Client-Server 상태 불일치 해소를 위한 재시도</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Problem:</strong> No duplicate request control for reservation/payment APIs → risk of duplicate bookings</li>
+            <li><strong>Scenarios Requiring Control:</strong>
+              <ul>
+                <li>Network-induced duplicate requests</li>
+                <li>Client retries to resolve Client-Server state inconsistency after failed response receipt</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- Client-side strategy -->
@@ -560,13 +578,18 @@
           <span class="lang-ko">Client-side 해결 전략</span>
           <span class="lang-en">Client-Side Strategy</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">HTTP 헤더에 UUID v4 기반 Idempotency-Key 도입. '예약 생성 또는 결제 요청' 버튼 클릭 시점 생성. 다회 클릭 또는 재시도 발생
-            시에도 Server-side에서 이를 '중복 요청'으로 식별할 수 있도록 설계.</span>
-          <span class="lang-en">Introduced UUID v4-based Idempotency-Key in HTTP headers, generated at button-click
-            time. This allows the server to identify duplicate requests regardless of multi-click or retry
-            scenarios.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>HTTP 헤더에 <strong>UUID v4 기반 Idempotency-Key</strong> 도입</li>
+            <li>키 생성 시점: '예약 생성 또는 결제 요청' 버튼 클릭 시</li>
+            <li>다회 클릭 또는 재시도 발생 시에도 Server-side에서 <strong>'중복 요청'으로 식별</strong> 가능</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Introduced <strong>UUID v4-based Idempotency-Key</strong> in HTTP headers</li>
+            <li>Key generated at: 'Create Reservation' or 'Submit Payment' button click</li>
+            <li>Enables server to <strong>identify duplicate requests</strong> regardless of multi-click or retry scenarios</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Server-side 3-Layer -->
@@ -704,13 +727,16 @@
           <span class="lang-ko">검증 및 결과</span>
           <span class="lang-en">Verification & Results</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">동일 Idempotency-Key로 10개 스레드 동시 요청: 1건 성공 / 9건 재시도 응답(202) 확인. Testcontainer 활용 통합 테스트
-            수행: 동일 Idempotency-Key 활용 10개 동시 요청 시 DB Insertion 1건 확인.</span>
-          <span class="lang-en">10 concurrent threads with identical Idempotency-Key: 1 success, 9 retries (202
-            Accepted). Integration tests via Testcontainers confirmed exactly 1 DB insertion across 10 concurrent
-            requests.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>동시성 테스트:</strong> 동일 Idempotency-Key로 10개 스레드 동시 요청 → 1건 성공 / 9건 재시도 응답 (202)</li>
+            <li><strong>통합 테스트:</strong> Testcontainers 활용, 동일 키 10개 동시 요청 시 DB Insertion <strong>정확히 1건</strong> 확인</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Concurrency Test:</strong> 10 concurrent threads with identical Idempotency-Key → 1 success / 9 retries (202)</li>
+            <li><strong>Integration Test:</strong> Via Testcontainers, confirmed exactly <strong>1 DB insertion</strong> across 10 concurrent requests</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -733,12 +759,16 @@
           <span class="lang-ko">배경</span>
           <span class="lang-en">Background</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">조회 API가 두 테이블의 데이터를 조합하는 구조로 변경되며 N+1 조회 패턴이 존재하는 상태. N+1 조회 패턴의 유무가 애플리케이션 처리량에 미치는 영향을
-            정량적으로 평가하기 위해 K6 활용 Stress Test를 실시.</span>
-          <span class="lang-en">A query API was refactored to join data across two tables, introducing an N+1 query
-            pattern. Conducted K6 stress tests to quantify the throughput impact.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>조회 API가 두 테이블 데이터를 조합하는 구조로 변경되며 <strong>N+1 조회 패턴</strong> 존재</li>
+            <li>처리량에 미치는 영향을 정량적으로 평가하기 위해 <strong>K6 Stress Test</strong> 실시</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Query API refactored to join data across two tables, introducing an <strong>N+1 query pattern</strong></li>
+            <li>Conducted <strong>K6 stress tests</strong> to quantify the throughput impact</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Problem -->
@@ -747,12 +777,16 @@
           <span class="lang-ko">관측 및 문제 식별</span>
           <span class="lang-en">Observation & Problem Identification</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">시스템 처리량 한계 지점 50.4% 하락 관측: 1.25K RPS → 630 RPS. 더미 데이터 규모(공연 일정 5건) & 쿼리 복잡도 고려했을 때,
-            N+1에 의한 쿼리 증가만으로는 해당 규모의 성능 회귀를 설명하기 어렵다고 판단.</span>
-          <span class="lang-en">Observed 50.4% drop in throughput ceiling: 1.25K RPS → 630 RPS. Given the small dataset
-            (5 schedule records) and query simplicity, N+1 alone couldn't explain a regression of this magnitude.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>처리량 하락:</strong> 시스템 처리량 한계 지점 50.4% 하락 (1.25K → 630 RPS)</li>
+            <li><strong>의문 제기:</strong> 더미 데이터 5건 / 낮은 쿼리 복잡도 → N+1만으로는 해당 규모의 성능 회귀를 설명하기 어렵다고 판단</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Throughput Drop:</strong> 50.4% decline in throughput ceiling (1.25K → 630 RPS)</li>
+            <li><strong>Questioning:</strong> Small dataset (5 records) and low query complexity → N+1 alone couldn’t explain a regression of this magnitude</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Root cause -->
@@ -761,14 +795,16 @@
           <span class="lang-ko">처리량 하락 원인 추적</span>
           <span class="lang-en">Root Cause Investigation</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">애플리케이션 처리량 한계 도달 가설 기각: CPU 점유율, GC Pause 빈도 및 Duration 점검 → 컴퓨팅 자원에는 여유가 있는 상태임을 확인.
-            630 RPS 시점에 약 10K QPS 관측. 비정상적인 DB 커맨드 발행 패턴 식별: <code>SET_OPTION</code> 커맨드가 <code>COMMIT</code> 커맨드의 2배
-            규모로 발생.</span>
-          <span class="lang-en">Ruled out application-level saturation — CPU and GC metrics showed headroom. At 630 RPS,
-            observed ~10K QPS. Abnormal command distribution: <code>SET_OPTION</code> commands at 2× the volume of
-            <code>COMMIT</code>.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>가설 기각 (앱 포화):</strong> CPU 점유율, GC Pause 빈도/Duration 점검 → 컴퓨팅 자원 여유 확인</li>
+            <li><strong>이상 패턴:</strong> 630 RPS 시점에 ~10K QPS 관측, <code>SET_OPTION</code>이 <code>COMMIT</code>의 <strong>2배</strong> 규모로 발생</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Hypothesis Ruled Out (App Saturation):</strong> CPU and GC metrics showed headroom</li>
+            <li><strong>Anomaly:</strong> At 630 RPS, observed ~10K QPS; <code>SET_OPTION</code> at <strong>2×</strong> the volume of <code>COMMIT</code></li>
+          </ul>
+        </div>
 
         <!-- Command distribution bar chart -->
         <div class="bar-chart" style="margin-top: 16px;">
@@ -933,13 +969,16 @@
           <span class="lang-ko">배경 및 문제 식별</span>
           <span class="lang-en">Background & Problem Identification</span>
         </h3>
-        <p class="detail-text">
-          <span class="lang-ko">도메인 전반의 PK로 사용 중인 UUID v4가 InnoDB Clustered Index 환경에서 스토리지 및 I/O 비효율을 유발할 수 있음을 인지. 고유
-            ID로서의 안정성과 공간 효율성, InnoDB 스토리지 효율성을 고려해 TSID로의 마이그레이션을 계획.</span>
-          <span class="lang-en">Recognized that UUID v4 as domain-wide primary key could cause storage and I/O
-            inefficiency in InnoDB's clustered index structure. Planned migration to TSID for better uniqueness
-            guarantees, space efficiency, and InnoDB compatibility.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>문제 인지:</strong> UUID v4가 InnoDB Clustered Index에서 스토리지·I/O 비효율 유발 가능</li>
+            <li><strong>대안 선정:</strong> 고유 ID 안정성 + 공간 효율성 + InnoDB 호환성 고려 → <strong>TSID</strong> 마이그레이션 계획</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Problem Identified:</strong> UUID v4 could cause storage and I/O inefficiency in InnoDB’s clustered index</li>
+            <li><strong>Alternative:</strong> Uniqueness + space efficiency + InnoDB compatibility → planned migration to <strong>TSID</strong></li>
+          </ul>
+        </div>
       </div>
 
       <!-- PoC -->
@@ -1083,13 +1122,16 @@
       </h2>
 
       <div class="detail-subsection">
-        <p class="detail-text">
-          <span class="lang-ko">CodeRabbit 기반 PR 코드 리뷰 자동화로 배포 안정성 제고. 시연용 Frontend 빠른 프로토타이핑을 위해 요구사항 문서화 후 Google
-            Antigravity, Claude Code를 교차 활용해 빠른 개발과 코드 품질 동시 확보.</span>
-          <span class="lang-en">Automated PR code reviews via CodeRabbit for deployment stability. For rapid frontend
-            prototyping, documented requirements and cross-leveraged Google Antigravity and Claude Code for both speed
-            and code quality.</span>
-        </p>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>CodeRabbit</strong> 기반 PR 코드 리뷰 자동화 → 배포 안정성 제고</li>
+            <li>시연용 Frontend 프로토타이핑: 요구사항 문서화 → <strong>Google Antigravity + Claude Code</strong> 교차 활용 → 속도와 코드 품질 동시 확보</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Automated PR code reviews via <strong>CodeRabbit</strong> → improved deployment stability</li>
+            <li>Frontend prototyping: documented requirements → cross-leveraged <strong>Google Antigravity + Claude Code</strong> for both speed and quality</li>
+          </ul>
+        </div>
       </div>
     </section>
 
