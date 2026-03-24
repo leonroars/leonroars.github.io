@@ -561,7 +561,8 @@
             </li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Problem:</strong> No duplicate request control for reservation/payment APIs → risk of duplicate bookings</li>
+            <li><strong>Problem:</strong> No duplicate request control for reservation/payment APIs → risk of duplicate
+              bookings</li>
             <li><strong>Scenarios Requiring Control:</strong>
               <ul>
                 <li>Network-induced duplicate requests</li>
@@ -587,7 +588,8 @@
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
             <li>Introduced <strong>UUID v4-based Idempotency-Key</strong> in HTTP headers</li>
             <li>Key generated at: 'Create Reservation' or 'Submit Payment' button click</li>
-            <li>Enables server to <strong>identify duplicate requests</strong> regardless of multi-click or retry scenarios</li>
+            <li>Enables server to <strong>identify duplicate requests</strong> regardless of multi-click or retry
+              scenarios</li>
           </ul>
         </div>
       </div>
@@ -730,11 +732,14 @@
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
             <li><strong>동시성 테스트:</strong> 동일 Idempotency-Key로 10개 스레드 동시 요청 → 1건 성공 / 9건 재시도 응답 (202)</li>
-            <li><strong>통합 테스트:</strong> Testcontainers 활용, 동일 키 10개 동시 요청 시 DB Insertion <strong>정확히 1건</strong> 확인</li>
+            <li><strong>통합 테스트:</strong> Testcontainers 활용, 동일 키 10개 동시 요청 시 DB Insertion <strong>정확히 1건</strong> 확인
+            </li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Concurrency Test:</strong> 10 concurrent threads with identical Idempotency-Key → 1 success / 9 retries (202)</li>
-            <li><strong>Integration Test:</strong> Via Testcontainers, confirmed exactly <strong>1 DB insertion</strong> across 10 concurrent requests</li>
+            <li><strong>Concurrency Test:</strong> 10 concurrent threads with identical Idempotency-Key → 1 success / 9
+              retries (202)</li>
+            <li><strong>Integration Test:</strong> Via Testcontainers, confirmed exactly <strong>1 DB insertion</strong>
+              across 10 concurrent requests</li>
           </ul>
         </div>
       </div>
@@ -765,7 +770,8 @@
             <li>처리량에 미치는 영향을 정량적으로 평가하기 위해 <strong>K6 Stress Test</strong> 실시</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li>Query API refactored to join data across two tables, introducing an <strong>N+1 query pattern</strong></li>
+            <li>Query API refactored to join data across two tables, introducing an <strong>N+1 query pattern</strong>
+            </li>
             <li>Conducted <strong>K6 stress tests</strong> to quantify the throughput impact</li>
           </ul>
         </div>
@@ -784,7 +790,8 @@
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
             <li><strong>Throughput Drop:</strong> 50.4% decline in throughput ceiling (1.25K → 630 RPS)</li>
-            <li><strong>Questioning:</strong> Small dataset (5 records) and low query complexity → N+1 alone couldn’t explain a regression of this magnitude</li>
+            <li><strong>Questioning:</strong> Small dataset (5 records) and low query complexity → N+1 alone couldn’t
+              explain a regression of this magnitude</li>
           </ul>
         </div>
       </div>
@@ -798,11 +805,14 @@
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
             <li><strong>가설 기각 (앱 포화):</strong> CPU 점유율, GC Pause 빈도/Duration 점검 → 컴퓨팅 자원 여유 확인</li>
-            <li><strong>이상 패턴:</strong> 630 RPS 시점에 ~10K QPS 관측, <code>SET_OPTION</code>이 <code>COMMIT</code>의 <strong>2배</strong> 규모로 발생</li>
+            <li><strong>이상 패턴:</strong> 630 RPS 시점에 ~10K QPS 관측, <code>SET_OPTION</code>이 <code>COMMIT</code>의
+              <strong>2배</strong> 규모로 발생
+            </li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
             <li><strong>Hypothesis Ruled Out (App Saturation):</strong> CPU and GC metrics showed headroom</li>
-            <li><strong>Anomaly:</strong> At 630 RPS, observed ~10K QPS; <code>SET_OPTION</code> at <strong>2×</strong> the volume of <code>COMMIT</code></li>
+            <li><strong>Anomaly:</strong> At 630 RPS, observed ~10K QPS; <code>SET_OPTION</code> at <strong>2×</strong>
+              the volume of <code>COMMIT</code></li>
           </ul>
         </div>
 
@@ -975,8 +985,10 @@
             <li><strong>대안 선정:</strong> 고유 ID 안정성 + 공간 효율성 + InnoDB 호환성 고려 → <strong>TSID</strong> 마이그레이션 계획</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Problem Identified:</strong> UUID v4 could cause storage and I/O inefficiency in InnoDB’s clustered index</li>
-            <li><strong>Alternative:</strong> Uniqueness + space efficiency + InnoDB compatibility → planned migration to <strong>TSID</strong></li>
+            <li><strong>Problem Identified:</strong> UUID v4 could cause storage and I/O inefficiency in InnoDB’s
+              clustered index</li>
+            <li><strong>Alternative:</strong> Uniqueness + space efficiency + InnoDB compatibility → planned migration
+              to <strong>TSID</strong></li>
           </ul>
         </div>
       </div>
@@ -1125,11 +1137,13 @@
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
             <li><strong>CodeRabbit</strong> 기반 PR 코드 리뷰 자동화 → 배포 안정성 제고</li>
-            <li>시연용 Frontend 프로토타이핑: 요구사항 문서화 → <strong>Google Antigravity + Claude Code</strong> 교차 활용 → 속도와 코드 품질 동시 확보</li>
+            <li>시연용 Frontend 프로토타이핑: 요구사항 문서화 → <strong>Google Antigravity + Claude Code</strong> 교차 활용 → 속도와 코드 품질 동시
+              확보</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
             <li>Automated PR code reviews via <strong>CodeRabbit</strong> → improved deployment stability</li>
-            <li>Frontend prototyping: documented requirements → cross-leveraged <strong>Google Antigravity + Claude Code</strong> for both speed and quality</li>
+            <li>Frontend prototyping: documented requirements → cross-leveraged <strong>Google Antigravity + Claude
+                Code</strong> for both speed and quality</li>
           </ul>
         </div>
       </div>
