@@ -30,6 +30,199 @@
 
     gtag('config', 'G-CFED45WD5V');
   </script>
+  <!-- Page-specific styles: section nav & alternating backgrounds -->
+  <style>
+    /* === Alternating section backgrounds === */
+    .tech-detail {
+      position: relative;
+      padding: 56px 0;
+    }
+
+    .tech-detail:nth-child(even of .tech-detail) {
+      background: var(--bg-subtle);
+      border-bottom-color: var(--border-light);
+    }
+
+    /* Full-bleed background for even sections */
+    .tech-detail:nth-child(even of .tech-detail)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      height: 100%;
+      background: inherit;
+      z-index: -1;
+    }
+
+    /* === Desktop sidebar ToC (≥900px) === */
+    .section-nav-sidebar {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .section-nav-sidebar {
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: max(12px, calc((100vw - 760px) / 2 - 180px));
+        transform: translateY(-50%);
+        z-index: 90;
+        width: 160px;
+      }
+
+      .section-nav-sidebar .snav-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .section-nav-sidebar .snav-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        color: var(--text-tertiary);
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+        line-height: 1.3;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      .section-nav-sidebar .snav-num {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-tertiary);
+        opacity: 0.6;
+        min-width: 18px;
+        transition: all 0.2s ease;
+      }
+
+      .section-nav-sidebar .snav-item:hover {
+        color: var(--text-secondary);
+        background: var(--accent-subtle);
+      }
+
+      .section-nav-sidebar .snav-item:hover .snav-num {
+        opacity: 1;
+      }
+
+      .section-nav-sidebar .snav-item.active {
+        color: var(--accent);
+        background: var(--accent-subtle);
+      }
+
+      .section-nav-sidebar .snav-item.active .snav-num {
+        color: var(--accent);
+        opacity: 1;
+      }
+
+    }
+
+    /* Very wide screens: push sidebar further out */
+    @media (min-width: 1200px) {
+      .section-nav-sidebar {
+        left: calc((100vw - 760px) / 2 - 220px);
+        width: 180px;
+      }
+    }
+
+    /* === Mobile top bar (<900px) === */
+    .section-nav-topbar {
+      display: none;
+    }
+
+    @media (max-width: 899px) {
+      .section-nav-topbar {
+        display: block;
+        position: sticky;
+        top: var(--nav-height);
+        z-index: 89;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: background-color var(--duration) var(--ease-out),
+          border-color var(--duration) var(--ease-out),
+          opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .section-nav-topbar.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .section-nav-topbar .snav-scroll {
+        display: flex;
+        gap: 4px;
+        padding: 8px clamp(16px, 4vw, 48px);
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .section-nav-topbar .snav-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      .section-nav-topbar .snav-pill {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        background: transparent;
+        border: 1px solid var(--border-light);
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+
+      .section-nav-topbar .snav-pill-num {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .section-nav-topbar .snav-pill:hover {
+        border-color: var(--border);
+        color: var(--text-secondary);
+      }
+
+      .section-nav-topbar .snav-pill.active {
+        background: var(--accent-subtle);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    }
+
+    /* Adjust scroll-padding to account for top bar */
+    @media (max-width: 899px) {
+      html {
+        scroll-padding-top: calc(var(--nav-height) + 52px);
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -45,6 +238,88 @@
       <button id="theme-toggle" class="nav-toggle" aria-label="Toggle theme">☾</button>
     </div>
   </nav>
+
+  <!-- Section Nav: Desktop Sidebar -->
+  <nav class="section-nav-sidebar" aria-label="Section navigation">
+    <ul class="snav-list">
+      <li><a class="snav-item" href="#section-01" data-section="section-01">
+          <span class="snav-num">01</span>
+          <span class="snav-label lang-ko">P99 −66% 병목 해결</span>
+          <span class="snav-label lang-en">P99 −66% Bottleneck</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-02" data-section="section-02">
+          <span class="snav-num">02</span>
+          <span class="snav-label lang-ko">멱등성 공통 모듈</span>
+          <span class="snav-label lang-en">Idempotency Module</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-03" data-section="section-03">
+          <span class="snav-num">03</span>
+          <span class="snav-label lang-ko">DB 커맨드 −76%</span>
+          <span class="snav-label lang-en">DB Commands −76%</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-04" data-section="section-04">
+          <span class="snav-num">04</span>
+          <span class="snav-label lang-ko">스토리지 −64% TSID</span>
+          <span class="snav-label lang-en">Storage −64% TSID</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-05" data-section="section-05">
+          <span class="snav-num">05</span>
+          <span class="snav-label lang-ko">Saga 일관성 보장</span>
+          <span class="snav-label lang-en">Saga Consistency</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-06" data-section="section-06">
+          <span class="snav-num">06</span>
+          <span class="snav-label lang-ko">AI 생산성 향상</span>
+          <span class="snav-label lang-en">AI Productivity</span>
+        </a></li>
+      <li><a class="snav-item" href="#section-07" data-section="section-07">
+          <span class="snav-num">07</span>
+          <span class="snav-label lang-ko">관측 지표 설계</span>
+          <span class="snav-label lang-en">Observability</span>
+        </a></li>
+    </ul>
+  </nav>
+
+  <!-- Section Nav: Mobile Top Bar -->
+  <div class="section-nav-topbar" aria-label="Section navigation">
+    <div class="snav-scroll">
+      <a class="snav-pill" href="#section-01" data-section="section-01">
+        <span class="snav-pill-num">01</span>
+        <span class="snav-label lang-ko">P99 −66%</span>
+        <span class="snav-label lang-en">P99 −66%</span>
+      </a>
+      <a class="snav-pill" href="#section-02" data-section="section-02">
+        <span class="snav-pill-num">02</span>
+        <span class="snav-label lang-ko">멱등성 모듈</span>
+        <span class="snav-label lang-en">Idempotency</span>
+      </a>
+      <a class="snav-pill" href="#section-03" data-section="section-03">
+        <span class="snav-pill-num">03</span>
+        <span class="snav-label lang-ko">DB −76%</span>
+        <span class="snav-label lang-en">DB −76%</span>
+      </a>
+      <a class="snav-pill" href="#section-04" data-section="section-04">
+        <span class="snav-pill-num">04</span>
+        <span class="snav-label lang-ko">Storage −64%</span>
+        <span class="snav-label lang-en">Storage −64%</span>
+      </a>
+      <a class="snav-pill" href="#section-05" data-section="section-05">
+        <span class="snav-pill-num">05</span>
+        <span class="snav-label lang-ko">Saga</span>
+        <span class="snav-label lang-en">Saga</span>
+      </a>
+      <a class="snav-pill" href="#section-06" data-section="section-06">
+        <span class="snav-pill-num">06</span>
+        <span class="snav-label lang-ko">AI 생산성</span>
+        <span class="snav-label lang-en">AI Prod.</span>
+      </a>
+      <a class="snav-pill" href="#section-07" data-section="section-07">
+        <span class="snav-pill-num">07</span>
+        <span class="snav-label lang-ko">관측 설계</span>
+        <span class="snav-label lang-en">Observability</span>
+      </a>
+    </div>
+  </div>
 
   <main class="container">
 
@@ -158,7 +433,7 @@
     </section>
 
     <!-- ====== TECH DETAIL 01: JFR Performance Analysis ====== -->
-    <section class="tech-detail">
+    <section class="tech-detail" id="section-01">
       <p class="detail-number">01</p>
       <h2 class="detail-title">
         <span class="lang-ko">애플리케이션 병목 식별, 원인 분석, 해결을 통한 P99 Latency 66% 개선 및 처리량 54% 향상</span>
@@ -346,41 +621,22 @@
           </p>
           <div class="analysis-step-text">
             <ul class="cause-effect-list lang-ko">
-              <li><strong>현상 식별:</strong> 당시 Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%)에 따라 Committed 확장되어 Memory
-                Pressure 정황 확인</li>
-              <li><strong>세부 지표:</strong> 140MB/s 수준의 Eden Space 객체 할당, 잦은 GC 발생 (3초간 7회, 평균 Pause 32ms), 저부하 대비 7배 증가한
-                평균 STW</li>
-              <li>
-                <strong>진단 결과:</strong>
-                <div class="causal-chain">
-                  <span class="cause">Memory Pressure</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">잦은 GC & STW 길이 증가</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">커넥션 반환 지연</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">처리량 저하</span>
-                </div>
-              </li>
+              <li>당시 Heap Free Ratio (21 %) 지점에서의 Heap Committed 확장 포착 → Memory Pressure 존재했음을 확인</li>
+              <li>객체 할당률 148MB/s 수준으로 증가 → GC 빈도 & 개별 GC 평균 STW 길이 증가 식별</li>
             </ul>
+            <div class="causal-chain lang-ko" style="margin-top: 12px; font-weight: 500;">
+              Memory Pressure → 잦은 GC & 개별 GC 평균 STW 길이 증가 → HikariCP 커넥션 반환 지연 → 처리량 저하
+            </div>
+
             <ul class="cause-effect-list lang-en">
-              <li><strong>Observation:</strong> Heap Free Ratio (21%) &lt; MinHeapFreeRatio (40%) triggered committed
-                heap expansion, confirming memory pressure.</li>
-              <li><strong>Metrics:</strong> 140MB/s Eden allocation, 7 GCs in 3s (avg pause 32ms), and 7× increase in
-                per-GC STW.</li>
-              <li>
-                <strong>Diagnosis:</strong>
-                <div class="causal-chain">
-                  <span class="cause">Memory Pressure</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">Frequent GC & Longer STW</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">HikariCP Return Delays</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">Throughput Degradation</span>
-                </div>
-              </li>
+              <li>Identified Heap Committed expansion at Heap Free Ratio (21%) → Confirmed Memory Pressure</li>
+              <li>Object allocation rate increased to 148MB/s → Identified increase in GC frequency & individual GC avg
+                STW duration</li>
             </ul>
+            <div class="causal-chain lang-en" style="margin-top: 12px; font-weight: 500;">
+              Memory Pressure → Frequent GC & Increased Avg STW → HikariCP Connection Return Delay → Throughput
+              Degradation
+            </div>
           </div>
         </div>
 
@@ -532,76 +788,39 @@
       </div>
     </section>
 
-    <!-- ====== TECH DETAIL 02: API Idempotency ====== -->
-    <section class="tech-detail">
+    <!-- ====== TECH DETAIL 02: API Idempotency Module ====== -->
+    <section class="tech-detail" id="section-02">
       <p class="detail-number">02</p>
       <h2 class="detail-title">
-        <span class="lang-ko">서버 장애와 동시 요청에도 중복 없이 동작하는 결제 & 예약 생성 API 멱등성 설계</span>
-        <span class="lang-en">Duplicate-Proof Payment & Booking API Idempotency Design</span>
+        <span class="lang-ko">안전한 재시도를 보장하는 API 멱등성 공통 모듈 설계</span>
+        <span class="lang-en">API Idempotency Module Design for Safe Retries</span>
       </h2>
       <p class="detail-summary">
         <span class="lang-ko">캐시 · Redis Lock · DB 3개 레이어로 중복 예약 원천 차단</span>
         <span class="lang-en">Defense-in-depth via Cache → Redis Lock → DB Unique Constraint</span>
       </p>
 
-      <!-- Background -->
+      <!-- Key Design Highlights -->
       <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">도입 배경 및 문제 정의</span>
-          <span class="lang-en">Background & Problem Definition</span>
-        </h3>
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li><strong>문제:</strong> 예약 생성 / 결제 요청 API에 중복 요청 제어 부재 → 동일 요청 유입 시 중복 예약 생성 위험</li>
-            <li><strong>대응 필요 시나리오:</strong>
-              <ul>
-                <li>네트워크 문제로 인한 중복 요청</li>
-                <li>응답 수신 실패 시 Client-Server 상태 불일치 해소를 위한 재시도</li>
-              </ul>
-            </li>
+            <li>Redis를 응답 캐시 계층으로 활용: 재시도 부하로부터 DB 보호</li>
+            <li>Redis Lock &amp; Lock-wait 없는 즉시 응답 전략: 요청 동시성 제어 및 불필요한 대기 리소스 제거</li>
+            <li>비즈니스 로직 커밋 완료 이후 Lock TTL 만료를 보상하기 위해 Redisson Watchdog 활용</li>
+            <li>응답 타입에 독립적인 Cache Entry 설계 → 도메인 독립적인 공통 모듈로서 활용 가능하도록 설계</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Problem:</strong> No duplicate request control for reservation/payment APIs → risk of duplicate
-              bookings</li>
-            <li><strong>Scenarios Requiring Control:</strong>
-              <ul>
-                <li>Network-induced duplicate requests</li>
-                <li>Client retries to resolve Client-Server state inconsistency after failed response receipt</li>
-              </ul>
-            </li>
+            <li>Redis as response cache layer: protecting DB from retry-induced load</li>
+            <li>Redis Lock with instant response on lock-wait failure: concurrency control without unnecessary resource
+              blocking</li>
+            <li>Redisson Watchdog to compensate for Lock TTL expiry after business logic commit</li>
+            <li>Type-independent Cache Entry design → enabling domain-agnostic reuse as a shared module</li>
           </ul>
         </div>
       </div>
 
-      <!-- Client-side strategy -->
+      <!-- Flow Diagram -->
       <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">Client-side 해결 전략</span>
-          <span class="lang-en">Client-Side Strategy</span>
-        </h3>
-        <div class="detail-text">
-          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li>HTTP 헤더에 <strong>UUID v4 기반 Idempotency-Key</strong> 도입</li>
-            <li>키 생성 시점: '예약 생성 또는 결제 요청' 버튼 클릭 시</li>
-            <li>다회 클릭 또는 재시도 발생 시에도 Server-side에서 <strong>'중복 요청'으로 식별</strong> 가능</li>
-          </ul>
-          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li>Introduced <strong>UUID v4-based Idempotency-Key</strong> in HTTP headers</li>
-            <li>Key generated at: 'Create Reservation' or 'Submit Payment' button click</li>
-            <li>Enables server to <strong>identify duplicate requests</strong> regardless of multi-click or retry
-              scenarios</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Server-side 3-Layer -->
-      <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">Server-side 3-Layer 멱등성 보장 설계</span>
-          <span class="lang-en">Server-Side 3-Layer Idempotency Design</span>
-        </h3>
-
-        <!-- Flow diagram placeholder -->
         <div class="pan-zoom-container" tabindex="0">
           <div class="pan-zoom-inner">
             <img src="../assets/idempotency-flow.svg" alt="API Idempotency Design Flow Diagram" draggable="false">
@@ -612,141 +831,200 @@
             <button class="pan-zoom-btn" data-action="reset">⟲</button>
           </div>
         </div>
-
-        <div class="analysis-step">
-          <p class="analysis-step-title">Layer 1 — Redis <span class="lang-ko">응답 캐싱</span><span
-              class="lang-en">Response Cache</span></p>
-          <div class="analysis-step-text">
-            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">Idempotency-Key 기준 처리 결과 캐싱</span>
-              <span class="arrow">➔</span>
-              <span class="effect">Retry로 인한 트래픽 및 부하로부터 DB 보호</span>
-            </div>
-            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">Cache Responses by Idempotency-Key</span>
-              <span class="arrow">➔</span>
-              <span class="effect">Protect DB from Retry-induced Load</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="analysis-step">
-          <p class="analysis-step-title">Layer 2 — Redis Lock</p>
-          <div class="analysis-step-text">
-            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">Cache Miss 시점부터 로직 수행 완료 시까지 임계영역 보호</span>
-              <span class="arrow">➔</span>
-              <span class="effect">락 획득 실패 시 202 무시/재시도 유도 반환</span>
-            </div>
-            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">Protect Critical Section Through Logic Completion</span>
-              <span class="arrow">➔</span>
-              <span class="effect">Return 202 Accepted Instantly on Lock Failure</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="analysis-step">
-          <p class="analysis-step-title">Layer 3 — DB Unique Constraint</p>
-          <div class="analysis-step-text">
-            <div class="causal-chain lang-ko" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">Redis 장애/캐시 만료로 인한 DB Fallback 상황</span>
-              <span class="arrow">➔</span>
-              <span class="effect">DB 수준의 Unique 제약으로 중복 생성 원천 차단</span>
-            </div>
-            <div class="causal-chain lang-en" style="margin-top: 6px; padding: 10px 14px;">
-              <span class="cause">DB Fallback from Redis Failure or Cache Expiry</span>
-              <span class="arrow">➔</span>
-              <span class="effect">Prevent Duplicate Creation via DB Unique Constraint</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Trade-off: Lettuce vs Redisson -->
-      <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">Trade-off를 고려한 기술적 의사결정: Redisson Lock API 채택</span>
-          <span class="lang-en">Trade-off Analysis: Choosing Redisson Lock API</span>
-        </h3>
-
-        <div class="tradeoff-grid">
-          <div class="tradeoff-card">
-            <p class="tradeoff-card-title">Lettuce <code>SET...NX EX</code></p>
-            <ul class="tradeoff-list tradeoff-pros">
-              <li>
-                <span class="lang-ko">추가 의존성 불필요 (Spring Data Redis 내 기본 포함)</span>
-                <span class="lang-en">No extra dependency (included in Spring Data Redis)</span>
-              </li>
-              <li>
-                <span class="lang-ko"><code>setIfAbsent()</code> 호출로 간결한 Lock 구현 가능</span>
-                <span class="lang-en">Concise lock via <code>setIfAbsent()</code></span>
-              </li>
-            </ul>
-            <ul class="tradeoff-list tradeoff-cons" style="margin-top: 8px;">
-              <li>
-                <span class="lang-ko">Lock TTL 관리 및 Ownership 검증 로직 별도 설계 필요</span>
-                <span class="lang-en">Requires custom TTL management and ownership verification</span>
-              </li>
-              <li>
-                <span class="lang-ko">TTL 만료 시점 / 비즈니스 로직 완료 시점 간 Race Condition 가능</span>
-                <span class="lang-en">Race condition risk between TTL expiry and logic completion</span>
-              </li>
-            </ul>
-          </div>
-          <div class="tradeoff-card" style="border-color: var(--accent); border-width: 1.5px;">
-            <p class="tradeoff-card-title">Redisson Lock API ✓</p>
-            <ul class="tradeoff-list tradeoff-pros">
-              <li>
-                <span class="lang-ko">Watchdog을 통한 TTL 자동 연장 및 해제 제공</span>
-                <span class="lang-en">Automatic TTL extension via Watchdog</span>
-              </li>
-              <li>
-                <span class="lang-ko">Lock 해제 시 Thread ID 기반 Lock Owner 검증 제공</span>
-                <span class="lang-en">Thread ID-based lock ownership verification on release</span>
-              </li>
-            </ul>
-            <ul class="tradeoff-list tradeoff-cons" style="margin-top: 8px;">
-              <li>
-                <span class="lang-ko">추가 의존성 필요: Redisson Client 라이브러리</span>
-                <span class="lang-en">Requires additional Redisson Client dependency</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p class="detail-text" style="margin-top: 16px;">
-          <span class="lang-ko"><strong>결정:</strong> 예약 시스템 도메인 상, 의존성 추가 비용보다 안정성 확보가 중요하다고 판단 → Redisson Lock API
-            채택.</span>
-          <span class="lang-en"><strong>Decision:</strong> In a reservation system domain, operational reliability
-            outweighs the cost of an additional dependency → adopted Redisson Lock API.</span>
+        <p class="detail-text"
+          style="font-size: 0.78rem; color: var(--text-tertiary); font-style: italic; margin-top: 8px; text-align: center;">
+          <span class="lang-ko">Fig 2. API 멱등성 보장 설계 Flow Diagram</span>
+          <span class="lang-en">Fig 2. API Idempotency Design Flow Diagram</span>
         </p>
       </div>
 
-      <!-- Verification -->
+      <!-- Background -->
       <div class="detail-subsection">
         <h3 class="subsection-title">
-          <span class="lang-ko">검증 및 결과</span>
-          <span class="lang-en">Verification & Results</span>
+          <span class="lang-ko">도입 배경</span>
+          <span class="lang-en">Background</span>
         </h3>
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li><strong>동시성 테스트:</strong> 동일 Idempotency-Key로 10개 스레드 동시 요청 → 1건 성공 / 9건 재시도 응답 (202)</li>
-            <li><strong>통합 테스트:</strong> Testcontainers 활용, 동일 키 10개 동시 요청 시 DB Insertion <strong>정확히 1건</strong> 확인
-            </li>
+            <li>예약 생성 / 결제 요청 API에 대한 중복 요청 제어 부재 → 동일 요청 유입 시 중복 예약 생성 문제 발생 가능</li>
+            <li>Client-Server 간 상태 일관성 유지 방안 부재 → 네트워크 문제로 인한 중복 요청, 응답 수신 실패로 인한 상태 불일치 발생 시 복구 불가</li>
+            <li>위와 같은 문제가 여러 도메인에 존재하는 상태</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Concurrency Test:</strong> 10 concurrent threads with identical Idempotency-Key → 1 success / 9
-              retries (202)</li>
-            <li><strong>Integration Test:</strong> Via Testcontainers, confirmed exactly <strong>1 DB insertion</strong>
-              across 10 concurrent requests</li>
+            <li>No duplicate request control for reservation/payment APIs → risk of duplicate bookings on identical
+              request arrival</li>
+            <li>No Client-Server state consistency mechanism → unrecoverable state mismatch on network-induced
+              duplicates or failed response receipt</li>
+            <li>These problems exist across multiple domains</li>
+          </ul>
+        </div>
+        <p class="detail-text" style="margin-top: 12px;">
+          <span class="lang-ko"><strong>결론:</strong> 안전한 재시도가 가능하도록 보장하는 멱등성 모듈 설계 필요</span>
+          <span class="lang-en"><strong>Conclusion:</strong> Need for an idempotency module that guarantees safe
+            retries</span>
+        </p>
+      </div>
+
+      <!-- Problem Definition -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① Client-side: 서버가 '재시도'와 '새 요청'을 어떻게 구분할 것인가?</span>
+            <span class="lang-en">① Client-side: How does the server distinguish retries from new requests?</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>서버 입장에서 '재시도'와 '의도된 새 요청'을 구분할 수단이 없음</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Server has no means to distinguish between a retry and an intentionally new request</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② Server-side: 중복 요청을 어떻게 처리할 것인가?</span>
+            <span class="lang-en">② Server-side: How to handle duplicate requests?</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>중복 요청 진입 시에도 원본과 동일한 응답을 일관적으로 제공해야 함</li>
+              <li>동일한 요청 다수가 동시 서버 진입 시 Race Condition 발생 가능 → 동시성 제어가 필요</li>
+              <li>Redis 장애 또는 캐시 만료와 같은 예외적 상황에서도, 중복 데이터 생성이 원천 차단되어야 함</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Must consistently return the same response as the original even on duplicate entry</li>
+              <li>Concurrent arrival of identical requests can cause race conditions → concurrency control required</li>
+              <li>Duplicate data creation must be prevented even under Redis failure or cache expiry scenarios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">③ 모듈 설계: 이 모듈의 책임 경계를 어디까지로 할 것인가?</span>
+            <span class="lang-en">③ Module Design: Where should this module's responsibility boundary end?</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>공통 모듈로서 특정 도메인의 응답 타입에 종속되지 않으려면 어떻게 설계할 것인가?</li>
+              <li>멱등성 보장과 데이터 정합성 보장을 하나의 모듈에 묶을 것인가, 분리할 것인가?</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>How to design a shared module that is not coupled to any specific domain's response type?</li>
+              <li>Should idempotency guarantees and data consistency guarantees be bundled or separated?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resolution Strategy -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 전략</span>
+          <span class="lang-en">Resolution Strategy</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① Client-side: Idempotency Key 기반 동일 요청 판별</span>
+            <span class="lang-en">① Client-side: Request Identification via Idempotency Key</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>식별 기준:</strong> Client가 결제 페이지 진입 시점에 생성 및 할당하는 UUID v4 기반 Idempotency Key</li>
+              <li><strong>생성 및 관리 전략:</strong> 결제 페이지 진입 시점에 생성 → React 컴포넌트 State에 저장 → 결제 완료 페이지 이동 시 Unmount와 함께 소멸
+              </li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Identification:</strong> UUID v4-based Idempotency Key generated and assigned at payment page
+                entry</li>
+              <li><strong>Lifecycle:</strong> Created on page entry → stored in React component state → destroyed on
+                Unmount when navigating to completion page</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② Server-side: Redis 기반 상호 배제 동시성 제어 &amp; Caching 설계</span>
+            <span class="lang-en">② Server-side: Redis-based Mutual Exclusion &amp; Caching Design</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>응답 Cache 관리 전략 수립:</strong> 적재 규모의 예측이 어려운 캐시 데이터 → 성능 안정성 고려해 JVM Heap이 아닌 Redis 저장 및 관리 선택
+              </li>
+              <li><strong>임계 영역 설정:</strong> Redis 캐시 데이터 또한 공유 자원에 포함이라는 점 &amp; 불필요한 DB 부하 방지 필요 → Redis 개체도 임계 영역 활성
+              </li>
+              <li><strong>동시성 제어 설계:</strong> 요청 직렬화 및 임계 영역 진입 실패 시 재시도 모두 불필요 → 상호 배제 방식 채택</li>
+              <li><strong>동시성 제어 구현:</strong> Redisson Lock API &amp; Watchdog 활용 → Lock TTL 만료 시점과 비즈니스 로직 완료 시점 간 부조화로
+                인한 Race Condition 해결</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Cache Strategy:</strong> Unpredictable cache volume → chose Redis over JVM Heap for
+                performance stability</li>
+              <li><strong>Critical Section:</strong> Redis cache data is also a shared resource &amp; DB load must be
+                minimized → Redis objects included in critical section</li>
+              <li><strong>Concurrency Design:</strong> Neither request serialization nor retry on lock failure needed →
+                adopted mutual exclusion</li>
+              <li><strong>Implementation:</strong> Redisson Lock API &amp; Watchdog → resolves race condition from Lock
+                TTL expiry / business logic completion timing mismatch</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">③ 모듈 설계: 모듈 책임 경계 정의 &amp; 공통 모듈 활용 고려한 설계</span>
+            <span class="lang-en">③ Module Design: Responsibility Boundaries &amp; Shared Module Architecture</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>책임 경계 정의:</strong> 모듈이 도메인 종속적이지 않아야 함 → 중복 실행 방지까지만 담당 &amp; 최종 데이터 정합성 보장은 각 도메인에 위임</li>
+              <li><strong>Cache Entry 설계:</strong> 응답 객체 Type 독립성 고려해 ResponseEntity를 분해하여 상태코드·본문만 저장</li>
+              <li><strong>모듈 구현 전략:</strong> 타입 독립적 캐시 설계를 위해 핸들러 메서드의 제네릭 리턴 타입 접근이 필수 → Spring AOP 기반 설계 선택</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Responsibility Boundary:</strong> Module must not be domain-specific → only handles duplicate
+                execution prevention &amp; delegates final data consistency to each domain</li>
+              <li><strong>Cache Entry Design:</strong> Decomposes ResponseEntity for type independence — stores only
+                status code and body</li>
+              <li><strong>Implementation:</strong> Chose Spring AOP for implementation to access generic return types of
+                handler methods</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verification & Results -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">검증 및 결과</span>
+          <span class="lang-en">Verification &amp; Results</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>Testcontainer 환경 통합 테스트:</strong> 동일 Idempotency-Key 활용 10건 동시 요청 시 DB Insertion 1건 확인 &amp; 202
+              Accepted 9건 확인</li>
+            <li><strong>공통 모듈 활용 가능성 검증:</strong> 결제 요청 API &amp; 예약 생성 API 적용 후 통합 테스트 수행 → 정상 작동 검증</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Testcontainer Integration Test:</strong> 10 concurrent requests with identical Idempotency-Key →
+              confirmed 1 DB insertion &amp; 9 × 202 Accepted</li>
+            <li><strong>Shared Module Validation:</strong> Applied to both Payment API &amp; Reservation API →
+              integration tests passed successfully</li>
           </ul>
         </div>
       </div>
     </section>
-
     <!-- ====== TECH DETAIL 03: DB Access Pattern & TSID ====== -->
-    <section class="tech-detail">
+    <section class="tech-detail" id="section-03">
       <p class="detail-number">03</p>
       <h2 class="detail-title">
         <span class="lang-ko">MySQL General Log 분석을 통한 요청 수 대비 DB 커맨드 과발행 원인 추적 및 해결</span>
@@ -962,7 +1240,7 @@
     </section>
 
     <!-- ====== TECH DETAIL 04: TSID Migration ====== -->
-    <section class="tech-detail">
+    <section class="tech-detail" id="section-04">
       <p class="detail-number">04</p>
       <h2 class="detail-title">
         <span class="lang-ko">InnoDB Page Utilization 실측으로 확인한 UUID v4의 저장 구조 비효율: TSID 마이그레이션</span>
@@ -1072,61 +1350,354 @@
       </div>
     </section>
 
-    <!-- ====== ADDITIONAL DETAILS (from resume) ====== -->
-    <section class="tech-detail">
+    <!-- ====== TECH DETAIL 05: Orchestration Saga ====== -->
+    <section class="tech-detail" id="section-05">
       <p class="detail-number">05</p>
       <h2 class="detail-title">
         <span class="lang-ko">결제-예약 도메인 간 트랜잭션 일관성 보장을 위한 Orchestration Saga 설계</span>
         <span class="lang-en">Cross-Domain Payment Consistency via Orchestration Saga</span>
       </h2>
       <p class="detail-summary">
-        <span class="lang-ko">부분 실패 시에도 Eventual Consistency 보장</span>
-        <span class="lang-en">Guaranteed eventual consistency under partial failures</span>
+        <span class="lang-ko">Payment · Point · Reservation 3개 도메인 조율, 부분 실패 시에도 Eventual Consistency 보장</span>
+        <span class="lang-en">Coordinating Payment · Point · Reservation domains with guaranteed eventual consistency
+          under partial failures</span>
       </p>
 
+      <!-- Key Design Highlights -->
       <div class="detail-subsection">
         <div class="detail-text">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li>
-              <strong>동시성 제어:</strong>
-              <div class="causal-chain" style="margin-top: 6px;">
-                <span class="cause">상태 기반 Semantic Lock을 활용한 임계 영역 제어 도입</span>
-                <span class="arrow">➔</span>
-                <span class="effect">결제 로직과 만료 스케줄러 간 Race Condition 완벽 해결</span>
-              </div>
-            </li>
-            <li style="margin-top: 4px;">
-              <strong>부분 실패 복구 (Saga):</strong>
-              <div class="causal-chain" style="margin-top: 6px;">
-                <span class="cause">실패 트랜잭션 DB 영속화 및 Scheduler 재시도 기반 복구 체계 적용</span>
-                <span class="arrow">➔</span>
-                <span class="effect">부분 실패 시에도 잃어버리는 요청 없이 최종적 일관성(Eventual Consistency) 보장</span>
-              </div>
-            </li>
+            <li>PaymentOrchestrator 기반 Orchestration Saga: 결제/환불 다단계 흐름의 중앙 조율</li>
+            <li>Module API 계층 도입: 도메인 간 명시적 계약을 통한 경계 분리</li>
+            <li>Compensation 패턴: 부분 실패 시 보상 트랜잭션 자동 실행 + CompensationTxLog 기반 지연 재시도</li>
+            <li>Point 도메인 Exponential Backoff 재시도: 낙관적 락 충돌 등 일시적 실패 대응</li>
+            <li>Append-Only Payment 모델: 상태 변경 시 새 레코드 생성, 완전한 감사 추적 보장</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li>
-              <strong>Concurrency Control:</strong>
-              <div class="causal-chain" style="margin-top: 6px;">
-                <span class="cause">Applied State-based Semantic Lock</span>
-                <span class="arrow">➔</span>
-                <span class="effect">Resolved Race Condition against Expiration Scheduler</span>
-              </div>
-            </li>
-            <li style="margin-top: 4px;">
-              <strong>Failure Recovery:</strong>
-              <div class="causal-chain" style="margin-top: 6px;">
-                <span class="cause">DB Compensation Log + Scheduled Retry</span>
-                <span class="arrow">➔</span>
-                <span class="effect">Guaranteed Eventual Consistency in Any Failure Scenario</span>
-              </div>
-            </li>
+            <li>PaymentOrchestrator-based Orchestration Saga: centralized coordination of multi-step payment/refund
+              flows</li>
+            <li>Module API layer: explicit inter-domain contracts enforcing clear boundary separation</li>
+            <li>Compensation pattern: automatic compensating transactions on partial failure +
+              CompensationTxLog-based deferred retry</li>
+            <li>Point domain Exponential Backoff retry: handling transient failures from optimistic lock conflicts</li>
+            <li>Append-Only Payment model: new record per state change, ensuring complete audit trail</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Background -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">도입 배경</span>
+          <span class="lang-en">Background</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>결제 처리 시 Payment · Point · Reservation 3개 도메인이 하나의 비즈니스 트랜잭션 내에서 조율되어야 함</li>
+            <li><strong>결제 흐름:</strong> 포인트 차감 → 예약 확정 → 결제 기록</li>
+            <li><strong>환불 흐름:</strong> 포인트 복원 → 예약 취소 → 환불 기록</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Payment processing requires coordination across Payment · Point · Reservation domains within a single
+              business transaction</li>
+            <li><strong>Payment flow:</strong> Deduct points → Confirm reservation → Record payment</li>
+            <li><strong>Refund flow:</strong> Restore points → Cancel reservation → Record refund</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Problem Definition -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① 부분 실패 (Partial Failure)</span>
+            <span class="lang-en">① Partial Failure</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>다단계 흐름의 각 단계는 독립적으로 실패 가능</li>
+              <li>적절한 처리 없이는 불일치 상태 발생 (예: 포인트 차감 완료 but 예약 미확정)</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Each step in the multi-step flow can fail independently</li>
+              <li>Without proper handling, system ends up inconsistent (e.g., points deducted but reservation not
+                confirmed)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② 동기적 사용자 응답 요구</span>
+            <span class="lang-en">② Synchronous User Response Requirement</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>결제는 사용자 대면 작업 → 요청 즉시 확정적인 성공/실패 결과를 기대</li>
+              <li>동일 요청-응답 사이클 내에서 결정적 결과를 반환할 수 있는 조율 메커니즘 필요</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Payment is user-facing → users expect deterministic success/failure immediately</li>
+              <li>Coordination mechanism must return definitive result within the same request-response cycle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">③ 도메인 간 강결합</span>
+            <span class="lang-en">③ Tight Cross-Domain Coupling</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>기존: 도메인 간 서비스를 직접 호출 → 숨겨진 의존성 발생</li>
+              <li>실패 경계에 대한 추론 및 독립적 도메인 발전이 어려운 구조</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Prior design: domains called each other's services directly → hidden dependencies</li>
+              <li>Difficult to reason about failure boundaries or evolve domains independently</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">④ 동시성 환경 하 일시적 실패</span>
+            <span class="lang-en">④ Transient Failures Under Concurrency</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>포인트 잔액 연산은 낙관적 락(Optimistic Locking) 기반 → 동시 예약 시 일시적 충돌 발생 빈번</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Point balance operations use optimistic locking → prone to transient conflicts during concurrent
+                reservations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resolution Strategy -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 전략</span>
+          <span class="lang-en">Resolution Strategy</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① Saga / Compensation 패턴 기반 결제 오케스트레이션</span>
+            <span class="lang-en">① Saga / Compensation Pattern for Payment Orchestration</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>PaymentOrchestrator:</strong> Orchestration 기반 Saga 패턴으로 결제/환불 다단계 흐름 조율</li>
+              <li><strong>결제 흐름:</strong> PENDING 결제 생성 → 포인트 차감 → 예약 확정 → COMPLETED 처리</li>
+              <li><strong>실패 시 보상:</strong> 예약 확정 실패 → 포인트 복원 보상 트랜잭션 실행 → FAILED 처리</li>
+              <li><strong>보상 실패 안전망:</strong> 보상 트랜잭션 자체가 실패할 경우 CompensationTxLog에 영속화 → 60초 간격 스케줄러가 최대 3회 재시도
+              </li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>PaymentOrchestrator:</strong> Orchestration-based saga coordinating multi-step payment/refund
+                flows</li>
+              <li><strong>Payment flow:</strong> Create PENDING payment → Deduct points → Confirm reservation →
+                Mark COMPLETED</li>
+              <li><strong>On failure — compensation:</strong> Reservation confirmation fails → Execute compensating
+                transaction (restore points) → Mark FAILED</li>
+              <li><strong>Compensation safety net:</strong> If compensation itself fails, persist to
+                CompensationTxLog → scheduler retries every 60s, up to 3 attempts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② Module API 계층: 도메인 간 통신 계약</span>
+            <span class="lang-en">② Module API Layer: Inter-Domain Communication Contracts</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>인터페이스 정의:</strong> PointModuleApi, ReservationModuleApi — 각 도메인이 명시적 계약으로 기능 노출</li>
+              <li><strong>결과 래핑:</strong> OperationResult 레코드로 성공/실패 상태 및 에러 코드 캡슐화</li>
+              <li><strong>Facade 구현:</strong> 내부 도메인 서비스에 위임 후 예외를 결과 객체로 변환</li>
+              <li><strong>효과:</strong> 호출자(PaymentOrchestrator)는 인터페이스에만 의존 → 각 도메인 독립적 발전 가능</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Interface definition:</strong> PointModuleApi, ReservationModuleApi — each domain exposes
+                public contract</li>
+              <li><strong>Result wrapping:</strong> OperationResult records encapsulating success/failure status and
+                error codes</li>
+              <li><strong>Facade implementation:</strong> Delegates to internal services and translates exceptions into
+                result objects</li>
+              <li><strong>Effect:</strong> Callers (PaymentOrchestrator) depend only on interface → domains evolve
+                independently</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">③ Exponential Backoff 재시도 (Point 도메인)</span>
+            <span class="lang-en">③ Retry with Exponential Backoff (Point Domain)</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li><strong>적용 대상:</strong> PointModuleFacade — Spring @Retryable 활용</li>
+              <li><strong>설정:</strong> 최대 3회 시도, 초기 지연 100ms, 배수 2.0 (100ms → 200ms → 400ms)</li>
+              <li><strong>제외 예외:</strong> BusinessRuleViolationException, OptimisticLockingFailureException —
+                결정적 실패는 즉시 실패 결과 반환</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li><strong>Target:</strong> PointModuleFacade — using Spring @Retryable</li>
+              <li><strong>Configuration:</strong> Max 3 attempts, initial delay 100ms, multiplier 2.0 (100ms → 200ms →
+                400ms)</li>
+              <li><strong>Excluded exceptions:</strong> BusinessRuleViolationException,
+                OptimisticLockingFailureException — deterministic failures returned immediately via @Recover</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">④ Append-Only Payment 모델</span>
+            <span class="lang-en">④ Append-Only Payment Model</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>Setter 없음 — 상태 전이 시 withStatus()를 통해 새 인스턴스 생성</li>
+              <li>각 상태 변경이 새 레코드로 영속화 → 완전한 감사 추적(audit trail) 보존</li>
+              <li>상태 전이: PENDING → COMPLETED | FAILED | REFUNDED</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>No setters — state transitions produce a new instance via withStatus()</li>
+              <li>Each status change persisted as new record → complete audit trail preserved</li>
+              <li>Status transitions: PENDING → COMPLETED | FAILED | REFUNDED</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alternatives Considered -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">대안 비교 및 의사결정</span>
+          <span class="lang-en">Alternatives Considered</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">Choreography Saga (이벤트 기반) — 기각</span>
+            <span class="lang-en">Choreography-Based Saga (Event-Driven) — Rejected</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>각 도메인이 이벤트를 발행하고 반응하는 방식 — 중앙 조율자 없이 완전히 분리</li>
+              <li><strong>기각 사유:</strong> 결제 처리는 동기적·결정적 응답 필수 → 이벤트 전파 기반으로는 동일 요청-응답 사이클 내 확정 결과 반환 불가</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Each domain publishes and reacts to events — fully decoupled, no central coordinator</li>
+              <li><strong>Rejected because:</strong> Payment requires synchronous, deterministic response → event
+                propagation cannot return definitive result within same request-response cycle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">서비스 직접 호출 (API 계층 미적용) — 기각</span>
+            <span class="lang-en">Direct Service-to-Service Calls (No API Layer) — Rejected</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>구현 단순 — 대상 도메인의 서비스를 직접 주입하여 호출</li>
+              <li><strong>기각 사유:</strong> 숨겨진 도메인 간 의존성 발생, 실패 처리 일관성 저하, 향후 분산 아키텍처 전환 시 복잡성 증가</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Simpler to implement — directly inject and call target domain's service</li>
+              <li><strong>Rejected because:</strong> Creates hidden cross-domain dependencies, inconsistent failure
+                handling, and complicates future migration to distributed architecture</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">재시도 없는 즉시 실패 (Fail-Fast) — 기각</span>
+            <span class="lang-en">Fail-Fast Without Retry — Rejected</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>추론이 단순 — 모든 실패를 즉시 호출자에게 전파</li>
+              <li><strong>기각 사유:</strong> 동시 예약 환경에서 낙관적 락 충돌은 예상되는 일시적 실패 → 짧은 Exponential Backoff로 성공률 유의미하게
+                개선 가능</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Simpler to reason about — every failure surfaced immediately to caller</li>
+              <li><strong>Rejected because:</strong> Optimistic lock conflicts under concurrent reservations are
+                expected transient failures → brief exponential backoff significantly improves success rates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consequences -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">결과 및 Trade-off</span>
+          <span class="lang-en">Consequences &amp; Trade-offs</span>
+        </h3>
+        <div class="detail-text">
+          <p style="font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 8px;">
+            <span class="lang-ko">✓ 긍정적 결과</span>
+            <span class="lang-en">✓ Positive Outcomes</span>
+          </p>
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>명확한 도메인 경계:</strong> Module API 인터페이스가 명시적 계약으로 기능, 도메인 간 의존성 가시화 및 감사 가능</li>
+            <li><strong>장애 허용 결제 흐름:</strong> 보상 패턴이 부분 실패로부터 자동 복구, 스케줄러 재시도가 안전망 역할</li>
+            <li><strong>감사 추적:</strong> Append-Only 결제 레코드가 상태 전이의 완전한 이력 제공</li>
+            <li><strong>재시도 복원력:</strong> 포인트 연산이 일시적 동시성 충돌을 사용자에게 전파하지 않고 우아하게 처리</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Clear domain boundaries:</strong> Module API interfaces serve as explicit contracts —
+              cross-domain
+              dependencies visible and auditable</li>
+            <li><strong>Fault-tolerant payment flows:</strong> Compensation pattern ensures automatic recovery from
+              partial failures, with scheduled retry as safety net</li>
+            <li><strong>Audit trail:</strong> Append-only payment records provide complete state transition history</li>
+            <li><strong>Retry resilience:</strong> Point operations gracefully handle transient concurrency conflicts
+              without propagating failures to users</li>
+          </ul>
+        </div>
+        <div class="detail-text" style="margin-top: 16px;">
+          <p style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">
+            <span class="lang-ko">△ Trade-off</span>
+            <span class="lang-en">△ Trade-offs</span>
+          </p>
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>Eventual Consistency:</strong> 보상이 CompensationTxLog로 지연될 경우, 재시도 사이클당 최대 60초간 일시적 불일치 상태 (최대
+              3회)</li>
+            <li><strong>운영 오버헤드:</strong> CompensationTxRetryScheduler 및 CompensationTxLog 테이블에 대한 모니터링 필요 — 재시도 소진 시
+              수동 개입 필요</li>
+            <li><strong>비대칭 재시도:</strong> PointModuleFacade만 재시도 로직 구현 — Reservation 단계의 일시적 실패는 보상 경로 진입</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Eventual Consistency:</strong> When compensation is deferred to CompensationTxLog, system is
+              temporarily inconsistent (up to 60s per retry cycle, max 3 attempts)</li>
+            <li><strong>Operational overhead:</strong> CompensationTxRetryScheduler and CompensationTxLog table require
+              monitoring — manual intervention needed when retries are exhausted</li>
+            <li><strong>Asymmetric retry:</strong> Only PointModuleFacade implements retry — transient failure at
+              reservation step triggers compensation path rather than in-place retry</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section class="tech-detail">
+    <section class="tech-detail" id="section-06">
       <p class="detail-number">06</p>
       <h2 class="detail-title">
         <span class="lang-ko">AI 도구 활용을 통한 개발 생산성 및 품질 향상</span>
@@ -1149,6 +1720,266 @@
       </div>
     </section>
 
+    <!-- ====== TECH DETAIL 07: Observability ====== -->
+    <section class="tech-detail" id="section-07">
+      <p class="detail-number">07</p>
+      <h2 class="detail-title">
+        <span class="lang-ko">운영 환경에서의 빠른 장애 대응을 위한 모니터링 및 알림 체계 구축</span>
+        <span class="lang-en">Monitoring & Alert System Build for Rapid Incident Response in Production</span>
+      </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">서버 상태를 빠르게 판단하기 위해, 어떤 지표를 왜 관측해야 하는지 정의하고 임계치 설정의 근거를 수립한 의사결정 과정</span>
+        <span class="lang-en">Defining what to observe and why — establishing the rationale behind metric selection and
+          alert thresholds for rapid server health assessment</span>
+      </p>
+
+      <div class="detail-subsection">
+        <div class="detail-text" style="padding-left: 12px; border-left: 2px solid var(--border); margin-bottom: 24px;">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>Google SRE Golden Signals 참고하여 Latency, Traffic, Errors, Saturation을 표현할 수 있는 관측 지표 선별</li>
+            <li>특히 Saturation의 경우, JVM 성능 최적화 경험에 근거하여 시스템 & 애플리케이션 포화도 판단에 필요한 지표를 선택</li>
+            <li>부하 테스트시의 시스템 반응 및 도메인 특성을 고려한 Alert Rule 설정 → 반복 검증 통해 False Alarm 발생을 고려해 알림 임계치 최적 설정</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Selected observability metrics representing Latency, Traffic, Errors, and Saturation based on Google SRE
+              Golden Signals</li>
+            <li>For Saturation specifically, chose metrics necessary to assess system & application saturation based on
+              JVM optimization experience</li>
+            <li>Configured Alert Rules considering system response during load testing and domain characteristics →
+              optimized thresholds through iterative validation to account for False Alarms</li>
+          </ul>
+        </div>
+
+        <!-- Dashboard screenshot -->
+        <img class="arch-image" src="../assets/grafana-dashboard.png" alt="Grafana Service Dashboard Screenshot" />
+        <p class="detail-text"
+          style="font-size: 0.78rem; color: var(--text-tertiary); text-align: center; margin-top: 8px;">
+          <span class="lang-ko">Fig. 5 Grafana로 구축한 서비스 메트릭 대시보드</span>
+          <span class="lang-en">Fig. 5 Service metric dashboard built with Grafana</span>
+        </p>
+      </div>
+
+      <!-- Introduction/Background -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">도입 배경</span>
+          <span class="lang-en">Background</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>모니터링 & 알림 부재 → 처리량 임계 도달에 따른 Server Hang 발생 시 사전 대응 및 조치 불가</li>
+            <li>트래픽 패턴 및 규모 변화에 대응하는 서버 및 애플리케이션 상태 관측 불가 → 처리량 개선을 위한 병목 진단 근거 파악 불가</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Absence of monitoring & alerts → unable to proactively respond or intervene when Server Hang occurs upon
+              reaching throughput limits</li>
+            <li>Inability to observe server/application state in response to traffic pattern/volume changes → unable to
+              gather evidence for bottleneck diagnosis to improve throughput</li>
+          </ul>
+          <p style="font-weight: 600; margin-top: 12px; font-size: 0.9rem;">
+            <span class="lang-ko">결론: 병목 진단 및 운영 환경에서의 이슈 조기 대응을 위한 관측 & 알림 체계 필요</span>
+            <span class="lang-en">Conclusion: Need for observation & alert systems for bottleneck diagnosis and early
+              issue response in production</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Problem Definition -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① 관측 지표 설정 문제 : 무엇을 관측해야하는가?</span>
+            <span class="lang-en">① Metric Selection Problem: What should we observe?</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>시스템 & 애플리케이션의 처리량 포화 지점 판단을 위한 정보가 필요.</li>
+              <li>병목에 기여할 수 있는 요인이 무엇인지 식별하고 이를 표현하는 정보를 수집 및 시각화해야함</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Need information to determine the throughput saturation points of the system and application.</li>
+              <li>Must identify contributing factors to bottlenecks and collect/visualize information representing them.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② 알림 규칙 설정 문제 : 무엇을, 언제 알아야하는가?</span>
+            <span class="lang-en">② Alert Rule Configuration Problem: What and when do we need to know?</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>'문제'가 아닌 '문제 징후'를 알려야 함 → 알림을 통해 선제 대응이 가능해야 서버 안정성 유지를 위한 조치가 가능하기 때문.</li>
+              <li>너무 잦은 알림은 대응 효율을 떨어뜨림 → 적절한 알림 빈도 및 수준이 유지되어야 함</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Must alert on 'symptoms of problems' rather than just 'problems' → proactive response via alerts is
+                necessary to take action for maintaining server stability.</li>
+              <li>Too frequent alerts degrade response efficiency → appropriate alert frequency and levels must be
+                maintained.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resolution Strategy -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 전략</span>
+          <span class="lang-en">Resolution Strategy</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① 관측 지표 설정 문제: SRE Golden Signals & 운영 문제 대응 경험에 근거하여 수집 지표 선택</span>
+            <span class="lang-en">① Metric Selection Problem: Selected collected metrics based on SRE Golden Signals &
+              operational incident response experience</span>
+          </p>
+          <div class="analysis-step-text">
+            <div class="lang-ko">
+              <p style="margin-bottom: 8px;"><strong>1) Traffic & Errors :</strong> HTTP 엔드포인트별 RPS 및 5xx 에러율, WARN 레벨
+                이상 로그 수집</p>
+              <p style="margin-bottom: 8px;"><strong>2) Latency :</strong> P99, 95, 90, P50 Latency 지표 수집 → 구간 별 Latency
+                차이 및 변화 패턴 관측을 통해 앱 내 병목 유무 & GC 영향 관측 가능</p>
+              <p style="margin-bottom: 4px;"><strong>3) Saturation :</strong> CPU Throttling 으로 인한 처리량 저하와 애플리케이션 처리량
+                한계를 혼동한 경험 있음 → 시스템 / 애플리케이션 포화 구분 식별 필요.</p>
+              <ul style="margin-top: 0; padding-left: 20px;">
+                <li style="margin-bottom: 4px;">시스템 포화 진단 지표 : CPU / Memory Usage (%)</li>
+                <li>애플리케이션 포화 진단 지표 : Tomcat & JVM Thread Pool, CPU Process Usage (%), HikariCP Pool & Connection
+                  Usage/Acquire Time</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <p style="margin-bottom: 8px;"><strong>1) Traffic & Errors :</strong> HTTP endpoint RPS, 5xx error rates,
+                and WARN+ level log collection</p>
+              <p style="margin-bottom: 8px;"><strong>2) Latency :</strong> P99, 95, 90, P50 Latency metric collection →
+                possible to observe app-internal bottlenecks & GC impacts by observing latency differences/patterns
+                across percentiles</p>
+              <p style="margin-bottom: 4px;"><strong>3) Saturation :</strong> Past experience confusing throughput
+                degradation from CPU Throttling with application throughput limits → need to separately identify system
+                vs. application saturation.</p>
+              <ul style="margin-top: 0; padding-left: 20px;">
+                <li style="margin-bottom: 4px;">System saturation metrics : CPU / Memory Usage (%)</li>
+                <li>Application saturation metrics : Tomcat & JVM Thread Pool, CPU Process Usage (%), HikariCP Pool &
+                  Connection Usage/Acquire Time</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② 알림 규칙 설정 문제: 선제 대응을 위한 Alert Rule 설정 & 반복 실험을 통한 Alert Rule 최적화</span>
+            <span class="lang-en">② Alert Rule Configuration Problem: Alert Rule setup for proactive response & Alert
+              Rule optimization via iterative testing</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>반복 실험을 통한 포화 & 임계지점 식별 : 다양한 규모의 트래픽을 Peak, Steady 와 같이 여러 패턴으로 흘려보내며 포화/임계 지점에서의 패턴 식별</li>
+              <li>수치 & 지속시간 모두에 근거한 Alert Rule 설정 : 수치 기반 임계 설정 시의 Alarm 이 유용하지 않았음 → 지속 시간과 함께 했을 때 유의미함을 학습함</li>
+              <li>Alert Rule 설정 & 평가 반복을 통한 최적화 : 반복적으로 부하 테스트와 발생한 알림의 유효성 평가 수행 → 필요한 정보에 관한 판단 기준 및 알림 최적화</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Identifying saturation & threshold points via iterative testing: sending various traffic volumes in
+                patterns like Peak and Steady to identify patterns at saturation points</li>
+              <li>Alert Rule setup based on both value & duration: isolated value-based alarms were not useful → learned
+                that combining value with duration provides meaningful signals</li>
+              <li>Optimization through iterative Alert Rule setup & evaluation: repeatedly conducted load tests and
+                evaluated the validity of triggered alerts → optimized judgment criteria and alerts for necessary
+                information</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Metrics Table -->
+        <div class="metrics-table-wrapper" style="margin-top: 24px;">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th style="width: 20%;"><span class="lang-ko">지표</span><span class="lang-en">Metric</span></th>
+                <th style="width: 30%;"><span class="lang-ko">Alert Rule</span><span class="lang-en">Alert Rule</span>
+                </th>
+                <th style="width: 50%;"><span class="lang-ko">설정 근거</span><span class="lang-en">Rationale</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 600;">P99 Latency</td>
+                <td>1s 이상 / 30s 유지</td>
+                <td>
+                  <span class="lang-ko">P99 폭증이 30초 이상 유지 → 앱 내 대기열 형성 가능성을 시사함</span>
+                  <span class="lang-en">P99 spike sustained >30s → signifies potential queue formation within the
+                    app</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">GC Duration (1분 합계)</td>
+                <td>5s 이상 / 30s 유지</td>
+                <td>
+                  <span class="lang-ko">Atlassian 에 의하면 GC Overhead 10% 부터 주의 → 이보다 조금 이르게 설정</span>
+                  <span class="lang-en">Per Atlassian, GC Overhead >10% implies caution → configured slightly earlier
+                    than this</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">HikariCP Pending</td>
+                <td>Pending 스레드 수 > 0 / 30초 유지</td>
+                <td>
+                  <span class="lang-ko">DB 커넥션 대기열이 30초 이상 해소되지 않음 → 본격적 병목 발생 시작 징후</span>
+                  <span class="lang-en">DB connection queue unresolved for >30s → symptom of imminent serious
+                    bottlenecks</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">CPU Usage (System)</td>
+                <td>사용률 > 85% / 1분 유지</td>
+                <td>
+                  <span class="lang-ko">100% 도달 시 Server Hang → 85% 시점에 개입하여 사전 대응 위한 시간 확보</span>
+                  <span class="lang-en">Reaching 100% causes Server Hang → intervening at 85% secures time for proactive
+                    response</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">JVM Memory Usage</td>
+                <td>Heap Usage > 80% / 1분 유지</td>
+                <td>
+                  <span class="lang-ko">80% 1분 유지 시 GC 로 회수되지 않는 메모리 누수 발생 가능성 시사</span>
+                  <span class="lang-en">Sustained at 80% for 1m implies potential memory leak unrecoverable by GC</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Effectiveness Verification -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">성과 및 효용성 검증</span>
+          <span class="lang-en">Effectiveness Verification</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>Grafana 대시보드 활용해 Infra, JVM 수준 병목 진단 → <u>인프라 증설 없이 도입 전 대비 처리량 84% 개선 (813 RPS → 1.5K RPS)</u></li>
+            <li>서버 포화 및 임계 이전 조치가 가능해짐 → JFR 활용한 프로파일링 수행 도중, <u>Hang 발생 전 임계 도달 알림 확인하여 프로파일링 내용 유실 방지</u></li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Diagnosed Infra and JVM-level bottlenecks utilizing Grafana dashboard → <u>improved throughput by 84%
+                compared to pre-implementation without infra expansion (813 RPS → 1.5K RPS)</u></li>
+            <li>Allowed actions prior to server saturation and thresholds → during JFR profiling, <u>confirmed threshold
+                alert before Hang occurred, preventing loss of profiling data</u></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ====== FOOTER ====== -->
@@ -1161,6 +1992,81 @@
   </footer>
 
   <script src="../script.js"></script>
+
+  <!-- Section navigation: IntersectionObserver + active state -->
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.tech-detail[id]');
+      var sidebarItems = document.querySelectorAll('.section-nav-sidebar .snav-item');
+      var topbarPills = document.querySelectorAll('.section-nav-topbar .snav-pill');
+      var topbar = document.querySelector('.section-nav-topbar');
+      var firstSection = sections[0];
+      var currentActive = null;
+
+      if (!sections.length) return;
+
+      // Track which section is in view
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      });
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+
+      // Show/hide mobile top bar based on whether sections are in view
+      var topbarObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (topbar) {
+            // Show top bar when first section starts coming into view
+            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+              topbar.classList.add('visible');
+            }
+            // Hide when scrolled back above first section
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              topbar.classList.remove('visible');
+            }
+          }
+        });
+      }, {
+        threshold: [0, 0.3]
+      });
+
+      topbarObserver.observe(firstSection);
+
+      function setActive(sectionId) {
+        if (currentActive === sectionId) return;
+        currentActive = sectionId;
+
+        // Update sidebar
+        sidebarItems.forEach(function (item) {
+          if (item.getAttribute('data-section') === sectionId) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+
+        // Update top bar
+        topbarPills.forEach(function (pill) {
+          if (pill.getAttribute('data-section') === sectionId) {
+            pill.classList.add('active');
+            // Auto-scroll active pill into view
+            pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } else {
+            pill.classList.remove('active');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>

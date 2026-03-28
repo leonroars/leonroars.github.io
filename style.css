@@ -949,6 +949,17 @@ body {
   transition: filter var(--duration) var(--ease-out);
 }
 
+.arch-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: block;
+  margin: 24px auto;
+  box-shadow: var(--shadow-sm);
+}
+
 [data-theme="dark"] .diagram-placeholder img {
   filter: invert(0.85) hue-rotate(180deg);
 }
