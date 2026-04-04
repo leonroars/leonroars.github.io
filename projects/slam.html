@@ -42,11 +42,11 @@
     .index-content {
       display: block;
     }
-    
+
     .tech-detail {
       display: none !important;
     }
-    
+
     .tech-detail.active {
       display: block !important;
       animation: fadeIn 0.4s ease forwards;
@@ -54,16 +54,24 @@
       border-bottom: none;
       padding-top: 16px;
     }
-    
+
     .tech-detail.active::before {
-      display: none; /* remove full bleed bg */
+      display: none;
+      /* remove full bleed bg */
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    
+
     /* Article Grid on Index */
     .article-grid {
       display: grid;
@@ -71,7 +79,7 @@
       gap: 20px;
       margin-top: 24px;
     }
-    
+
     .article-card {
       padding: 24px;
       background: var(--bg-elevated);
@@ -82,13 +90,13 @@
       display: flex;
       flex-direction: column;
     }
-    
+
     .article-card:hover {
       border-color: var(--accent);
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
-    
+
     .acard-num {
       font-family: var(--font-mono);
       font-size: 11px;
@@ -96,7 +104,7 @@
       color: var(--accent);
       margin-bottom: 12px;
     }
-    
+
     .acard-title {
       font-weight: 600;
       font-size: 1.1rem;
@@ -104,13 +112,13 @@
       margin-bottom: 8px;
       line-height: 1.4;
     }
-    
+
     .acard-summary {
       font-size: 0.875rem;
       color: var(--text-secondary);
       line-height: 1.6;
     }
-    
+
     .article-back-nav {
       display: inline-flex;
       align-items: center;
@@ -126,7 +134,7 @@
       margin-bottom: 32px;
       transition: all 0.2s ease;
     }
-    
+
     .article-back-nav:hover {
       color: var(--accent);
       border-color: var(--accent);
@@ -163,164 +171,181 @@
     </div>
 
     <div class="index-content">
-    <!-- ====== PROJECT HERO ====== -->
-    <section class="project-hero">
-      <p class="hero-eyebrow">
-        <span class="lang-ko">개인 프로젝트 · 2025.01 — 현재</span>
-        <span class="lang-en">Personal Project · Jan 2025 — Present</span>
-      </p>
-      <h1 class="project-title">SLAM!</h1>
-      <p class="project-subtitle">
-        <span class="lang-ko">공연 좌석을 예약할 수 있는 기능을 제공하는 서비스입니다. 좌석 선점에 대한 동시성 제어가 요구되며, 선점한 좌석에 대한 결제는 충전된 포인트를 차감하는 것으로
-          실현됩니다.</span>
-        <span class="lang-en">A concert seat reservation system with concurrency control for seat preemption. Payments
-          are processed by deducting pre-charged points.</span>
-      </p>
-      <div class="project-meta">
-        <a href="https://github.com/leonroars/slam" target="_blank" rel="noopener">GitHub Repository ↗</a>
-      </div>
+      <!-- ====== PROJECT HERO ====== -->
+      <section class="project-hero">
+        <p class="hero-eyebrow">
+          <span class="lang-ko">개인 프로젝트 · 2025.01 — 현재</span>
+          <span class="lang-en">Personal Project · Jan 2025 — Present</span>
+        </p>
+        <h1 class="project-title">SLAM!</h1>
+        <p class="project-subtitle">
+          <span class="lang-ko">공연 좌석을 예약할 수 있는 기능을 제공하는 서비스입니다. 좌석 선점에 대한 동시성 제어가 요구되며, 선점한 좌석에 대한 결제는 충전된 포인트를 차감하는
+            것으로
+            실현됩니다.</span>
+          <span class="lang-en">A concert seat reservation system with concurrency control for seat preemption. Payments
+            are processed by deducting pre-charged points.</span>
+        </p>
+        <div class="project-meta">
+          <a href="https://github.com/leonroars/slam" target="_blank" rel="noopener">GitHub Repository ↗</a>
+        </div>
 
-      <!-- Tech stack -->
-      <div class="tech-stack-section">
-        <div class="tech-stack-row" style="margin-top: 20px;">
-          <div class="project-card-tags">
-            <span class="tag">Java 17</span>
-            <span class="tag">Spring Boot 3</span>
-            <span class="tag">Spring Data JPA</span>
-            <span class="tag">MySQL 8.0</span>
-            <span class="tag">Redis 7.0</span>
-            <span class="tag">Docker</span>
-            <span class="tag">JUnit 5</span>
-            <span class="tag">AWS EC2</span>
-            <span class="tag">AWS RDS</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">Prometheus</span>
-            <span class="tag">Grafana</span>
-            <span class="tag">Loki</span>
-            <span class="tag">Promtail</span>
+        <!-- Tech stack -->
+        <div class="tech-stack-section">
+          <div class="tech-stack-row" style="margin-top: 20px;">
+            <div class="project-card-tags">
+              <span class="tag">Java 17</span>
+              <span class="tag">Spring Boot 3</span>
+              <span class="tag">Spring Data JPA</span>
+              <span class="tag">MySQL 8.0</span>
+              <span class="tag">Redis 7.0</span>
+              <span class="tag">Docker</span>
+              <span class="tag">JUnit 5</span>
+              <span class="tag">AWS EC2</span>
+              <span class="tag">AWS RDS</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">Loki</span>
+              <span class="tag">Promtail</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ====== KEY ACHIEVEMENTS ====== -->
-    <section id="achievements" style="padding-top: 32px;">
-      <p class="section-label">
-        <span class="lang-ko">프로젝트 주요 성과</span>
-        <span class="lang-en">Key Achievements</span>
-      </p>
-      <div class="achievements-grid" style="padding-top: 0;">
-        <div class="achievement-card">
-          <p class="achievement-value">−66%</p>
-          <p class="achievement-label">P99 Latency<br>1.04s → 355ms</p>
-        </div>
-        <div class="achievement-card">
-          <p class="achievement-value">+54%</p>
-          <p class="achievement-label">Throughput<br>813 → 1.25K RPS</p>
-        </div>
-        <div class="achievement-card">
-          <p class="achievement-value">−76%</p>
-          <p class="achievement-label">
-            <span class="lang-ko">요청당 DB 커맨드</span>
-            <span class="lang-en">DB Commands / Request</span>
-          </p>
-        </div>
-        <div class="achievement-card">
-          <p class="achievement-value">−64%</p>
-          <p class="achievement-label">
-            <span class="lang-ko">스토리지 절감</span>
-            <span class="lang-en">Storage Reduction</span>
-          </p>
-        </div>
-    </section>
+      <!-- ====== KEY ACHIEVEMENTS ====== -->
+      <section id="achievements" style="padding-top: 32px;">
+        <p class="section-label">
+          <span class="lang-ko">프로젝트 주요 성과</span>
+          <span class="lang-en">Key Achievements</span>
+        </p>
+        <div class="achievements-grid" style="padding-top: 0;">
+          <div class="achievement-card">
+            <p class="achievement-value">−66%</p>
+            <p class="achievement-label">P99 Latency<br>1.04s → 355ms</p>
+          </div>
+          <div class="achievement-card">
+            <p class="achievement-value">+53.3%</p>
+            <p class="achievement-label">Throughput<br>813 → 1.25K RPS</p>
+          </div>
+          <div class="achievement-card">
+            <p class="achievement-value">−76%</p>
+            <p class="achievement-label">
+              <span class="lang-ko">요청당 DB 커맨드</span>
+              <span class="lang-en">DB Commands / Request</span>
+            </p>
+          </div>
+          <div class="achievement-card">
+            <p class="achievement-value">−64%</p>
+            <p class="achievement-label">
+              <span class="lang-ko">스토리지 절감</span>
+              <span class="lang-en">Storage Reduction</span>
+            </p>
+          </div>
+      </section>
 
-    <!-- ====== ARCHITECTURE ====== -->
-    <section class="architecture-section" id="architecture">
-      <p class="section-label">
-        <span class="lang-ko">프로젝트 설계 주안점</span>
-        <span class="lang-en">Design Highlights</span>
-      </p>
+      <!-- ====== ARCHITECTURE ====== -->
+      <section class="architecture-section" id="architecture">
+        <p class="section-label">
+          <span class="lang-ko">프로젝트 설계 주안점</span>
+          <span class="lang-en">Design Highlights</span>
+        </p>
 
-      <!-- IMAGE: Replace src with your actual architecture diagram -->
-      <div class="pan-zoom-container" tabindex="0">
-        <div class="pan-zoom-inner">
-          <img src="../assets/architecture-diagram.svg" alt="SLAM Architecture Diagram" draggable="false">
+        <!-- IMAGE: Replace src with your actual architecture diagram -->
+        <div class="pan-zoom-container" tabindex="0">
+          <div class="pan-zoom-inner">
+            <img src="../assets/architecture-diagram.svg" alt="SLAM Architecture Diagram" draggable="false">
+          </div>
+          <div class="pan-zoom-controls">
+            <button class="pan-zoom-btn" data-action="zoom-in">+</button>
+            <button class="pan-zoom-btn" data-action="zoom-out">−</button>
+            <button class="pan-zoom-btn" data-action="reset">⟲</button>
+          </div>
         </div>
-        <div class="pan-zoom-controls">
-          <button class="pan-zoom-btn" data-action="zoom-in">+</button>
-          <button class="pan-zoom-btn" data-action="zoom-out">−</button>
-          <button class="pan-zoom-btn" data-action="reset">⟲</button>
+
+        <ul class="arch-bullets">
+          <li>
+            <span class="lang-ko">단일 서버 환경에서 도메인 분리의 이점은 취하되, 네트워크 오버헤드와 운영 복잡도를 줄이기 위해 모듈러 모놀리식 채택</span>
+            <span class="lang-en">Adopted modular monolith to gain domain separation benefits while reducing network
+              overhead and operational complexity in a single-server environment</span>
+          </li>
+          <li>
+            <span class="lang-ko">부하 테스트 및 운영 시 모니터링이 메인 서버 성능에 영향을 주지 않도록 별도 인스턴스로 분리</span>
+            <span class="lang-en">Separated monitoring into a dedicated instance to prevent load testing and
+              observability
+              from impacting the main server</span>
+          </li>
+          <li>
+            <span class="lang-ko">도메인 간 직접 의존을 제거하고, 모듈 추가/변경 시 영향 범위를 최소화하기 위해 ApplicationEvent 기반 통신 적용</span>
+            <span class="lang-en">Adopted ApplicationEvent-based communication to eliminate direct cross-domain
+              dependencies and minimize blast radius for module changes</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ====== ARTICLES GRID ====== -->
+      <section class="article-grid-section" id="articles-index" style="padding: 48px 0 64px;">
+        <p class="section-label" style="margin-bottom: 8px;">
+          <span class="lang-ko">주요 문제 해결 경험</span>
+          <span class="lang-en">Technical Challenges</span>
+        </p>
+        <div class="article-grid">
+          <a href="#section-01" class="article-card">
+            <div class="acard-num">01</div>
+            <h3 class="acard-title"><span class="lang-ko">P99 −66% 병목 진단 및 개선</span><span class="lang-en">P99 −66%
+                Bottleneck Analysis</span></h3>
+            <p class="acard-summary"><span class="lang-ko">JFR 스레드 덤프를 활용한 HikariCP 커넥션 대기열 원인 분석</span><span
+                class="lang-en">Resolving HikariCP bottleneck via JFR thread dump</span></p>
+          </a>
+          <a href="#section-02" class="article-card">
+            <div class="acard-num">02</div>
+            <h3 class="acard-title"><span class="lang-ko">API 멱등성 공통 모듈 설계</span><span class="lang-en">API Idempotency
+                Module Design</span></h3>
+            <p class="acard-summary"><span class="lang-ko">결제 중복을 막고 안전한 재시도를 보장하는 Cache & Lock 레이어 설계</span><span
+                class="lang-en">Cache & Lock layer design for safe retries</span></p>
+          </a>
+          <a href="#section-03" class="article-card">
+            <div class="acard-num">03</div>
+            <h3 class="acard-title"><span class="lang-ko">요청당 DB 커맨드 −76% 절감</span><span class="lang-en">−76% DB
+                Commands Reduction</span></h3>
+            <p class="acard-summary"><span class="lang-ko">MySQL General Log 분석을 통한 불필요한 트랜잭션 컨텍스트 식별 및 최적화</span><span
+                class="lang-en">Transaction context optimization via MySQL General Log analysis</span></p>
+          </a>
+          <a href="#section-04" class="article-card">
+            <div class="acard-num">04</div>
+            <h3 class="acard-title"><span class="lang-ko">TSID 마이그레이션 PoC</span><span class="lang-en">TSID Migration
+                PoC</span></h3>
+            <p class="acard-summary"><span class="lang-ko">InnoDB Page Utilization 측정을 통한 UUID v4 비효율성 실증 및
+                마이그레이션</span><span class="lang-en">Proving UUID v4 inefficiency via Page Utilization</span></p>
+          </a>
+          <a href="#section-06" class="article-card">
+            <div class="acard-num">06</div>
+            <h3 class="acard-title"><span class="lang-ko">AI 도구 활용 단축기</span><span class="lang-en">AI
+                Productivity</span></h3>
+            <p class="acard-summary"><span class="lang-ko">AI 도구를 배포 안정성, 프로토타이핑 가속화에 활용한 사례</span><span
+                class="lang-en">Code review automation and fast prototyping with AI</span></p>
+          </a>
+          <a href="#section-07" class="article-card">
+            <div class="acard-num">07</div>
+            <h3 class="acard-title"><span class="lang-ko">관측 지표 및 알림 설계</span><span class="lang-en">Observability System
+                Design</span></h3>
+            <p class="acard-summary"><span class="lang-ko">SRE Golden Signals 기반 사전 개입 가능 알림 시스템 구축의 근거</span><span
+                class="lang-en">Providing actionable alerts based on SRE Golden Signals</span></p>
+          </a>
         </div>
-      </div>
+      </section>
 
-      <ul class="arch-bullets">
-        <li>
-          <span class="lang-ko">단일 서버 환경에서 도메인 분리의 이점은 취하되, 네트워크 오버헤드와 운영 복잡도를 줄이기 위해 모듈러 모놀리식 채택</span>
-          <span class="lang-en">Adopted modular monolith to gain domain separation benefits while reducing network
-            overhead and operational complexity in a single-server environment</span>
-        </li>
-        <li>
-          <span class="lang-ko">부하 테스트 및 운영 시 모니터링이 메인 서버 성능에 영향을 주지 않도록 별도 인스턴스로 분리</span>
-          <span class="lang-en">Separated monitoring into a dedicated instance to prevent load testing and observability
-            from impacting the main server</span>
-        </li>
-        <li>
-          <span class="lang-ko">도메인 간 직접 의존을 제거하고, 모듈 추가/변경 시 영향 범위를 최소화하기 위해 ApplicationEvent 기반 통신 적용</span>
-          <span class="lang-en">Adopted ApplicationEvent-based communication to eliminate direct cross-domain
-            dependencies and minimize blast radius for module changes</span>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ====== ARTICLES GRID ====== -->
-    <section class="article-grid-section" id="articles-index" style="padding: 48px 0 64px;">
-      <p class="section-label" style="margin-bottom: 8px;">
-        <span class="lang-ko">주요 문제 해결 경험</span>
-        <span class="lang-en">Technical Challenges</span>
-      </p>
-      <div class="article-grid">
-        <a href="#section-01" class="article-card">
-          <div class="acard-num">01</div>
-          <h3 class="acard-title"><span class="lang-ko">P99 −66% 병목 진단 및 개선</span><span class="lang-en">P99 −66% Bottleneck Analysis</span></h3>
-          <p class="acard-summary"><span class="lang-ko">JFR 스레드 덤프를 활용한 HikariCP 커넥션 대기열 원인 분석</span><span class="lang-en">Resolving HikariCP bottleneck via JFR thread dump</span></p>
-        </a>
-        <a href="#section-02" class="article-card">
-          <div class="acard-num">02</div>
-          <h3 class="acard-title"><span class="lang-ko">API 멱등성 공통 모듈 설계</span><span class="lang-en">API Idempotency Module Design</span></h3>
-          <p class="acard-summary"><span class="lang-ko">결제 중복을 막고 안전한 재시도를 보장하는 Cache & Lock 레이어 설계</span><span class="lang-en">Cache & Lock layer design for safe retries</span></p>
-        </a>
-        <a href="#section-03" class="article-card">
-          <div class="acard-num">03</div>
-          <h3 class="acard-title"><span class="lang-ko">요청당 DB 커맨드 −76% 절감</span><span class="lang-en">−76% DB Commands Reduction</span></h3>
-          <p class="acard-summary"><span class="lang-ko">MySQL General Log 분석을 통한 불필요한 트랜잭션 컨텍스트 식별 및 최적화</span><span class="lang-en">Transaction context optimization via MySQL General Log analysis</span></p>
-        </a>
-        <a href="#section-04" class="article-card">
-          <div class="acard-num">04</div>
-          <h3 class="acard-title"><span class="lang-ko">TSID 마이그레이션 PoC</span><span class="lang-en">TSID Migration PoC</span></h3>
-          <p class="acard-summary"><span class="lang-ko">InnoDB Page Utilization 측정을 통한 UUID v4 비효율성 실증 및 마이그레이션</span><span class="lang-en">Proving UUID v4 inefficiency via Page Utilization</span></p>
-        </a>
-        <a href="#section-06" class="article-card">
-          <div class="acard-num">06</div>
-          <h3 class="acard-title"><span class="lang-ko">AI 도구 활용 단축기</span><span class="lang-en">AI Productivity</span></h3>
-          <p class="acard-summary"><span class="lang-ko">AI 도구를 배포 안정성, 프로토타이핑 가속화에 활용한 사례</span><span class="lang-en">Code review automation and fast prototyping with AI</span></p>
-        </a>
-        <a href="#section-07" class="article-card">
-          <div class="acard-num">07</div>
-          <h3 class="acard-title"><span class="lang-ko">관측 지표 및 알림 설계</span><span class="lang-en">Observability System Design</span></h3>
-          <p class="acard-summary"><span class="lang-ko">SRE Golden Signals 기반 사전 개입 가능 알림 시스템 구축의 근거</span><span class="lang-en">Providing actionable alerts based on SRE Golden Signals</span></p>
-        </a>
-      </div>
-    </section>
-    
     </div> <!-- index-content ends -->
 
     <!-- ====== TECH DETAIL 01: JFR Performance Analysis ====== -->
     <section class="tech-detail" id="section-01">
       <p class="detail-number">01</p>
       <h2 class="detail-title">
-        <span class="lang-ko">애플리케이션 병목 식별, 원인 분석, 해결을 통한 P99 Latency 66% 개선 및 처리량 54% 향상</span>
-        <span class="lang-en">P99 Latency −66% & Throughput +54% via Application Bottleneck Diagnosis and
-          Resolution</span>
+        <span class="lang-ko">애플리케이션 병목 식별, 원인 분석, 해결을 통한 P99 Latency 66% 개선 및 처리량 53.3% 향상 <span
+            style="font-weight:400;font-size:0.75em;color:var(--text-secondary)">(P99 1.04s → 355ms | 813RPS → 1.25K
+            RPS)</span></span>
+        <span class="lang-en">P99 Latency −66% & Throughput +53.3% via Application Bottleneck Diagnosis and
+          Resolution <span style="font-weight:400;font-size:0.75em;color:var(--text-secondary)">(P99 1.04s → 355ms | 813
+            → 1.25K RPS)</span></span>
       </h2>
       <p class="detail-summary">
         <span class="lang-ko">Grafana 관측 기반 진단 및 병목 원인 가설 수립 → JDK Flight Recorder (JFR) & 스레드 덤프 활용 세부 분석 통한 가설 검증 및 원인
@@ -329,31 +354,24 @@
           validation → resolution</span>
       </p>
 
-      <!-- Test Environment -->
+      <!-- 세줄요약 -->
       <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">실험 환경</span>
-          <span class="lang-en">Test Environment</span>
-        </h3>
-        <p class="detail-text">
-          AWS c5.large (2 vCPU, 4GB RAM) · G1GC · HikariCP Max 10 · JVM Heap Xms 256MB, Xmx 512MB
-        </p>
-      </div>
-
-      <!-- Problem Definition -->
-      <div class="detail-subsection">
-        <h3 class="subsection-title">
-          <span class="lang-ko">문제 정의</span>
-          <span class="lang-en">Problem Definition</span>
-        </h3>
-        <div class="detail-text">
+        <div class="detail-text" style="padding-left: 12px; border-left: 2px solid var(--border);">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li><strong>관측:</strong> 813 RPS 지점에서 Tail Latency 급증 및 스레드 적체 식별</li>
-            <li><strong>조치:</strong> 병목 원인 파악 및 해결 가능성 검토 위해 분석 시작</li>
+            <li><strong>병목 관측:</strong> 동 기간 RPS 증가율 대비 비선형 급증 지표 식별</li>
+            <li><strong>세부 분석:</strong> JFR & 스레드 덤프 활용 세부 분석 및 시계열 선후 관계 검증 → 고부하 상황에서 Memory Pressure로 인한 잦은 GC Pause
+              이후 스레드 적체 확인</li>
+            <li><strong>해결방안:</strong> GC 주기 늘려 스레드 적체 발생 확률을 낮추는 것이 유효하다고 판단 → Allocation Rate 기반 적정 Heap 크기 재산출 후 확장 →
+              병목 해소 확인</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Observation:</strong> Tail latency spike and thread congestion identified at 813 RPS</li>
-            <li><strong>Action:</strong> Initiated analysis to diagnose root cause and evaluate resolution options</li>
+            <li><strong>Bottleneck Observation:</strong> Identified non-linear metric spikes disproportionate to RPS
+              increase rate over the same period</li>
+            <li><strong>Deep Analysis:</strong> JFR & thread dump analysis with time-series correlation → confirmed
+              thread congestion following frequent GC pauses caused by Memory Pressure under high load</li>
+            <li><strong>Resolution:</strong> Determined that extending GC intervals to reduce thread congestion
+              probability was effective → recalculated optimal Heap size based on Allocation Rate and expanded →
+              bottleneck resolved</li>
           </ul>
         </div>
       </div>
@@ -361,7 +379,7 @@
       <!-- Metrics Table -->
       <div class="detail-subsection">
         <h3 class="subsection-title">
-          <span class="lang-ko">병목 구간 주요 지표 별 수치 및 변화율</span>
+          <span class="lang-ko">병목 구간 주요 지표별 수치 및 변화율</span>
           <span class="lang-en">Key Metrics at Bottleneck Interval</span>
         </h3>
         <div class="metrics-table-wrapper">
@@ -422,253 +440,245 @@
         </div>
       </div>
 
-      <!-- Hypothesis Table -->
+      <!-- Test Environment -->
       <div class="detail-subsection">
         <h3 class="subsection-title">
-          <span class="lang-ko">병목 원인에 대한 가설 수립 및 평가</span>
-          <span class="lang-en">Hypothesis Formulation and Evaluation</span>
+          <span class="lang-ko">실험 환경</span>
+          <span class="lang-en">Test Environment</span>
         </h3>
-        <div class="metrics-table-wrapper">
-          <table class="hypothesis-table">
-            <thead>
-              <tr>
-                <th><span class="lang-ko">인과 가설</span><span class="lang-en">Hypothesis</span></th>
-                <th><span class="lang-ko">검토 근거</span><span class="lang-en">Evidence</span></th>
-                <th><span class="lang-ko">설명력</span><span class="lang-en">Explanatory Power</span></th>
-                <th><span class="lang-ko">우선순위</span><span class="lang-en">Priority</span></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>A. STW Duration <span class="lang-ko">증가</span><span
-                      class="lang-en">Increase</span></strong></td>
-                <td>
-                  <span class="lang-ko">GC 빈도 증가 & 분당 STW Pause 합계 증가 → 고부하 상황 시 병목 야기 가능</span>
-                  <span class="lang-en">Increased GC frequency & rising per-minute STW pause total → potential
-                    bottleneck under high load</span>
-                </td>
-                <td><span class="lang-ko">높음</span><span class="lang-en">High</span></td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td><strong>B. CPU <span class="lang-ko">포화</span><span class="lang-en">Saturation</span></strong></td>
-                <td>
-                  <span class="lang-ko">문제 지점 System CPU 90% → CPU 경합으로 인한 병목 가능</span>
-                  <span class="lang-en">System CPU at 90% → possible CPU contention bottleneck</span>
-                </td>
-                <td><span class="lang-ko">중간</span><span class="lang-en">Medium</span></td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td><strong>C. <span class="lang-ko">커넥션 풀 부족</span><span class="lang-en">Connection Pool
-                      Shortage</span></strong></td>
-                <td>
-                  <span class="lang-ko">Little's Law 계산 상 1K RPS 처리 시 필요 커넥션 4.32개 < 현행 풀 최대 10개</span>
-                      <span class="lang-en">Little's Law: 4.32 connections needed at 1K RPS < pool max of 10</span>
-                </td>
-                <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td><strong>D. DB <span class="lang-ko">병목</span><span class="lang-en">Bottleneck</span></strong></td>
-                <td>
-                  <span class="lang-ko">커넥션 Usage Time 평균이 일정 & Acquire Time만 증가 → 가능성이 낮다고 판단</span>
-                  <span class="lang-en">Stable avg usage time & only acquire time spiking → unlikely cause</span>
-                </td>
-                <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
-                <td>4</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="detail-text" style="margin-top: 12px;">
-          <span class="lang-ko"><strong>결론:</strong> Grafana 관측만으로는 가설 검증의 한계가 있음을 인지 → JVM 이벤트 시계열 분석을 통한 원인 파악 위해 JFR
-            프로파일링 수행</span>
-          <span class="lang-en"><strong>Conclusion:</strong> Recognized the limits of Grafana-only observation →
-            conducted JFR profiling for JVM event time-series analysis</span>
+        <p class="detail-text">
+          AWS c5.large (2 vCPU, 4GB RAM) · G1GC · HikariCP Max 10 · JVM Heap Xms 256MB, Xmx 512MB
         </p>
       </div>
 
-      <!-- JFR Analysis -->
+      <!-- Problem Definition -->
       <div class="detail-subsection">
         <h3 class="subsection-title">
-          <span class="lang-ko">JFR 분석 결과에 근거한 시간순 병목 발생 과정</span>
-          <span class="lang-en">Chronological Bottleneck Progression Based on JFR Analysis</span>
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>813 RPS 지점에서 Tail Latency 급증 및 스레드 적체 식별 → 병목 원인 파악 및 해결 가능성 검토 위해 분석 시작</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Tail latency spike and thread congestion identified at 813 RPS → initiated analysis to diagnose root
+              cause and evaluate resolution options</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 해결 전략 -->
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 전략</span>
+          <span class="lang-en">Resolution Strategy</span>
         </h3>
 
+        <!-- ① 가설 수립 -->
         <div class="analysis-step">
           <p class="analysis-step-title">
-            <span class="lang-ko">1. 높은 Allocation Rate 상황에서의 잦은 GC 포착</span>
-            <span class="lang-en">1. Frequent GC under High Allocation Rate</span>
+            <span class="lang-ko">① 병목 원인에 대한 가설 수립 및 평가</span>
+            <span class="lang-en">① Hypothesis Formulation and Evaluation</span>
           </p>
           <div class="analysis-step-text">
-            <ul class="cause-effect-list lang-ko">
-              <li>당시 Heap Free Ratio (21 %) 지점에서의 Heap Committed 확장 포착 → Memory Pressure 존재했음을 확인</li>
-              <li>객체 할당률 148MB/s 수준으로 증가 → GC 빈도 & 개별 GC 평균 STW 길이 증가 식별</li>
-            </ul>
-            <div class="causal-chain lang-ko" style="margin-top: 12px; font-weight: 500;">
-              Memory Pressure → 잦은 GC & 개별 GC 평균 STW 길이 증가 → HikariCP 커넥션 반환 지연 → 처리량 저하
+            <div class="metrics-table-wrapper">
+              <table class="hypothesis-table">
+                <thead>
+                  <tr>
+                    <th><span class="lang-ko">인과 가설</span><span class="lang-en">Hypothesis</span></th>
+                    <th><span class="lang-ko">검토 근거</span><span class="lang-en">Evidence</span></th>
+                    <th><span class="lang-ko">설명력</span><span class="lang-en">Explanatory Power</span></th>
+                    <th><span class="lang-ko">검증 우선순위</span><span class="lang-en">Priority</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>A. STW Duration <span class="lang-ko">증가</span><span
+                          class="lang-en">Increase</span></strong></td>
+                    <td><span class="lang-ko">GC 빈도 증가 & 분당 STW Pause 합계 증가 → 고부하 상황 시 병목 야기 가능</span><span
+                        class="lang-en">Increased GC frequency & rising per-minute STW pause total → potential
+                        bottleneck under high load</span></td>
+                    <td><span class="lang-ko">높음</span><span class="lang-en">High</span></td>
+                    <td><span class="lang-ko">1순위</span><span class="lang-en">1</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>B. CPU <span class="lang-ko">포화</span><span class="lang-en">Saturation</span></strong>
+                    </td>
+                    <td><span class="lang-ko">문제 지점 System CPU 90% → CPU 경합으로 인한 병목 가능</span><span
+                        class="lang-en">System CPU at 90% → possible CPU contention bottleneck</span></td>
+                    <td><span class="lang-ko">중간</span><span class="lang-en">Medium</span></td>
+                    <td><span class="lang-ko">2순위</span><span class="lang-en">2</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>C. <span class="lang-ko">커넥션 풀 부족</span><span class="lang-en">Connection Pool
+                          Shortage</span></strong></td>
+                    <td><span class="lang-ko">Little's Law 계산 상 1K RPS 처리 시 필요 커넥션 4.32개 < 현행 풀 최대 10개</span><span
+                            class="lang-en">Little's Law: 4.32 connections needed at 1K RPS < pool max of 10</span>
+                    </td>
+                    <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
+                    <td><span class="lang-ko">3순위</span><span class="lang-en">3</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>D. DB <span class="lang-ko">병목</span><span class="lang-en">Bottleneck</span></strong>
+                    </td>
+                    <td><span class="lang-ko">커넥션 Usage Time 평균이 일정 & Acquire Time만 증가 → 가능성이 낮다고 판단</span><span
+                        class="lang-en">Stable avg usage time & only acquire time spiking → unlikely cause</span></td>
+                    <td><span class="lang-ko">낮음</span><span class="lang-en">Low</span></td>
+                    <td><span class="lang-ko">4순위</span><span class="lang-en">4</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="detail-text" style="margin-top: 12px;">
+              <span class="lang-ko"><strong>결론:</strong> Grafana 관측만으로는 가설 검증의 한계가 있음을 인지 → JVM 이벤트 시계열 분석을 통한 원인 파악 위해
+                JFR 프로파일링 수행</span>
+              <span class="lang-en"><strong>Conclusion:</strong> Recognized the limits of Grafana-only observation →
+                conducted JFR profiling for JVM event time-series analysis</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- ② JFR 분석 -->
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② JVM 프로파일링에 근거한 시간순 병목 발생 과정 분석</span>
+            <span class="lang-en">② Chronological Bottleneck Progression Based on JVM Profiling</span>
+          </p>
+          <div class="analysis-step-text">
+            <div class="analysis-step">
+              <p class="analysis-step-title">
+                <span class="lang-ko">1. 높은 Allocation Rate 상황에서의 잦은 GC 포착</span>
+                <span class="lang-en">1. Frequent GC under High Allocation Rate</span>
+              </p>
+              <div class="analysis-step-text">
+                <ul class="cause-effect-list lang-ko">
+                  <li>당시 Heap Free Ratio (21 %) 지점에서의 Heap Committed 확장 포착 → Memory Pressure 존재했음을 확인</li>
+                  <li>객체 할당률 148MB/s 수준으로 증가 → GC 빈도 & 개별 GC 평균 STW 길이 증가 식별</li>
+                </ul>
+                <div class="causal-chain lang-ko" style="margin-top: 12px; font-weight: 500;">
+                  Memory Pressure → 잦은 GC & 개별 GC 평균 STW 길이 증가 → HikariCP 커넥션 반환 지연 → 처리량 저하
+                </div>
+                <ul class="cause-effect-list lang-en">
+                  <li>Identified Heap Committed expansion at Heap Free Ratio (21%) → Confirmed Memory Pressure</li>
+                  <li>Object allocation rate increased to 148MB/s → Identified increase in GC frequency & individual GC
+                    avg STW duration</li>
+                </ul>
+                <div class="causal-chain lang-en" style="margin-top: 12px; font-weight: 500;">
+                  Memory Pressure → Frequent GC & Increased Avg STW → HikariCP Connection Return Delay → Throughput
+                  Degradation
+                </div>
+              </div>
             </div>
 
-            <ul class="cause-effect-list lang-en">
-              <li>Identified Heap Committed expansion at Heap Free Ratio (21%) → Confirmed Memory Pressure</li>
-              <li>Object allocation rate increased to 148MB/s → Identified increase in GC frequency & individual GC avg
-                STW duration</li>
-            </ul>
-            <div class="causal-chain lang-en" style="margin-top: 12px; font-weight: 500;">
-              Memory Pressure → Frequent GC & Increased Avg STW → HikariCP Connection Return Delay → Throughput
-              Degradation
+            <div class="analysis-step">
+              <p class="analysis-step-title">
+                <span class="lang-ko">2. HikariCP 커넥션 대기 스레드 적체 발견</span>
+                <span class="lang-en">2. HikariCP Connection Wait Thread Congestion</span>
+              </p>
+              <div class="analysis-step-text">
+                <ul class="cause-effect-list lang-ko">
+                  <li>800 RPS 시점의 스레드 덤프 확인 결과, TransferQueue 내부에서 90개의 스레드가 Park 중임을 확인 → 내부 스레드 적체 상황</li>
+                </ul>
+                <div class="causal-chain lang-ko" style="margin-top: 12px; font-weight: 500;">
+                  낮은 커넥션 Usage Time 평균 & 일정한 추세 고려 → DB 또는 쿼리 병목이 아니라 "처리량 &lt; 유입량" 에 따른 대기열 생성이라고 판단
+                </div>
+                <ul class="cause-effect-list lang-en">
+                  <li>Thread dump at 800 RPS revealed 90 threads parked in TransferQueue → internal thread congestion
+                  </li>
+                </ul>
+                <div class="causal-chain lang-en" style="margin-top: 12px; font-weight: 500;">
+                  Low & stable connection Usage Time avg → Not a DB/query bottleneck but queue buildup from "Throughput
+                  &lt; Ingress Rate"
+                </div>
+              </div>
+            </div>
+
+            <div class="analysis-step">
+              <p class="analysis-step-title">
+                <span class="lang-ko">3. 커넥션 풀 포화 및 스레드 적체로 인한 Connection Acquire Time 증가 → 지연 시간으로의 증폭</span>
+                <span class="lang-en">3. Connection Pool Saturation → Latency Amplification</span>
+              </p>
+              <div class="analysis-step-text">
+                <ul class="cause-effect-list lang-ko">
+                  <li>Acquire Time 평균 1.2 ms → 132 ms 급증 (+10,809 %) → 대기열 후순위 요청 지연의 누적/증폭되어 P99 Latency 1.04s로 귀결</li>
+                </ul>
+                <ul class="cause-effect-list lang-en">
+                  <li>Acquire time surged from 1.2ms to 132ms (+10,809%) → cascading delays for queued requests pushed
+                    P99 Latency to 1.04s</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- ③ 해결 방안 의사결정 -->
         <div class="analysis-step">
           <p class="analysis-step-title">
-            <span class="lang-ko">2. HikariCP 커넥션 대기 스레드 적체 발견</span>
-            <span class="lang-en">2. HikariCP Connection Wait Thread Congestion</span>
+            <span class="lang-ko">③ 해결 방안에 관한 의사결정 : JVM Heap Xmx & Xms 2GB로 확장</span>
+            <span class="lang-en">③ Resolution Decision: Expand JVM Heap Xmx & Xms to 2GB</span>
           </p>
           <div class="analysis-step-text">
             <ul class="cause-effect-list lang-ko">
-              <li><strong>현상 파악:</strong> 800 RPS 시점의 스레드 덤프 확인 결과, TransferQueue 내부에서 90개의 스레드가 Park 중임을 확인</li>
-              <li><strong>판단 근거:</strong> 낮은 커넥션 Usage Time 평균 유지 및 일정한 추세</li>
-              <li>
-                <strong>진단 결과:</strong>
-                <div class="causal-chain">
-                  <span class="cause">"처리량 &lt; 유입량" 상태 지속</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">TransferQueue 대기열 생성</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">대기열 누적으로 인한 앱 레벨 병목</span>
-                </div>
-              </li>
+              <li><strong>Heap Resize 선택 근거:</strong> Memory Pressure를 낮춰 GC 빈도를 줄이면 현재 처리량 저하의 원인인 커넥션 반환 지연의 해결 가능성이
+                높다고 판단</li>
+              <li><strong>Heap 크기 설정 근거:</strong> Over-provisioning을 통해 지표 변화 정도를 증폭 → 메모리 부족과 성능 저하 간의 인과관계를 명확히 확인하기
+                위함</li>
             </ul>
             <ul class="cause-effect-list lang-en">
-              <li><strong>Observation:</strong> Thread dump at 800 RPS revealed 90 threads parked in TransferQueue.</li>
-              <li><strong>Evidence:</strong> Connection usage time remained low and stable.</li>
-              <li>
-                <strong>Diagnosis:</strong>
-                <div class="causal-chain">
-                  <span class="cause">Throughput &lt; Ingress Rate</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">TransferQueue Backlog</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">App-level Bottleneck (Not DB)</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="analysis-step">
-          <p class="analysis-step-title">
-            <span class="lang-ko">3. 커넥션 풀 포화 및 스레드 적체 → 지연 시간 증폭</span>
-            <span class="lang-en">3. Connection Pool Saturation → Latency Amplification</span>
-          </p>
-          <div class="analysis-step-text">
-            <ul class="cause-effect-list lang-ko">
-              <li><strong>지표 변화:</strong> Acquire Time 평균이 1.2ms에서 132ms로 급증 (+10,809%)</li>
-              <li>
-                <strong>진단 결과:</strong>
-                <div class="causal-chain">
-                  <span class="cause">Acquire Time 급증</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">대기열 누적 및 지연시간 증폭</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">P99 Latency 1.04s 초과</span>
-                </div>
-              </li>
-            </ul>
-            <ul class="cause-effect-list lang-en">
-              <li><strong>Metrics:</strong> Acquire time surged from 1.2ms to 132ms (+10,809%).</li>
-              <li>
-                <strong>Diagnosis:</strong>
-                <div class="causal-chain">
-                  <span class="cause">Acquire Time Surge</span>
-                  <span class="arrow">➔</span>
-                  <span class="cause">Cascading Delays for Queued Requests</span>
-                  <span class="arrow">➔</span>
-                  <span class="effect">P99 Latency pushed to 1.04s</span>
-                </div>
-              </li>
+              <li><strong>Heap Resize Rationale:</strong> Reducing memory pressure would lower GC frequency, resolving
+                the connection return delays causing throughput degradation</li>
+              <li><strong>Heap Size Rationale:</strong> Over-provisioning to amplify metric changes — confirming the
+                causal link between memory pressure and performance</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Resolution -->
+      <!-- 해결 및 성과 -->
       <div class="detail-subsection">
         <h3 class="subsection-title">
           <span class="lang-ko">해결 및 성과</span>
           <span class="lang-en">Resolution & Results</span>
         </h3>
-        <div class="detail-text">
-          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li><strong>해결 방안:</strong> JVM Heap Xmx & Xms 2GB로 확장</li>
-            <li><strong>판단 근거:</strong> Memory Pressure를 낮춰 GC 빈도를 줄이면 현재 처리량 저하의 원인인 커넥션 반환 지연을 해결할 가능성이 높다고 판단</li>
-            <li><strong>검증 의도:</strong> Over-provisioning을 통해 지표 변화 정도를 증폭시켜 메모리 부족과 성능 저하 간의 인과관계를 명확히 확인하기 위함</li>
-          </ul>
-          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li><strong>Resolution:</strong> Expanded JVM Heap (Xmx & Xms) to 2GB.</li>
-            <li><strong>Rationale:</strong> Reducing memory pressure would lower GC frequency, resolving the connection
-              return delays causing throughput degradation.</li>
-            <li><strong>Intent of Over-provisioning:</strong> Amplified metric changes purposely to confirm the causal
-              link between memory pressure and performance.</li>
-          </ul>
-        </div>
-
-        <div class="comparison-grid" style="margin-top: 20px;">
-          <div class="comparison-card comparison-card--before">
-            <p class="comparison-label">Before</p>
-            <div class="comparison-metrics">
-              <div class="comparison-metric">
-                <span class="comparison-metric-name">P99 Latency</span>
-                <span class="comparison-metric-value">1.04 s</span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name">HikariCP Pending</span>
-                <span class="comparison-metric-value">189</span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name"><span class="lang-ko">성능 포화점</span><span class="lang-en">Saturation
-                    Point</span></span>
-                <span class="comparison-metric-value">813 RPS</span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name"><span class="lang-ko">분당 GC</span><span class="lang-en">GC /
-                    min</span></span>
-                <span class="comparison-metric-value"><span class="lang-ko">60회</span><span
-                    class="lang-en">60</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="comparison-card comparison-card--after">
-            <p class="comparison-label">After</p>
-            <div class="comparison-metrics">
-              <div class="comparison-metric">
-                <span class="comparison-metric-name">P99 Latency</span>
-                <span class="comparison-metric-value">355 ms (−68%)</span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name">HikariCP Pending</span>
-                <span class="comparison-metric-value">0 <span class="lang-ko">(해결)</span><span
-                    class="lang-en">(resolved)</span></span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name"><span class="lang-ko">성능 포화점</span><span class="lang-en">Saturation
-                    Point</span></span>
-                <span class="comparison-metric-value">1.25K RPS (+54%)</span>
-              </div>
-              <div class="comparison-metric">
-                <span class="comparison-metric-name"><span class="lang-ko">분당 GC</span><span class="lang-en">GC /
-                    min</span></span>
-                <span class="comparison-metric-value"><span class="lang-ko">대폭 감소</span><span
-                    class="lang-en">Significantly reduced</span></span>
-              </div>
-            </div>
-          </div>
+        <div class="metrics-table-wrapper" style="margin-top: 12px;">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Before</th>
+                <th>After</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 600;">P99 Latency</td>
+                <td>1.04 s</td>
+                <td>355 ms (−68%)</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;">HikariCP Pending</td>
+                <td>189</td>
+                <td>0 <span class="lang-ko">(해결)</span><span class="lang-en">(resolved)</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;"><span class="lang-ko">성능 포화점 (RPS)</span><span class="lang-en">Saturation
+                    Point (RPS)</span></td>
+                <td>813 RPS</td>
+                <td>1.25K RPS (+53.3%)</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 600;"><span class="lang-ko">분당 GC 횟수</span><span class="lang-en">GC / min</span>
+                </td>
+                <td><span class="lang-ko">60회</span><span class="lang-en">60</span></td>
+                <td><span class="lang-ko">8회</span><span class="lang-en">Significantly reduced</span></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
+
 
     <!-- ====== TECH DETAIL 02: API Idempotency Module ====== -->
     <section class="tech-detail" id="section-02">
@@ -1886,7 +1896,7 @@
         var indexContent = document.querySelector('.index-content');
         var navPortfolio = document.getElementById('nav-portfolio');
         var navArticles = document.getElementById('nav-articles');
-        
+
         if (hash && hash.startsWith('#section-') && document.querySelector(hash)) {
           // Show specifically selected article
           indexContent.style.display = 'none';
