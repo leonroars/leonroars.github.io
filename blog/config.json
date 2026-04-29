@@ -1,0 +1,12 @@
+{
+  "projects": [
+    { "slug": "slam", "name_ko": "SLAM", "name_en": "SLAM" }
+  ],
+  "topics": [
+    { "slug": "jvm", "name_ko": "JVM", "name_en": "JVM" },
+    { "slug": "performance-tuning", "name_ko": "Performance Tuning", "name_en": "Performance Tuning" },
+    { "slug": "system-design", "name_ko": "System Design", "name_en": "System Design" },
+    { "slug": "retrospective", "name_ko": "Retrospective", "name_en": "Retrospective" },
+    { "slug": "financial-engineering", "name_ko": "Financial Engineering", "name_en": "Financial Engineering" }
+  ]
+}

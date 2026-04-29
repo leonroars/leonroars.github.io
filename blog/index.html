@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light" data-lang="ko" data-title-ko="아티클 — 채호연" data-title-en="Articles — HoYeon Chae">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아티클 — 채호연</title>
+  <meta name="description" content="채호연 — 백엔드 엔지니어링, JVM, 성능 튜닝, 시스템 설계 아티클">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="blog.css">
+  <!-- Prevent FOUC: apply saved theme before paint -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('portfolio-theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+
+      var l = localStorage.getItem('portfolio-lang');
+      if (!l) {
+        var browserLang = navigator.language || navigator.userLanguage || '';
+        l = browserLang.toLowerCase().startsWith('ko') ? 'ko' : 'en';
+      }
+      document.documentElement.setAttribute('data-lang', l);
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CFED45WD5V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CFED45WD5V');
+  </script>
+</head>
+
+<body>
+
+  <!-- ====== NAVIGATION ====== -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">
+      <span class="lang-ko">채호연</span>
+      <span class="lang-en">Julian Chae</span>
+    </a>
+    <div class="nav-tabs">
+      <a href="../index.html" class="nav-tab">
+        <span class="lang-ko">소개</span>
+        <span class="lang-en">About Me</span>
+      </a>
+      <a href="index.html" class="nav-tab is-active" aria-current="page">
+        <span class="lang-ko">아티클</span>
+        <span class="lang-en">Articles</span>
+      </a>
+    </div>
+    <div class="nav-controls">
+      <button id="lang-toggle" class="nav-toggle lang-toggle" aria-label="Toggle language">EN</button>
+      <button id="theme-toggle" class="nav-toggle" aria-label="Toggle theme">☾</button>
+    </div>
+  </nav>
+
+  <div class="blog-layout">
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="blog-sidebar" id="blog-sidebar">
+      <div class="blog-axis-toggle" role="tablist" aria-label="Browse axis">
+        <button class="blog-axis-btn" data-axis="projects" role="tab">
+          <span class="lang-ko">프로젝트</span>
+          <span class="lang-en">Projects</span>
+        </button>
+        <button class="blog-axis-btn" data-axis="topics" role="tab">
+          <span class="lang-ko">주제</span>
+          <span class="lang-en">Topics</span>
+        </button>
+      </div>
+      <nav class="blog-sidebar-nav" id="blog-sidebar-nav" aria-label="Article navigation"></nav>
+    </aside>
+
+    <!-- ====== MAIN CONTENT ====== -->
+    <main class="blog-main">
+      <header class="blog-header">
+        <h1 class="blog-title" id="blog-view-title"></h1>
+        <p class="blog-subtitle" id="blog-view-subtitle"></p>
+      </header>
+
+      <div class="blog-post-list" id="blog-post-list"></div>
+
+      <div class="blog-empty" id="blog-empty" hidden>
+        <p class="blog-empty-title">
+          <span class="lang-ko">아직 아티클이 없습니다</span>
+          <span class="lang-en">No articles yet</span>
+        </p>
+        <p class="blog-empty-detail">
+          <span class="lang-ko">곧 첫 글이 올라갈 예정입니다.</span>
+          <span class="lang-en">First article coming soon.</span>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="blog.js"></script>
+</body>
+
+</html>
