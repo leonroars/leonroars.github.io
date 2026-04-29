@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "slug": "jvm-memory-model",
+        "title_ko": "JMM 을 알아보자!",
+        "title_en": "Understanding JMM(Java Memory Model)",
+        "summary_ko": "Java 가 메모리를 바라보는 방식과 이유를 살펴보자!",
+        "summary_en": "Understanding Java's perspective on memory and the reasons behind it.",
+        "date": "2026-04-30",
+        "project": null,
+        "topics": [
+            "jvm"
+        ]
+    }
+]
