@@ -41,6 +41,16 @@
       <span class="lang-ko">채호연</span>
       <span class="lang-en">Julian Chae</span>
     </a>
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab is-active" aria-current="page">
+        <span class="lang-ko">소개</span>
+        <span class="lang-en">About Me</span>
+      </a>
+      <a href="#" class="nav-tab is-disabled" aria-disabled="true" tabindex="-1" title="Coming soon">
+        <span class="lang-ko">아티클</span>
+        <span class="lang-en">Articles</span>
+      </a>
+    </div>
     <div class="nav-controls">
       <button id="lang-toggle" class="nav-toggle lang-toggle" aria-label="Toggle language">EN</button>
       <button id="theme-toggle" class="nav-toggle" aria-label="Toggle theme">☾</button>
@@ -60,6 +70,10 @@
         <span class="lang-en">HoYeon <em
             style="font-family:var(--font-display);font-style:italic;opacity:0.5">"Julian"</em> Chae</span>
       </h1>
+      <p class="hero-character">
+        <span class="lang-ko">병목을 끝까지 추적하는 백엔드 엔지니어</span>
+        <span class="lang-en">A backend engineer who tracks bottlenecks all the way down</span>
+      </p>
       <p class="hero-headline">
         <span class="lang-ko">병목 진단과 성능 개선에 강한 백엔드 엔지니어입니다</span>
         <span class="lang-en">Backend engineer with depth in bottleneck diagnosis and performance optimization</span>
@@ -76,17 +90,20 @@
         <a href="https://github.com/leonroars" target="_blank" rel="noopener">
           <span class="contact-icon">⌘</span> github.com/leonroars
         </a>
+        <a href="https://www.linkedin.com/in/hoyeonjulianchae/" target="_blank" rel="noopener">
+          <span class="contact-icon">in</span> linkedin.com/in/hoyeonjulianchae
+        </a>
         <span>
           <span class="contact-icon">☎</span> 010-5055-4908
         </span>
       </div>
     </section>
 
-    <!-- ====== STRENGTHS ====== -->
+    <!-- ====== CORE COMPETENCE ====== -->
     <section class="section" id="about">
       <p class="section-label">
         <span class="lang-ko">핵심 역량</span>
-        <span class="lang-en">Core Strengths</span>
+        <span class="lang-en">Core Competence</span>
       </p>
       <div class="strengths">
         <div class="strength-item">
@@ -122,6 +139,18 @@
       </div>
     </section>
 
+    <!--
+      ====== REPRESENTATIVE ARTICLES (placeholder) ======
+      Stage 2C에서 채워질 자리. 블로그 첫 글 작성 후 3편 큐레이션 노출.
+      <section class="section" id="rep-articles">
+        <p class="section-label">
+          <span class="lang-ko">주요 기술 아티클</span>
+          <span class="lang-en">Representative Articles</span>
+        </p>
+        ...
+      </section>
+    -->
+
     <!-- ====== PROJECTS ====== -->
     <section class="section" id="projects">
       <p class="section-label">
@@ -136,16 +165,48 @@
             <span class="project-card-title">SLAM!</span>
             <span class="project-card-arrow">→</span>
           </div>
+          <p class="project-card-meta">
+            <span class="project-card-meta-item">
+              <span class="lang-ko">개인 프로젝트</span><span class="lang-en">Personal Project</span>
+            </span>
+            <span class="project-card-meta-divider">·</span>
+            <span class="project-card-meta-item">
+              <span class="lang-ko">개발 1인</span><span class="lang-en">Solo Developer</span>
+            </span>
+            <span class="project-card-meta-divider">·</span>
+            <span class="project-card-meta-item">
+              2025.01 —
+              <span class="lang-ko">현재</span><span class="lang-en">Present</span>
+            </span>
+          </p>
           <p class="project-card-subtitle">
             <span class="lang-ko">공연 좌석 예약 서비스 — JVM 성능 병목 진단 및 해결, 멱등성 설계, DB 접근 패턴 최적화</span>
             <span class="lang-en">Concert seat reservation system — JVM bottleneck diagnosis and resolution, 3-layer
               API idempotency, DB access pattern optimization</span>
           </p>
-          <p class="project-card-period">
-            2025.01 —
-            <span class="lang-ko">현재</span><span class="lang-en">Present</span>
-            ·
-            <span class="lang-ko">개인 프로젝트</span><span class="lang-en">Personal Project</span>
+
+          <p class="project-card-section-label">
+            <span class="lang-ko">주요 성과</span>
+            <span class="lang-en">Key Achievements</span>
+          </p>
+          <ul class="project-card-achievements">
+            <li>
+              <span class="lang-ko">JVM Profiling 기반 병목 추적으로 P99 Latency 66%, Throughput 54% 개선 (인프라 증설 없음)</span>
+              <span class="lang-en">Improved P99 latency by 66% and throughput by 54% via JVM profiling-driven bottleneck tracking — no infra scaling</span>
+            </li>
+            <li>
+              <span class="lang-ko">3-Layer API 멱등성 설계로 결제·예약 중복 처리 방지</span>
+              <span class="lang-en">Designed 3-layer API idempotency to prevent duplicate payment and reservation processing</span>
+            </li>
+            <li>
+              <span class="lang-ko">Prometheus·Grafana·Loki 기반 관측·알림 체계 구축</span>
+              <span class="lang-en">Built end-to-end observability and alerting on Prometheus, Grafana, and Loki</span>
+            </li>
+          </ul>
+
+          <p class="project-card-section-label">
+            <span class="lang-ko">기술 스택</span>
+            <span class="lang-en">Tech Stack</span>
           </p>
           <div class="project-card-tags">
             <span class="tag">Java 17</span>
@@ -156,6 +217,12 @@
             <span class="tag">Grafana</span>
             <span class="tag">JFR</span>
           </div>
+
+          <span class="project-card-cta">
+            <span class="lang-ko">프로젝트 자세히 보기</span>
+            <span class="lang-en">View Project</span>
+            <span class="project-card-cta-arrow">→</span>
+          </span>
         </a>
 
         <!-- ADD MORE PROJECT CARDS HERE
@@ -221,11 +288,11 @@
       </div>
     </section>
 
-    <!-- ====== ACTIVITIES ====== -->
+    <!-- ====== EXTRA CURRICULAR ====== -->
     <section class="section" id="activities">
       <p class="section-label">
-        <span class="lang-ko">활동</span>
-        <span class="lang-en">Activities</span>
+        <span class="lang-ko">대외 활동</span>
+        <span class="lang-en">Extra Curricular</span>
       </p>
 
       <div class="activity-item">
@@ -308,62 +375,22 @@
       </div>
     </section>
 
-    <!-- ====== TECHNICAL SKILLS ====== -->
-    <section class="section" id="skills">
+    <!-- ====== LANGUAGES ====== -->
+    <section class="section" id="languages">
       <p class="section-label">
-        <span class="lang-ko">기술 스택</span>
-        <span class="lang-en">Technical Skills</span>
+        <span class="lang-ko">언어</span>
+        <span class="lang-en">Languages</span>
       </p>
-      <div class="skills-grid">
-        <div class="skills-category">
-          <p class="skills-category-label">
-            <span class="lang-ko">언어 & 프레임워크</span>
-            <span class="lang-en">Languages & Frameworks</span>
-          </p>
-          <div class="skills-category-items">
-            <span class="tag">Java</span>
-            <span class="tag">Kotlin</span>
-            <span class="tag">Spring Boot</span>
-            <span class="tag">Spring Data JPA</span>
-            <span class="tag">Python</span>
-            <span class="tag">SQL</span>
-          </div>
-        </div>
-        <div class="skills-category">
-          <p class="skills-category-label">
-            <span class="lang-ko">데이터 & 인프라</span>
-            <span class="lang-en">Data & Infrastructure</span>
-          </p>
-          <div class="skills-category-items">
-            <span class="tag">MySQL</span>
-            <span class="tag">Redis</span>
-            <span class="tag">AWS (EC2, RDS, ECR, SSM, S3)</span>
-            <span class="tag">Docker</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">nginx</span>
-          </div>
-        </div>
-        <div class="skills-category">
-          <p class="skills-category-label">
-            <span class="lang-ko">관측 & 분석</span>
-            <span class="lang-en">Observability & Analysis</span>
-          </p>
-          <div class="skills-category-items">
-            <span class="tag">Prometheus</span>
-            <span class="tag">Grafana</span>
-            <span class="tag">Loki</span>
-            <span class="tag">Promtail</span>
-            <span class="tag">JDK Flight Recorder (JFR)</span>
-          </div>
-        </div>
-        <div class="skills-category">
-          <p class="skills-category-label">AI Tools</p>
-          <div class="skills-category-items">
-            <span class="tag">Google Antigravity</span>
-            <span class="tag">Claude Code</span>
-          </div>
-        </div>
-      </div>
+      <ul class="language-list">
+        <li class="language-item">
+          <span class="language-name">Korean</span>
+          <span class="language-level">Native</span>
+        </li>
+        <li class="language-item">
+          <span class="language-name">English</span>
+          <span class="language-level">Professional Working Proficiency</span>
+        </li>
+      </ul>
     </section>
 
   </main>
