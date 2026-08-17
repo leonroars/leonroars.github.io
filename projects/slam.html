@@ -333,10 +333,11 @@
           </a>
           <a href="#section-06" class="article-card">
             <div class="acard-num">06</div>
-            <h3 class="acard-title"><span class="lang-ko">AI 도구 활용 단축기</span><span class="lang-en">AI
-                Productivity</span></h3>
-            <p class="acard-summary"><span class="lang-ko">AI 도구를 배포 안정성, 프로토타이핑 가속화에 활용한 사례</span><span
-                class="lang-en">Code review automation and fast prototyping with AI</span></p>
+            <h3 class="acard-title"><span class="lang-ko">좌석 예약 동시성 제어 설계</span><span class="lang-en">Seat
+                Reservation Concurrency Control</span></h3>
+            <p class="acard-summary"><span class="lang-ko">낙관적 락 · DB Unique Constraint를 활용한 중복 좌석 예약 차단</span><span
+                class="lang-en">Preventing duplicate seat reservations with optimistic locking and a DB unique
+                constraint</span></p>
           </a>
           <a href="#section-07" class="article-card">
             <div class="acard-num">07</div>
@@ -1603,24 +1604,195 @@
       </div>
     </section>
 
+    <!-- ====== TECH DETAIL 06: Seat Reservation Concurrency Control ====== -->
     <section class="tech-detail" id="section-06">
       <p class="detail-number">06</p>
       <h2 class="detail-title">
-        <span class="lang-ko">AI 도구 활용을 통한 개발 생산성 및 품질 향상</span>
-        <span class="lang-en">Development Productivity & Quality via AI Tools</span>
+        <span class="lang-ko">좌석 예약 동시성 제어 설계</span>
+        <span class="lang-en">Seat Reservation Concurrency Control</span>
       </h2>
+      <p class="detail-summary">
+        <span class="lang-ko">낙관적 락 · DB Unique Constraint를 활용한 중복 좌석 예약 차단</span>
+        <span class="lang-en">Preventing duplicate seat reservations with optimistic locking and a DB unique
+          constraint</span>
+      </p>
 
       <div class="detail-subsection">
-        <div class="detail-text">
+        <div class="detail-text" style="padding-left: 12px; border-left: 2px solid var(--border); margin-bottom: 24px;">
           <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
-            <li><strong>CodeRabbit</strong> 기반 PR 코드 리뷰 자동화 → 배포 안정성 제고</li>
-            <li>시연용 Frontend 프로토타이핑: 요구사항 문서화 → <strong>Google Antigravity + Claude Code</strong> 교차 활용 → 속도와 코드 품질 동시
-              확보</li>
+            <li><strong>임계 영역 접근 제어 전략:</strong> 도메인 특성과 현행 트랜잭션 격리 수준 고려 → 낙관적 락을 활용하여, 좌석 상태 변경에 대한 동시성 제어
+              설계</li>
+            <li><strong>DB 수준에서의 중복 좌석 선점 방지 전략:</strong> 실제 좌석 소유권을 표현하는 Reservation 테이블에 DB Unique 제약 조건 적용 → 중복
+              좌석 예약 가능성 차단</li>
           </ul>
           <ul class="cause-effect-list lang-en" style="margin-top: 0;">
-            <li>Automated PR code reviews via <strong>CodeRabbit</strong> → improved deployment stability</li>
-            <li>Frontend prototyping: documented requirements → cross-leveraged <strong>Google Antigravity + Claude
-                Code</strong> for both speed and quality</li>
+            <li><strong>Critical-section access control:</strong> Applied optimistic locking to coordinate concurrent seat
+              status changes based on the domain model and current transaction isolation level</li>
+            <li><strong>Database-level duplicate prevention:</strong> Applied a DB unique constraint to the Reservation
+              table, which represents actual seat ownership, to block duplicate reservations</li>
+          </ul>
+        </div>
+
+        <div class="pan-zoom-container" tabindex="0">
+          <div class="pan-zoom-inner">
+            <img src="../assets/seat-concurrency-flow.svg" alt="Seat reservation concurrency control flow" draggable="false">
+          </div>
+          <div class="pan-zoom-controls">
+            <button class="pan-zoom-btn" data-action="zoom-in">+</button>
+            <button class="pan-zoom-btn" data-action="zoom-out">−</button>
+            <button class="pan-zoom-btn" data-action="reset">⟲</button>
+          </div>
+        </div>
+        <p class="detail-text"
+          style="font-size: 0.78rem; color: var(--text-tertiary); text-align: center; margin-top: 8px;">
+          <span class="lang-ko">Fig. 좌석 예약 동시성 제어 Flow</span>
+          <span class="lang-en">Fig. Seat reservation concurrency control flow</span>
+        </p>
+      </div>
+
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">도입 배경</span>
+          <span class="lang-en">Background</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li>서비스 특성상 동일 좌석에 대해 다수의 사용자가 동시에 선점 시도 가능</li>
+            <li>중복 선점은 비즈니스 핵심 가치에 정면으로 반함 → 좌석 선점 및 소유권 관점에서는 성능보다 정합성이 우선</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li>Multiple users can attempt to hold the same seat concurrently</li>
+            <li>Duplicate holds violate a core business rule → correctness takes priority over performance for seat holds
+              and ownership</li>
+          </ul>
+          <p style="font-weight: 600; margin-top: 12px; font-size: 0.9rem;">
+            <span class="lang-ko">결론: 중복 좌석 선점이 발생하지 않도록 동시성 제어 및 좌석 선점과 관련한 데이터의 정합성 유지가 필요</span>
+            <span class="lang-en">Conclusion: Concurrency control and data consistency are required to prevent duplicate
+              seat holds</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">문제 정의</span>
+          <span class="lang-en">Problem Definition</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① 경합 자원 정의</span>
+            <span class="lang-en">① Contended Resource</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>현행 설계상 좌석 상태를 변경하는 API가 좌석 예약 로직의 최초 진입점 → 좌석 상태를 경합 자원, 좌석 상태 변경을 임계 영역으로 식별</li>
+              <li>좌석의 소유권은 Reservation 테이블의 Row로 표현됨 → 네트워크 실패로 인한 예약 중복 생성 가능성 차단이 필요</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>The seat-status API is the first entry point to the reservation flow → identified seat state as the
+                contended resource and status mutation as the critical section</li>
+              <li>Seat ownership is represented by a row in the Reservation table → duplicate creation caused by network
+                failures must be prevented</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② 동시성 제어 전략</span>
+            <span class="lang-en">② Concurrency-Control Strategy</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>동일 좌석에 대한 동시 요청 시 Seat Row를 임계 영역으로 설정하여 Race Condition 방지 필요</li>
+              <li>REPEATABLE READ 격리 수준에서의 InnoDB 락 동작과 도메인 특성을 함께 고려하여 전략 선택 필요</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Concurrent requests for the same seat must treat its Seat row as the critical section to prevent race
+                conditions</li>
+              <li>The strategy must account for both InnoDB locking under REPEATABLE READ and the domain's access pattern
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">해결 전략</span>
+          <span class="lang-en">Resolution Strategy</span>
+        </h3>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">① 좌석 상태 변경에 대한 동시성 제어: 낙관적 락 채택</span>
+            <span class="lang-en">① Seat Status Concurrency Control: Optimistic Locking</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>좌석 선점이라는 비즈니스 로직 성격을 고려했을 때, 좌석 자원 획득 실패 시 재시도 불필요</li>
+              <li>비관적 락은 이미 선점된 좌석에 대한 후속 요청들까지 락 대기 큐에 쌓아 불필요한 대기 시간을 유발</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>A failed seat hold does not require retry because another user has already acquired the seat</li>
+              <li>Pessimistic locking would queue later requests for an already-held seat and introduce unnecessary wait
+                time</li>
+            </ul>
+            <p style="font-weight: 600; margin-top: 12px; font-size: 0.9rem;">
+              <span class="lang-ko">결론: 같은 수준의 동시성 제어가 가능하므로, 자원 활용 측면에서 효율적인 fail-fast 전략이 가능한 낙관적 락 선택</span>
+              <span class="lang-en">Conclusion: Optimistic locking provides the same protection with a resource-efficient
+                fail-fast strategy</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="analysis-step">
+          <p class="analysis-step-title">
+            <span class="lang-ko">② 좌석 중복 예약 방지: 스키마 변경 범위를 고려해 DB Unique Constraint 채택</span>
+            <span class="lang-en">② Duplicate Reservation Prevention: DB Unique Constraint</span>
+          </p>
+          <div class="analysis-step-text">
+            <ul class="cause-effect-list lang-ko">
+              <li>좌석 선점 단계의 낙관적 락이 다수 사용자 간 경합을 해소 → 예약 생성에 도달하는 사용자는 한 명</li>
+              <li>실질적 위험은 동일 사용자의 중복 요청 → 중복 Record의 원천 삽입 방지 조치가 필요</li>
+              <li>좌석 소유권 별도 테이블 분리를 검토했으나, 데이터 일관성 유지 복잡도 및 스키마 호환성 부담을 고려하여 Nullable 컬럼 추가로 동일 목표 달성</li>
+            </ul>
+            <ul class="cause-effect-list lang-en">
+              <li>Optimistic locking resolves contention between users before reservation creation → only one user can
+                proceed</li>
+              <li>The remaining risk is duplicate requests from the same user → duplicate rows must be blocked at insert
+                time</li>
+              <li>A separate seat-ownership table was considered, but a nullable column achieved the same goal with less
+                consistency complexity and schema-compatibility risk</li>
+            </ul>
+            <p style="font-weight: 600; margin-top: 12px; font-size: 0.9rem;">
+              <span class="lang-ko">결론: TINYINT 타입의 is_active 컬럼을 추가하고 이를 포함하는 컬럼 조합 (cs_id, seat_id, is_active)에 대해 DB
+                Unique 제약조건 설정</span>
+              <span class="lang-en">Conclusion: Added a TINYINT is_active column and a DB unique constraint on (cs_id,
+                seat_id, is_active)</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-subsection">
+        <h3 class="subsection-title">
+          <span class="lang-ko">검증 및 결과</span>
+          <span class="lang-en">Validation &amp; Results</span>
+        </h3>
+        <div class="detail-text">
+          <ul class="cause-effect-list lang-ko" style="margin-top: 0;">
+            <li><strong>동일 좌석 동시 선점 테스트:</strong> 동일 좌석에 대한 동시 5건 요청 → 정확히 1건 성공, 4건 실패(409 Conflict)</li>
+            <li><strong>다수 좌석 동시 선점 테스트:</strong> 서로 다른 50개 좌석에 대한 50건 동시 요청 → 전원 성공, 잔여 좌석 0석 확인</li>
+            <li>JUnit 기반 코드 수준 검증으로 correctness 확인</li>
+          </ul>
+          <ul class="cause-effect-list lang-en" style="margin-top: 0;">
+            <li><strong>Same-seat contention test:</strong> Five concurrent requests for one seat → exactly one success,
+              four failures (409 Conflict)</li>
+            <li><strong>Multi-seat concurrency test:</strong> Fifty concurrent requests for fifty different seats → all
+              succeeded, zero seats remaining</li>
+            <li>Confirmed correctness with JUnit-level validation</li>
           </ul>
         </div>
       </div>

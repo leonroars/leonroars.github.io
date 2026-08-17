@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="100%" role="img"
+  aria-labelledby="title desc">
+  <title id="title">좌석 예약 동시성 제어 흐름</title>
+  <desc id="desc">좌석 선점 단계에서는 낙관적 락으로 동시에 들어온 요청을 제어하고, 예약 생성 단계에서는 데이터베이스 고유 제약 조건으로 중복 예약을 차단한다.</desc>
+
+  <defs>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#8b8f8a" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#5b8a68" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#b75b4b" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .lane { font-size: 18px; font-weight: 700; fill: #3d423e; }
+    .box-label { font-size: 18px; font-weight: 650; fill: #343936; }
+    .box-sub { font-size: 14px; font-weight: 500; fill: #7a6a58; }
+    .note { font-size: 13px; font-weight: 500; fill: #70756f; }
+    .result-ok { font-size: 17px; font-weight: 700; fill: #3f6d4f; }
+    .result-fail { font-size: 17px; font-weight: 700; fill: #984537; }
+  </style>
+
+  <text class="lane" x="55" y="52">좌석 선점</text>
+
+  <rect x="55" y="82" width="165" height="70" rx="9" fill="#edf4ff" stroke="#a9c4e8" stroke-width="1.5" />
+  <text class="box-label" x="137" y="123" text-anchor="middle">좌석 클릭</text>
+
+  <line x1="220" y1="117" x2="270" y2="117" stroke="#8b8f8a" stroke-width="1.5"
+    marker-end="url(#arrow-gray)" />
+
+  <rect x="280" y="82" width="175" height="70" rx="9" fill="#f6f7f5" stroke="#c8cbc7" stroke-width="1.5" />
+  <text class="box-label" x="367" y="123" text-anchor="middle">선점 API 호출</text>
+
+  <line x1="455" y1="117" x2="505" y2="117" stroke="#aa7944" stroke-width="1.5"
+    marker-end="url(#arrow-gray)" />
+
+  <rect x="515" y="70" width="235" height="94" rx="10" fill="#fff8ee" stroke="#ad7b45" stroke-width="2" />
+  <text class="box-label" x="632" y="108" text-anchor="middle">낙관적 락</text>
+  <text class="box-sub" x="632" y="136" text-anchor="middle">Seat Row @Version</text>
+
+  <line x1="750" y1="101" x2="815" y2="101" stroke="#5b8a68" stroke-width="1.7"
+    marker-end="url(#arrow-green)" />
+  <rect x="825" y="68" width="205" height="66" rx="9" fill="#eff8f1" stroke="#91b79b" stroke-width="1.5" />
+  <text class="result-ok" x="927" y="108" text-anchor="middle">UNAVAILABLE 전이</text>
+
+  <line x1="750" y1="137" x2="815" y2="190" stroke="#b75b4b" stroke-width="1.7"
+    marker-end="url(#arrow-red)" />
+  <rect x="825" y="166" width="205" height="66" rx="9" fill="#fff2ef" stroke="#d79c91" stroke-width="1.5" />
+  <text class="result-fail" x="927" y="206" text-anchor="middle">409 Conflict</text>
+
+  <text class="note" x="632" y="195" text-anchor="middle">다수 사용자의 Race Condition 해소</text>
+
+  <line x1="55" y1="278" x2="1030" y2="278" stroke="#d9dcd7" stroke-width="1.5" stroke-dasharray="7 7" />
+
+  <text class="lane" x="55" y="330">예약 생성</text>
+
+  <rect x="55" y="360" width="165" height="70" rx="9" fill="#edf4ff" stroke="#a9c4e8" stroke-width="1.5" />
+  <text class="box-label" x="137" y="402" text-anchor="middle">“다음” 클릭</text>
+
+  <line x1="220" y1="395" x2="270" y2="395" stroke="#8b8f8a" stroke-width="1.5"
+    marker-end="url(#arrow-gray)" />
+
+  <rect x="280" y="360" width="175" height="70" rx="9" fill="#f6f7f5" stroke="#c8cbc7" stroke-width="1.5" />
+  <text class="box-label" x="367" y="402" text-anchor="middle">예약 API 호출</text>
+
+  <line x1="455" y1="395" x2="505" y2="395" stroke="#aa7944" stroke-width="1.5"
+    marker-end="url(#arrow-gray)" />
+
+  <rect x="515" y="348" width="235" height="94" rx="10" fill="#fff8ee" stroke="#ad7b45" stroke-width="2" />
+  <text class="box-label" x="632" y="386" text-anchor="middle">Unique Constraint</text>
+  <text class="box-sub" x="632" y="414" text-anchor="middle">Reservation Table</text>
+
+  <line x1="750" y1="379" x2="815" y2="379" stroke="#5b8a68" stroke-width="1.7"
+    marker-end="url(#arrow-green)" />
+  <rect x="825" y="346" width="205" height="66" rx="9" fill="#eff8f1" stroke="#91b79b" stroke-width="1.5" />
+  <text class="result-ok" x="927" y="386" text-anchor="middle">가예약 생성 완료</text>
+
+  <line x1="750" y1="415" x2="815" y2="468" stroke="#b75b4b" stroke-width="1.7"
+    marker-end="url(#arrow-red)" />
+  <rect x="825" y="444" width="205" height="66" rx="9" fill="#fff2ef" stroke="#d79c91" stroke-width="1.5" />
+  <text class="result-fail" x="927" y="484" text-anchor="middle">중복 예약 차단</text>
+
+  <text class="note" x="632" y="474" text-anchor="middle">동일 사용자 중복 요청 방지</text>
+</svg>
