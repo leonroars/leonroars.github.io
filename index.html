@@ -260,50 +260,96 @@
 
       <div class="experience-item">
         <div class="experience-header">
-          <span class="experience-role">Backend Engineer</span>
+          <span class="experience-role">
+            <span class="lang-ko">Quriosity: 생성형 AI 기반 과학 학습 앱</span>
+            <span class="lang-en">Quriosity: Generative AI-Based Science Learning App</span>
+          </span>
           <span class="experience-period">2026.05 —
             <span class="lang-ko">현재</span><span class="lang-en">Present</span>
           </span>
         </div>
         <p class="experience-org">
-          <span class="lang-ko">Quriosity · 생성형 AI 기반 과학 학습 앱 · 3인 창업팀의 유일한 백엔드 담당</span>
-          <span class="lang-en">Quriosity · Generative AI Science Learning App · Sole Backend Engineer in a 3-Person
-            Founding Team</span>
+          <span class="lang-ko">Backend Engineer @ 창업팀 Quriosity</span>
+          <span class="lang-en">Backend Engineer @ Founding Team Quriosity</span>
+          <span class="experience-team-meta">
+            <span class="lang-ko">Designer 1, iOS 1, BE 1 (기여도 : 35%)</span>
+            <span class="lang-en">Designer 1, iOS 1, BE 1 (Contribution: 35%)</span>
+          </span>
         </p>
-        <ul class="experience-list">
-          <li>
-            <span class="lang-ko">SQS가 App Store Webhook 이벤트를 버퍼링하고, 처리기가 서명 시각과 고유 식별자를 비교해 유실·순서 역전·중복에도 구독 상태가
-              일치하도록 설계</span>
-            <span class="lang-en">Designed App Store subscription state management to remain consistent despite lost,
-              out-of-order, or duplicate Webhook events by buffering them with SQS and comparing signed dates and unique
-              identifiers</span>
-          </li>
-          <li>
-            <span class="lang-ko">구독 상태와 유효기간에 따라 최신 정보가 필요한 정도를 나누고, 사용자가 확인할 때 필요한 구독만 App Store에서 다시 조회해 내부 상태를
-              맞추도록 설계</span>
-            <span class="lang-en">Classified freshness requirements by subscription state and expiration date, then
-              selectively polled only the subscriptions that needed refresh when users checked their status</span>
-          </li>
-          <li>
-            <span class="lang-ko">Python 검사 스크립트가 Terraform Plan에서 Stateful 리소스 삭제를 찾으면 배포를 멈추고, 책임자가 명시적으로 허용해야만
-              실행하도록 CI 구성</span>
-            <span class="lang-en">Built CI checks that stop deployment when a Python script detects stateful resource
-              deletion in a Terraform Plan, requiring explicit approval from the responsible owner before execution</span>
-          </li>
-          <li>
-            <span class="lang-ko">AI Agent가 코드베이스와 변경분을 분석해 Terraform Plan만으로 찾기 어려운 하위 호환 위험을 MR에 남기고, 사람이 결과를 확인하도록
-              구성</span>
-            <span class="lang-en">Configured an AI agent to review the codebase and diff, flag backward-compatibility
-              risks that Terraform Plan cannot detect, and leave the results in merge requests for human review</span>
-          </li>
-          <li>
-            <span class="lang-ko">계획·구현·검증·Lint를 각각 독립된 서브에이전트가 맡도록 워크플로를 구성하고, 검증 에이전트가 CI만으로 잡기 어려운 설계·구현 문제
-              3건을 배포 전에 발견</span>
-            <span class="lang-en">Separated planning, implementation, validation, and linting across independent
-              subagents; the validation agent caught three design and implementation issues that CI alone would have
-              missed before deployment</span>
-          </li>
-        </ul>
+        <div class="experience-achievements">
+          <div class="experience-achievement">
+            <p class="experience-achievement-title">
+              <span class="lang-ko">Terraform·Serverless 환경에서 운영 데이터 무결성 및 하위 호환을 검증하는 AI Agent 통합 CICD 설계</span>
+              <span class="lang-en">Designed AI Agent-Integrated CI/CD to Validate Operational Data Integrity and
+                Backward Compatibility in a Terraform·Serverless Environment</span>
+            </p>
+            <ul class="experience-list">
+              <li>
+                <span class="lang-ko">Python 스크립트 기반 Terraform Plan 검증 수행 결과 Stateful 리소스 삭제 발견 시, 책임자의 명시적 허용에 의해서만
+                  실행되도록 CI 설계</span>
+                <span class="lang-en">Designed CI to execute stateful resource deletion detected by a Python-based
+                  Terraform Plan check only after explicit approval from the responsible owner</span>
+              </li>
+              <li>
+                <span class="lang-ko">Plan으로 탐지 어려운 하위 호환성은 AI Agent가 코드 베이스와 변경분을 분석해 MR Comment로 결과를 작성해 사람이 검증하도록
+                  개발</span>
+                <span class="lang-en">Built an AI Agent that analyzes the codebase and diff for backward-compatibility
+                  risks that Plan cannot detect, then posts the results as an MR Comment for human review</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-achievement">
+            <p class="experience-achievement-title">
+              <span class="lang-ko">Apple App Store Webhook 이벤트의 유실, 순서역전, 중복에도 데이터 일관성을 유지하는 구독 상태 관리 &amp; 대사 시스템
+                설계</span>
+              <span class="lang-en">Designed Subscription State Management &amp; Reconciliation to Maintain Data
+                Consistency Despite Lost, Out-of-Order, or Duplicate Apple App Store Webhook Events</span>
+            </p>
+            <ul class="experience-list">
+              <li>
+                <span class="lang-ko">MQ(SQS)를 버퍼 계층으로 활용해 Webhook 이벤트 유실을 방지하고, 이벤트 서명시각과 고유 식별자 비교를 통해 순서역전 및 중복
+                  해결</span>
+                <span class="lang-en">Used MQ (SQS) as a buffering layer to prevent Webhook event loss and resolved
+                  out-of-order and duplicate events by comparing signed dates and unique identifiers</span>
+              </li>
+              <li>
+                <span class="lang-ko">구독 상태 및 구독 유효기간 별로 Freshness 요구 수준이 다르다는 점을 고려해, 일괄 배치가 아닌 확인 시점 기반 선별 후 폴링
+                  방식으로 설계</span>
+                <span class="lang-en">Designed selective polling at the time of status checks instead of batch polling,
+                  accounting for different freshness requirements by subscription state and expiration date</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-achievement">
+            <p class="experience-achievement-title">
+              <span class="lang-ko">역할별 서브 에이전트 기반 하네스 설계 및 도입을 통한 AI 코드 산출물 품질 개선 및 운영 안정성 제고</span>
+              <span class="lang-en">Improved AI-Generated Code Quality and Operational Stability by Designing and
+                Adopting a Role-Based Subagent Harness</span>
+            </p>
+            <ul class="experience-list">
+              <li>
+                <span class="lang-ko">계획, 구현, 검증, Lint를 컨텍스트 독립적인 서브에이전트에게 위임하는 Workflow를 설계해, Context 오염으로 인한 코드 품질
+                  저하 문제 해결</span>
+                <span class="lang-en">Designed a workflow that delegates planning, implementation, validation, and
+                  linting to context-independent subagents, resolving code-quality degradation caused by context
+                  contamination</span>
+              </li>
+              <li>
+                <span class="lang-ko">CI 통과 가능한 설계 및 구현 문제 3건을 검증 에이전트가 발견하여 운영 환경의 서비스 품질 보호</span>
+                <span class="lang-en">The validation agent caught three design and implementation issues that could pass
+                  CI, protecting service quality in the production environment</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="experience-tech-stack">
+          <span class="experience-tech-stack-label">
+            <span class="lang-ko">활용 기술</span><span class="lang-en">Tech Stack</span>
+          </span>
+          Python, GitLab, Terraform, AWS Solutions - Lambda, S3, DynamoDB, CloudFront, API Gateway
+        </p>
       </div>
 
       <div class="experience-item">

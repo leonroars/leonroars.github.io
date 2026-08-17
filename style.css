@@ -422,6 +422,44 @@ body {
   margin-bottom: 16px;
 }
 
+.experience-team-meta {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.experience-achievements {
+  display: grid;
+  gap: 20px;
+}
+
+.experience-achievement-title {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.experience-achievement .experience-list {
+  gap: 6px;
+}
+
+.experience-tech-stack {
+  margin-top: 18px;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.experience-tech-stack-label {
+  margin-right: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .experience-list {
   list-style: none;
   display: grid;
