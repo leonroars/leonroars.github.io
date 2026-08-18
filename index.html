@@ -99,43 +99,75 @@
       </div>
     </section>
 
-    <!-- ====== CORE COMPETENCE ====== -->
-    <section class="section" id="about">
+    <!-- ====== FEATURED ENGINEERING CASES ====== -->
+    <section class="section featured-cases" id="featured-cases">
       <p class="section-label">
-        <span class="lang-ko">핵심 역량</span>
-        <span class="lang-en">Core Competence</span>
+        <span class="lang-ko">대표 문제 해결 경험</span>
+        <span class="lang-en">Selected Engineering Work</span>
       </p>
-      <div class="strengths">
-        <div class="strength-item">
-          <p class="strength-title">
-            <span class="lang-ko">논리적으로 분석하고 집요하게 추적해 문제를 해결합니다.</span>
-            <span class="lang-en">I solve problems through rigorous analysis and persistent investigation.</span>
+      <p class="featured-cases-intro">
+        <span class="lang-ko">설계·성능·오픈 소스에서 끝까지 파고든 세 가지 경험입니다.</span>
+        <span class="lang-en">Three cases that show how I approach system design, performance, and open source.</span>
+      </p>
+
+      <div class="featured-case-grid">
+        <a href="projects/quriosity.html#section-01" class="featured-case-card">
+          <div class="featured-case-meta">
+            <span>Quriosity · <span class="lang-ko">시스템 설계</span><span class="lang-en">System Design</span></span>
+            <span class="featured-case-arrow" aria-hidden="true">→</span>
+          </div>
+          <h2 class="featured-case-title">
+            <span class="lang-ko">Webhook 유실·중복·순서 역전에도 구독 상태 일치</span>
+            <span class="lang-en">Keeping Subscription State Aligned Despite Unreliable Webhooks</span>
+          </h2>
+          <p class="featured-case-description">
+            <span class="lang-ko">MQ(SQS)를 버퍼 계층으로 활용하고, 고유 식별자와 서명 시각으로 중복과 순서를 판별했습니다. 확인 시점이 지난 구독만 Apple과 다시 맞추도록 설계했습니다.</span>
+            <span class="lang-en">Used MQ (SQS) as a buffering layer, rejected duplicate and out-of-order events, and reconciled only subscriptions due for verification.</span>
           </p>
-          <p class="strength-detail">
-            <span class="lang-ko">JVM 내부 이벤트까지 추적해 병목 원인을 진단 및 해소하여, 인프라 증설 없이 P99 Latency 66%, Throughput 54%
-              개선했습니다.</span>
-            <span class="lang-en">Traced bottleneck causes down to JVM-level events, improving P99 latency by 66% and
-              throughput by 54% without infrastructure scaling.</span>
+          <span class="featured-case-cta">
+            <span class="lang-ko">설계 판단 자세히 보기</span>
+            <span class="lang-en">View design decisions</span>
+          </span>
+        </a>
+
+        <a href="projects/slam.html#section-01" class="featured-case-card">
+          <div class="featured-case-meta">
+            <span>SLAM! · <span class="lang-ko">성능 최적화</span><span class="lang-en">Performance</span></span>
+            <span class="featured-case-arrow" aria-hidden="true">→</span>
+          </div>
+          <h2 class="featured-case-title">
+            <span class="lang-ko">JVM 병목 분석으로 P99 66% 단축, 처리량 53.3% 향상</span>
+            <span class="lang-en">P99 −66% and Throughput +53.3% Through JVM Bottleneck Analysis</span>
+          </h2>
+          <p class="featured-case-description">
+            <span class="lang-ko">Grafana 지표로 가설을 세우고 JFR·스레드 덤프로 GC Pause 이후의 스레드 적체를 확인했습니다. Heap 크기를 재산정해 인프라 증설 없이 병목을 해소했습니다.</span>
+            <span class="lang-en">Formed a hypothesis from Grafana metrics, verified thread buildup after GC pauses with JFR and thread dumps, and removed the bottleneck without scaling infrastructure.</span>
           </p>
-        </div>
-        <div class="strength-item">
-          <p class="strength-title">
-            <span class="lang-ko">팀의 필요와 방향을 이해하고, 지금 해야 할 일을 스스로 찾아 수행합니다.</span>
-            <span class="lang-en">I understand what the team needs and take initiative to fill gaps.</span>
+          <span class="featured-case-cta">
+            <span class="lang-ko">분석 과정 자세히 보기</span>
+            <span class="lang-en">View analysis</span>
+          </span>
+        </a>
+
+        <a href="https://github.com/redisson/redisson/pull/7046" target="_blank" rel="noopener"
+          class="featured-case-card" aria-label="Redisson upstream Pull Request 7046 새 탭에서 보기">
+          <div class="featured-case-meta">
+            <span>Redisson · <span class="lang-ko">오픈 소스</span><span class="lang-en">Open Source</span></span>
+            <span class="featured-case-arrow" aria-hidden="true">↗</span>
+          </div>
+          <h2 class="featured-case-title">
+            <span class="lang-ko">4년간 남아 있던 숫자 타입 변환 버그 수정 후 upstream 병합</span>
+            <span class="lang-en">Fixed a Four-Year-Old Numeric Cast Bug and Merged Upstream</span>
+          </h2>
+          <p class="featured-case-description">
+            <span class="lang-ko">코덱 설정에 따라 JSON 숫자가 Integer로 역직렬화되는 경로를 추적했습니다. 8개 Tomcat·Micronaut 모듈의 Long 하드 캐스팅을 수정했고, 메인테이너 리뷰를 거쳐 v4.4.0에 반영됐습니다.</span>
+            <span class="lang-en">Traced how codec configuration could deserialize JSON numbers as Integer, fixed unsafe Long casts across eight Tomcat and Micronaut modules, and shipped the change in v4.4.0 after maintainer review.</span>
           </p>
-          <p class="strength-detail">
-            <span class="lang-ko">비개발 팀원들의 고충을 해결하기 위해 Python·Whisper·FFmpeg 활용해 해외 학자 강연 영상 자막 생성 자동화 파이프라인을
-              구축했습니다.</span>
-            <span class="lang-en">Built an automated subtitle generation pipeline using Python, Whisper, and FFmpeg to
-              eliminate manual workload for non-engineering teammates.</span>
-          </p>
-          <p class="strength-detail" style="margin-top: 8px;">
-            <span class="lang-ko">담당 업무 영역 밖이었으나 조직 차원의 어려움을 파악했고, 해결하기 위해 프로모션 전략을 기획·제안 및 실행해 참석자 수 47% 증가를
-              달성했습니다.</span>
-            <span class="lang-en">Identified an organizational challenge outside my role, proposed and executed a
-              promotion strategy that increased conference attendance by 47% YoY.</span>
-          </p>
-        </div>
+          <span class="featured-case-cta">
+            <span class="lang-ko">병합된 PR 보기</span>
+            <span class="lang-en">View merged PR</span>
+          </span>
+        </a>
       </div>
     </section>
 
@@ -446,6 +478,46 @@
               conference; achieved a 47% YoY increase in attendance</span>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ====== CORE COMPETENCE ====== -->
+    <section class="section" id="about">
+      <p class="section-label">
+        <span class="lang-ko">핵심 역량</span>
+        <span class="lang-en">Core Competence</span>
+      </p>
+      <div class="strengths">
+        <div class="strength-item">
+          <p class="strength-title">
+            <span class="lang-ko">논리적으로 분석하고 집요하게 추적해 문제를 해결합니다.</span>
+            <span class="lang-en">I solve problems through rigorous analysis and persistent investigation.</span>
+          </p>
+          <p class="strength-detail">
+            <span class="lang-ko">JVM 내부 이벤트까지 추적해 병목 원인을 진단 및 해소하여, 인프라 증설 없이 P99 Latency 66%, Throughput 54%
+              개선했습니다.</span>
+            <span class="lang-en">Traced bottleneck causes down to JVM-level events, improving P99 latency by 66% and
+              throughput by 54% without infrastructure scaling.</span>
+          </p>
+        </div>
+        <div class="strength-item">
+          <p class="strength-title">
+            <span class="lang-ko">팀의 필요와 방향을 이해하고, 지금 해야 할 일을 스스로 찾아 수행합니다.</span>
+            <span class="lang-en">I understand what the team needs and take initiative to fill gaps.</span>
+          </p>
+          <p class="strength-detail">
+            <span class="lang-ko">비개발 팀원들의 고충을 해결하기 위해 Python·Whisper·FFmpeg 활용해 해외 학자 강연 영상 자막 생성 자동화 파이프라인을
+              구축했습니다.</span>
+            <span class="lang-en">Built an automated subtitle generation pipeline using Python, Whisper, and FFmpeg to
+              eliminate manual workload for non-engineering teammates.</span>
+          </p>
+          <p class="strength-detail" style="margin-top: 8px;">
+            <span class="lang-ko">담당 업무 영역 밖이었으나 조직 차원의 어려움을 파악했고, 해결하기 위해 프로모션 전략을 기획·제안 및 실행해 참석자 수 47% 증가를
+              달성했습니다.</span>
+            <span class="lang-en">Identified an organizational challenge outside my role, proposed and executed a
+              promotion strategy that increased conference attendance by 47% YoY.</span>
+          </p>
+        </div>
       </div>
     </section>
 
