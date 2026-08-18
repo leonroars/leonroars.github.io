@@ -73,6 +73,20 @@
 
       function clamp() {
         const r = container.getBoundingClientRect();
+        const content = inner.querySelector('img');
+        const startsAtLeft = getComputedStyle(inner).justifyContent === 'flex-start';
+
+        if (startsAtLeft && content) {
+          const cw = content.offsetWidth * scale;
+          const minX = Math.min(0, r.width - cw);
+          panX = Math.max(minX, Math.min(0, panX));
+
+          const ch = content.offsetHeight * scale;
+          const my = Math.max(0, (ch - r.height) / 2 + 120);
+          panY = Math.max(-my, Math.min(my, panY));
+          return;
+        }
+
         const cw = inner.scrollWidth * scale;
         const ch = inner.scrollHeight * scale;
         const mx = Math.max(0, (cw - r.width) / 2 + 120);
