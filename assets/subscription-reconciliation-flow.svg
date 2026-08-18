@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 650" width="100%" role="img"
   aria-labelledby="title desc">
   <title id="title">App Store 구독 상태 처리 및 대사 흐름</title>
-  <desc id="desc">App Store Webhook을 SQS에 보관한 뒤 고유 식별자와 서명시각을 비교해 중복과 순서 역전을 차단한다. Webhook이 유실되면 확인 시점이 지난 구독만 Apple에서 다시 조회하고, 조회 결과를 같은 구독 상태 변경 단계에 반영한다.</desc>
+  <desc id="desc">MQ를 이벤트 버퍼로 활용해 App Store Webhook을 처리 전까지 보관하고, 고유 식별자와 서명시각을 비교해 중복과 순서 역전을 차단한다. Webhook이 유실되면 확인 시점이 지난 구독만 Apple에서 다시 조회하고, 조회 결과를 같은 구독 상태 변경 단계에 반영한다.</desc>
 
   <defs>
     <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8"
@@ -37,7 +37,7 @@
 
   <!-- Webhook 처리 -->
   <text class="lane" x="50" y="48">Webhook 처리</text>
-  <text class="lane-note" x="50" y="72">이벤트를 먼저 보관하고, 중복 여부와 발생 순서를 확인한 뒤 구독 상태를 바꿉니다.</text>
+  <text class="lane-note" x="50" y="72">Webhook을 MQ 버퍼에 먼저 보관하고, 중복 여부와 발생 순서를 확인한 뒤 구독 상태를 바꿉니다.</text>
 
   <rect x="50" y="112" width="140" height="72" rx="9" fill="#f3f7fc" stroke="#afc4de"
     stroke-width="1.5" />
@@ -55,20 +55,17 @@
   <line x1="380" y1="148" x2="410" y2="148" stroke="#8b8f8a" stroke-width="1.5"
     marker-end="url(#arrow-gray)" />
 
-  <rect x="420" y="104" width="160" height="88" rx="9" fill="#f3f7fc" stroke="#afc4de"
+  <rect x="420" y="112" width="160" height="72" rx="9" fill="#f3f7fc" stroke="#afc4de"
     stroke-width="1.5" />
-  <text class="box-title" x="500" y="136" text-anchor="middle">이벤트 보관</text>
-  <text class="box-sub" x="500" y="159" text-anchor="middle">SQS</text>
-  <text class="box-sub" x="500" y="178" text-anchor="middle">Retry · DLQ</text>
+  <text class="box-title" x="500" y="154" text-anchor="middle">MQ 기반 이벤트 버퍼</text>
 
   <line x1="580" y1="148" x2="610" y2="148" stroke="#8b8f8a" stroke-width="1.5"
     marker-end="url(#arrow-gray)" />
 
   <rect x="620" y="104" width="170" height="88" rx="9" fill="#fff" stroke="#c8cbc7"
     stroke-width="1.5" />
-  <text class="box-title" x="705" y="136" text-anchor="middle">이벤트 검증</text>
-  <text class="box-sub" x="705" y="159" text-anchor="middle">JWS 서명 검증</text>
-  <text class="box-sub" x="705" y="178" text-anchor="middle">변경할 상태 판정</text>
+  <text class="box-title" x="705" y="140" text-anchor="middle">이벤트 처리</text>
+  <text class="box-sub" x="705" y="168" text-anchor="middle">변경할 구독 상태 판정</text>
 
   <line x1="790" y1="148" x2="820" y2="148" stroke="#8b8f8a" stroke-width="1.5"
     marker-end="url(#arrow-gray)" />
